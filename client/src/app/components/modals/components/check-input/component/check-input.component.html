@@ -1,0 +1,21 @@
+<div class="check-input" [formGroup]="parentForm">
+  <div class="label"></div>
+  <mat-checkbox
+    [formControlName]="formName"
+    [color]="'primary'"
+    [disableRipple]="true"
+    [id]="formName"
+  >
+    {{ label }} {{ required ? '*' : '' }}
+  </mat-checkbox>
+  <mat-error *ngFor="let validation of validation_messages[formName]">
+    <mat-error
+      class="error-message"
+      *ngIf="
+        parentForm.get(formName).hasError(validation.type) &&
+        (parentForm.get(formName).dirty || parentForm.get(formName).touched)
+      "
+      >{{ validation.message }}
+    </mat-error>
+  </mat-error>
+</div>

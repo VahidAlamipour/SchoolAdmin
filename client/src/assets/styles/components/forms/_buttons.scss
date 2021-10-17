@@ -1,0 +1,108 @@
+.mat-flat-button {
+  color: #fff;
+}
+
+.search_button,
+.mat-flat-button.search_button {
+  user-select: none;
+  cursor: pointer;
+  border-radius: 4px;
+  background: $blue;
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.create_button {
+  user-select: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  color: $blue;
+  line-height: 32px;
+  font-weight: 400;
+  border-radius: 4px;
+  transition: all $cubic 0.3s;
+
+  &.disabled {
+    pointer-events: none;
+    color: #d8d8d8;
+    cursor: default;
+  }
+
+  &:hover {
+    color: $blue_dark;
+  }
+}
+
+.action_button {
+  user-select: none;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 4px;
+  background: $blue;
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 32px;
+  &.cancel {
+    background: #999;
+  }
+  &.delete {
+    color: $blue;
+    background: transparent;
+    border-radius: $global_border_radius;
+    margin: 0 auto 0 0;
+  }
+  .mat-button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .mat-spinner {
+      margin-left: 10px;
+    }
+  }
+}
+.quick_button {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  i {
+    width: 36px;
+    height: 36px;
+    text-align: center;
+    font-size: 20px;
+    line-height: 36px;
+    border-radius: 50%;
+    color: #fff;
+    transition: all $cubic 0.1s;
+    background: $blue_gradient;
+    &.child-icon {
+      &:before {
+        width: 17px;
+      }
+    }
+    &.parents-icon {
+      &:before {
+        width: 16px;
+      }
+    }
+  }
+  span {
+    margin-left: 16px;
+    font-size: 16px;
+    color: #333;
+    transition: all $cubic 0.3s;
+  }
+  &:hover {
+    i {
+      box-shadow: $global_shadow;
+    }
+    span {
+      color: $blue;
+    }
+  }
+}
+.group-icon-button{
+  .group-icon-button-icon{
+    width: 20px;
+  }
+}

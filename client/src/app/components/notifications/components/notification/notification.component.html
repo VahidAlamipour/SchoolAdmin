@@ -1,0 +1,9 @@
+<div
+  [ngClass]="['notification', notificationData.type]"
+  (click)="clearEvent.emit()"
+>
+  <i [ngClass]="getIcon(notificationData.type)"></i>
+  <div class="message">
+    {{ notificationData.message }}
+  </div>
+</div>

@@ -1,0 +1,41 @@
+.message_box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 40px;
+  margin: 16px 0;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 18px;
+  color: #fff;
+  &:before {
+    content: '';
+    margin-top: -4px;
+    margin-right: 16px;
+    margin-bottom: -4px;
+    height: 36px;
+    width: 36px;
+  }
+  &.rounded {
+    margin: 5px 16px;
+    border-radius: 4px;
+  }
+
+  &.attention {
+    $image_size: 28px;
+    background: $yellow;
+    &:before {
+      width: $image_size;
+      height: $image_size;
+      background: transparent url('../images/attention.svg') center/contain
+        no-repeat;
+    }
+  }
+  &.denger {
+    background: $red;
+    &:before {
+      background: transparent url('../images/attention.svg') center/contain
+        no-repeat;
+    }
+  }
+}

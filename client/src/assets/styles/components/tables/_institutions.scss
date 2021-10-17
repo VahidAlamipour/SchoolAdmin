@@ -1,0 +1,120 @@
+%institutions-table {
+  &.institution {
+    margin-bottom: 20px;
+    overflow: hidden;
+    .loader {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+    }
+    .wrapper {
+      .row-title {
+        margin-top: 16px;
+      }
+      &.container{
+        max-width: inherit;
+      }
+      &.schedule-settings{
+        max-width: 600px !important;
+      }
+    }
+    .table_actions {
+      margin-top: 0;
+    }
+  }
+  &.institutions {
+    margin-bottom: 20px;
+    // min-height: 325px;
+    mat-table {
+      mat-header-row,
+      mat-row {
+        mat-header-cell,
+        mat-cell {
+          // shortName column
+          &:nth-child(1) {
+            @include fullNameCol;
+            max-width: 200px;
+          }
+          // fullName column
+          &:nth-child(2) {
+            @include flexEllipsisCol;
+          }
+          // city column
+          &:nth-child(3) {
+            flex: unset;
+            justify-content: flex-start;
+            width: 120px;
+          }
+          // action column
+          &:nth-child(4) {
+            @include actionCol;
+          }
+        }
+      }
+      mat-row {
+        transition: background 0.2s $cubic;
+        cursor: pointer;
+        &:hover {
+          transition: background 0.4s $cubic;
+          background: $blue;
+          mat-cell,
+          mat-cell i {
+            transition: color 0.3s $cubic;
+            color: #fff;
+          }
+        }
+        mat-cell {
+          transition: color 0.2s $cubic;
+          // city column
+          &:nth-child(3) {
+            flex: unset;
+            width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: inline-block;
+            line-height: 48px;
+          }
+          .child-container {
+            width: 100%; 
+            i {
+              display: inline-block;
+              float: right;
+             // color: #f4ba3f;
+              font-weight: bold; 
+              font-size: 20px;
+              margin-right: 20px;
+            }
+            
+            .text{
+              display: inline-block;
+            }
+          }
+        }
+      }
+    }
+    .table_spinner {
+      top: 120px;
+      height: calc(100% - 120px);
+    }
+    .empty_message {
+      min-height: 91px;
+      border-bottom: 1px solid $light_gray;
+    }
+  }
+}
+.academicYear-error{
+  font-size: 12px;
+  margin-left: 38px;
+}
+.modal.confirm .confirm_text {
+  font-weight: normal !important;
+  font-size: 16px !important;
+}

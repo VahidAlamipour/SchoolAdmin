@@ -1,0 +1,14 @@
+%roles-table {
+  &.roles {
+    margin-bottom: 20px;
+    .table_content {
+      .wrapper {
+        max-width: 680px;
+        .row-input .row_data,
+        .chips-block .block_wrap {
+          max-width: 432px;
+        }
+      }
+    }
+  }
+}

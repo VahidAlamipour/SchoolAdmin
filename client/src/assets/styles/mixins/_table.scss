@@ -1,0 +1,84 @@
+// MIXINS FOR TABLE COLUMNS
+@mixin fullNameCol {
+  display: flex;
+  max-width: 340px;
+  justify-content: space-between;
+  padding-right: 24px;
+  line-height: 1;
+  span {
+    margin-right: auto;
+  }
+}
+
+@mixin phoneNumberCol {
+  flex: unset;
+  width: 120px;
+}
+
+@mixin verticalCol($alignment: unset) {
+  flex-direction: column;
+  align-items: flex-start;
+  span {
+    width: 100%;
+    margin-bottom: 6px;
+    text-align: $alignment;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    &:first-child {
+      margin-top: 13px;
+    }
+    &:last-child {
+      margin-bottom: 13px;
+    }
+  }
+}
+
+@mixin statusCol {
+  flex: unset;
+  width: 100px;
+  justify-content: center;
+  i {
+    &.check-icon {
+      color: $green;
+    }
+    &.cross-icon {
+      color: $red;
+    }
+    &.warn-icon {
+      color: $yellow;
+      font-size: 20px;
+    }
+  }
+}
+
+@mixin actionCol {
+  flex: unset;
+  justify-content: center;
+  width: 80px;
+  padding-right: 4px;
+  i {
+    color: #999;
+    transition: all $cubic 0.3s;
+    &.edit-icon {
+      font-size: 16px;
+    }
+    &.parents-icon,
+    &.child-icon {
+      font-size: 20px;
+      &:hover {
+        color: $blue;
+      }
+    }
+  }
+}
+
+@mixin flexEllipsisCol {
+  flex: 1;
+  min-width: 0;
+  span {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,70 @@
+<div mat-dialog-title class="modal_title">{{ data.title }}</div>
+<mat-dialog-content class="modal_form">
+  <form [formGroup]="detailsForm">
+    <label-input
+      [label]="'Name'"
+      [placeholder]="'Enter facility name'"
+      [required]="true"
+      [parentForm]="detailsForm"
+      [formName]="'name'"
+    ></label-input>
+    <label-input
+      [label]="'Capacity'"
+      [placeholder]="'Enter facility capacity'"
+      [parentForm]="detailsForm"
+      [formName]="'capacity'"
+      [type]="'number'"
+    ></label-input>
+    <chips-block
+      [label]="'Courses'"
+      [buttonLabel]="'Add course'"
+      [parentForm]="detailsForm"
+      [formName]="'subjects'"
+      [modalConfig]="coursesModalConfig"
+    ></chips-block>
+    <select-input
+      [label]="'Refers to'"
+      [placeholder]="'Choose the educator'"
+      [parentForm]="detailsForm"
+      [formName]="'teacher'"
+      [dataItems]="allEducators"
+      [zeroOption]="true"
+    ></select-input>
+    <label-input
+      [label]="'Description'"
+      [placeholder]="'Enter description'"
+      [istextarea]="true"
+      [parentForm]="detailsForm"
+      [formName]="'description'"
+    ></label-input>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button
+    id="delete_button"
+    *ngIf="existingFacility"
+    mat-button
+    class="action_button delete"
+    (click)="onDeleteClick()"
+  >
+    Delete facility
+  </button>
+  <button
+    id="save_button"
+    mat-flat-button
+    class="action_button"
+    (click)="onSubmitFormDetails(detailsForm.value)"
+    [disabled]="detailsForm.invalid"
+  >
+    {{ data.saveButtonText }}
+  </button>
+  <button
+    id="cancel_button"
+    mat-flat-button
+    class="action_button cancel"
+    (click)="onNoClick()"
+  >
+    Cancel
+  </button>
+</mat-dialog-actions>

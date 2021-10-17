@@ -1,0 +1,78 @@
+<div mat-dialog-title class="modal_title">{{ data.title }}</div>
+<mat-dialog-content class="modal_form">
+  <form
+    [formGroup]="formDetails"
+    (submit)="onSubmitFormDetails(formDetails.value)"
+  >
+    <label-input
+      *ngIf="data.name === 'class'"
+      [label]="'Level'"
+      [placeholder]="'level'"
+      [required]="true"
+      [disabled]="true"
+      [parentForm]="formDetails"
+      [formName]="'classLevel'"
+    ></label-input>
+    <div class="row" *ngIf="data.name === 'level'">
+      <mat-radio-group class="level_radio_group" formControlName="name">
+        <mat-radio-button
+          class="level_radio_button"
+          *ngFor="let level of allLevels"
+          disableRipple="true"
+          [value]="level"
+          [disabled]="isLevelDisabled(level)"
+          id="{{ 'create_level_' + level }}"
+        >
+          {{ level }}
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <label-input
+      *ngIf="data.name !== 'level'"
+      [label]="data.inputLabel"
+      [placeholder]="data.inputPlaceholder"
+      [required]="true"
+      [parentForm]="formDetails"
+      [formName]="'name'"
+    ></label-input>
+    <check-input
+      *ngIf="data.name === 'class'"
+      [label]="'Show class name only'"
+      [parentForm]="formDetails"
+      [formName]="'showName'"
+    ></check-input>
+
+    <select-input
+      *ngIf="data.name === 'class'"
+      [label]="'Homeroom educator'"
+      [placeholder]="'Choose the educator'"
+      [parentForm]="formDetails"
+      [formName]="'teacher'"
+      [dataItems]="allEducators"
+      [zeroOption]="true"
+    ></select-input>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button
+    *ngIf="data.existing"
+    mat-button
+    class="action_button delete"
+    (click)="onDeleteClick()"
+  >
+    Delete
+  </button>
+  <button
+    mat-flat-button
+    class="action_button"
+    (click)="onSubmitFormDetails(formDetails.value)"
+    [disabled]="formDetails.invalid"
+    id="save_button"
+  >
+    {{ data.saveButtonText }}
+  </button>
+  <button mat-flat-button class="action_button cancel" (click)="onNoClick()">
+    Cancel
+  </button>
+</mat-dialog-actions>

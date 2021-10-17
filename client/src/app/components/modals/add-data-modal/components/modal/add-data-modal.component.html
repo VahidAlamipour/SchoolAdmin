@@ -1,0 +1,40 @@
+<mat-tab-group dynamicHeight>
+  <mat-tab label='{{data.title || "CHOOSE FROM DATABASE"}}'>
+    <div class="modal_search">
+      <form *ngIf="data.institutionFilter" [formGroup]="institutionForm">
+        <auto-input
+          [label]="'nolabel'"
+          [placeholder]="'Type institution'"
+          [parentForm]="institutionForm"
+          [formName]="'institution'"
+          [suggestions]="institutionSuggestions"
+          (loadEvent)="loadInstitutions()"
+        ></auto-input>
+      </form>
+      <search-input
+        [id]="data.addingDataName"
+        [placeholder]="data.searchPlaceholder"
+        (searchEvent)="searchEvent($event)"
+      ></search-input>
+    </div>
+    <mat-dialog-content
+      [ngClass]="{ 'with-second-filter': data.institutionFilter }"
+    >
+      <app-add-data-list [name]="data.addingDataName" [classId]="data.classId"></app-add-data-list>
+    </mat-dialog-content>
+  </mat-tab>
+</mat-tab-group>
+<mat-dialog-actions>
+  <button
+    mat-flat-button
+    id="add_a_{{ data.addingDataName }}"
+    class="action_button"
+    [disabled]="noSelectedItems"
+    (click)="transferData()"
+  >
+    {{ data.addButtonTitle }}
+  </button>
+  <button mat-flat-button class="action_button cancel" (click)="onNoClick()">
+    Cancel
+  </button>
+</mat-dialog-actions>

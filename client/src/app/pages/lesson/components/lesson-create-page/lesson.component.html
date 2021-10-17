@@ -1,0 +1,138 @@
+<h1 class="headcrumbs">
+  <span [routerLink]="['/timetable']">Timetable</span><span> / {{ editMode ? 'Edit lesson' : 'Add lesson' }}</span>
+</h1>
+<div class="table lesson">
+  <div class="table_content" [formGroup]="lessonForm">
+    <div class="wrapper">
+      <label-input [label]="'Date'" [parentForm]="lessonForm" [disabled]="true" [formName]="'date'"></label-input>
+      <label-input
+        [label]="'Class'"
+        [parentForm]="lessonForm"
+        [required]="true"
+        [disabled]="true"
+        [formName]="'className'"
+      ></label-input>
+
+      <select-input
+        *ngIf="!editMode"
+        [label]="'Time'"
+        [required]="true"
+        [placeholder]="'Choose the time'"
+        [parentForm]="lessonForm"
+        [formName]="'time'"
+        [dataItems]="times"
+      ></select-input>
+      <label-input
+        *ngIf="editMode"
+        [label]="'Time'"
+        [placeholder]="'Time'"
+        [parentForm]="lessonForm"
+        [required]="true"
+        [disabled]="true"
+        [formName]="'time'"
+      ></label-input>
+
+      <check-input
+        *ngIf="!editMode"
+        [label]="'By subclasses'"
+        [parentForm]="lessonForm"
+        [formName]="'bySubclasses'"
+      ></check-input>
+      <div *ngIf="!subclassMode">
+        <select-input
+          *ngIf="!editMode"
+          [label]="'Сourse'"
+          [required]="true"
+          [placeholder]="'Choose the course'"
+          [parentForm]="lessonForm"
+          [formName]="'subject'"
+          [dataItems]="lessonService.courses$ | async"
+        ></select-input>
+        <label-input
+          *ngIf="editMode"
+          [label]="'Сourse'"
+          [placeholder]="'Сourse'"
+          [parentForm]="lessonForm"
+          [required]="true"
+          [disabled]="true"
+          [formName]="'subject'"
+        ></label-input>
+
+        <select-input
+          [label]="'Educator'"
+          [required]="true"
+          [placeholder]="'Choose the educator'"
+          [parentForm]="lessonForm"
+          [formName]="'teacher'"
+          [disabled]="lessonForm.get('subject').invalid"
+          [dataItems]="educators$ | async"
+        ></select-input>
+        <select-input
+          [label]="'Facility'"
+          [required]="true"
+          [placeholder]="'Choose the facility'"
+          [parentForm]="lessonForm"
+          [formName]="'room'"
+          [disabled]="lessonForm.get('subject').invalid"
+          [dataItems]="facilities$ | async"
+        ></select-input>
+      </div>
+    </div>
+    <hr *ngIf="!editMode" />
+    <div *ngIf="!editMode" class="wrapper">
+      <div class="vertical-radio-input big">
+        <div class="label">Choose interval *</div>
+        <mat-radio-group class="vertical-radio-group" formControlName="repeat">
+          <mat-radio-button
+            class="vertical-radio-button"
+            disableRipple="true"
+            [value]="lessonForm.get('period')"
+            [checked]="true"
+          >
+            <div class="select">
+              <mat-form-field>
+                <mat-select formControlName="period">
+                  <mat-option *ngFor="let period of periods" [value]="period">
+                    {{ period }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="select">
+              <mat-form-field>
+                <mat-select formControlName="interval">
+                  <mat-option *ngFor="let interval of intervals" [value]="interval">
+                    {{ interval.name }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </mat-radio-button>
+          <mat-radio-button class="vertical-radio-button" disableRipple="true" value="Once">
+            Once
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
+    <lesson-subclasses-block
+      *ngIf="subclassMode"
+      [parentForm]="lessonForm"
+      [existingData]="existingLesson?.groups"
+    ></lesson-subclasses-block>
+  </div>
+  <div class="table_actions">
+    <button
+      id="save_lesson"
+      class="action_button"
+      mat-flat-button
+      (click)="onFormSubmit(lessonForm.value)"
+      [disabled]="!formValid || (uploading$ | async)"
+    >
+      <span>Save</span>
+      <mat-spinner *ngIf="uploading$ | async" diameter="15" strokeWidth="1"></mat-spinner>
+    </button>
+    <button mat-flat-button class="action_button cancel" (click)="onBackClick()">
+      Back
+    </button>
+  </div>
+</div>

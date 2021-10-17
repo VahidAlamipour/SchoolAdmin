@@ -1,0 +1,25 @@
+<div class="popup">
+  <i class="info-icon"></i>
+  <div class="popup_box" *ngIf="(popupData | json) != ({} | json)" [ngClass]="{left: position === 'left'}">
+    <div class="t"></div>
+    <div class="row" *ngIf="popupData && popupData.birthday">
+      <span class="label">Date of birth:</span
+      ><span>{{ popupData.birthday }}</span>
+    </div>
+    <div class="row" *ngIf="popupData && popupData.address">
+      <span class="label">Address:</span><span>{{ popupData.address }}</span>
+    </div>
+    <div class="row" *ngIf="popupData && popupData.gender">
+      <span class="label">Sex:</span><span>{{ popupData.gender }}</span>
+    </div>
+    <div class="row" *ngIf="popupData && popupData.facility">
+        <span class="label">Facility:</span><span>{{ popupData.facility }}</span>
+    </div>
+    <div class="row" *ngIf="popupData && popupData.educator">
+        <span class="label">Educator:</span><span>{{ popupData.educator.name }} {{ popupData.educator.lastName }}</span>
+    </div>
+    <div class="row" *ngIf="popupData && popupData.general">
+      <span style="text-transform: none;">{{ popupData.general }}</span>
+  </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div mat-dialog-title class="modal_title">Enter study period</div>
+<date-input
+  [label]="'Start date'"
+  [required]="true"
+  [placeholder]="'Enter start date'"
+  [parentForm]="dateForm"
+  [formName]="'startDate'"
+  [minDate]="minStartDate"
+  [maxDate]="maxStartDate"
+></date-input>
+<date-input
+  [label]="'End date'"
+  [required]="true"
+  [disabled]="dateForm.get('startDate').invalid"
+  [placeholder]="'Enter end date'"
+  [parentForm]="dateForm"
+  [formName]="'endDate'"
+  [minDate]="minEndDate"
+  [maxDate]="maxEndDate"
+></date-input>
+<div class="error-message mat-error" style="font-size: 13px; margin-left: 15px;" *ngIf="datesOverlapped()">
+  Please ensure the start and end dates do not overlap with other academic years.</div>
+<div class="error-message mat-error" style="font-size: 13px; margin-left: 15px;" *ngIf="currentAcademicYeardatesOverlapped()">
+  Please ensure the start and end dates for each term do not overlap.</div>
+<mat-dialog-actions>
+  <button
+    mat-flat-button
+    class="action_button"
+    [disabled]="dateForm.invalid || datesOverlapped()"
+    (click)="onClick(true)"
+  >
+    Add period
+  </button>
+  <button mat-flat-button class="action_button cancel" (click)="onClick(false)">
+    Cancel
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,158 @@
+<div mat-dialog-title class="modal_title">{{ data.title }}</div>
+<mat-dialog-content class="modal_form">
+  <form [formGroup]="institutionForm">
+    <div *ngIf="data.existingData" class="row-input">
+      <div class="label">Institution name</div>
+      <div class="row_data">
+        {{
+          data.existingData?.school?.name +
+            ', City: ' +
+            data.existingData?.school?.city?.name
+        }}
+      </div>
+    </div>
+    <auto-input
+      [ngClass]="{ hidden: data.existingData }"
+      [label]="'Institution name'"
+      [placeholder]="'Start typing institution name'"
+      [required]="true"
+      [parentForm]="institutionForm"
+      [formName]="'school'"
+      [suggestions]="institutionSuggestions"
+      (resetEvent)="resetForm()"
+    ></auto-input>
+    <hr />
+    <!-- all [disabled]="institutionForm.get('school').invalid"  school->institution | with dev -->
+    <div class="types_block">
+      <toggle-input
+        [label]="'Director'"
+        [parentForm]="institutionForm"
+        [formName]="'isDirector'"
+        [disabled]="institutionForm.get('school').invalid || disableIsDirectorToggle()"
+      ></toggle-input>
+      <toggle-input
+        [label]="'Curriculum Director'"
+        [parentForm]="institutionForm"
+        [formName]="'isCurriculumDirector'"
+        [disabled]="institutionForm.get('school').invalid || disableisCurriculumDirectorToggle()"
+      ></toggle-input>
+      <chips-block
+        [label]="'Head of Department'"
+        [buttonLabel]="'Add course'"
+        [parentForm]="institutionForm"
+        [formName]="'headOfSubjects'"
+        [disabled]="institutionForm.get('school').invalid"
+        [modalConfig]="headOfDepartmentModalConfig"
+        [showRemoveIcon]="showElementDeleter()"
+      ></chips-block>
+      <chips-block
+        [label]="'Educator'"
+        [buttonLabel]="'Add course'"
+        [parentForm]="institutionForm"
+        [formName]="'teacherSubjects'"
+        [disabled]="institutionForm.get('school').invalid"
+        [modalConfig]="educatorCoursesModalConfig"
+        [additionalData]="educatorCoursesModalData()"
+        [showRemoveIcon]="showElementDeleter()"
+      ></chips-block>
+      <div
+        [ngClass]="{
+          'toggle-input': true,
+          disabled: institutionForm.get('school').invalid
+        }"
+      >
+        <div class="label">Homeroom educator</div>
+        <div class="toggle">
+          <mat-slide-toggle
+            (change)="homeRoomEduEnabled($event)"
+            formControlName="homeroomEducatorToggle"
+            [disableRipple]="true"
+            [color]="'primary'"
+            id="homeroomEducatorToggle"
+          >
+          </mat-slide-toggle>
+        </div>
+      </div>
+      <auto-input
+        #homeRoomAutoInputRef
+        [@fade]
+        *ngIf="homeroomEducatorToggle"
+        [label]="'Class name'"
+        [placeholder]="'Start typing class name'"
+        [parentForm]="institutionForm"
+        [formName]="'homeClass'"
+        [suggestions]="classesSuggestions"
+        (loadEvent)="loadClasses()"
+        [inputTypeHomeRoomClass]="true"
+        [inputTypeHomeRoomClassFlag]="homeroomEducatorToggle"
+        [showRemoveIconInInput]="false"
+      ></auto-input>
+
+      <div
+      *ngIf="homeroomEducatorToggle"
+      [ngClass]="{ 'chips-block': true}">
+        <div class="block_wrap">
+          <div class="block_line">
+            <div
+              style="flex-direction: column;"
+              class="block_chip"
+              *ngFor="let item of this.schedService.selectedHomeRoomClassesArr; let i = index">
+
+              <div style="flex-direction: row; display: flex !important; justify-content: space-between !important;">       
+                <span
+                [ngStyle]="homeroomEducatorToggle && {'font-weight': 'bold'}"
+                > Class {{ item.name }}
+                </span>
+                <i
+                *ngIf="showElementDeleter()"
+                class="cancel-icon"
+                (click)="removeHomeRoomItem(i)">
+                </i>
+              </div>
+
+              <div style="flex-direction: row;">
+                <span [ngStyle]="homeroomEducatorToggle && {'font-size': '12px'}">
+                  {{item.start}}
+                </span>
+
+                <span [ngStyle]="homeroomEducatorToggle && {'font-size': '12px'}">
+                  - {{item.end}}
+                </span>
+  
+                <span [ngStyle]="homeroomEducatorToggle && {'font-size': '12px'}">
+                  - {{item.segment !== undefined ? item.segment.name : item.segmentname !== undefined ? item.segmentname : ''}}
+                </span>
+  
+                <span [ngStyle]="homeroomEducatorToggle && {'font-size': '12px'}">
+                  - Level {{item.level !== undefined ? item.level.name : ''}}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button
+    id="save_button"
+    mat-flat-button
+    class="action_button"
+    [disabled]="!formValid || disableSaveButton"
+    (click)="transferData()"
+  >
+    {{ data.saveButtonText }}
+  </button>
+  <button
+    id="cancel_button"
+    mat-flat-button
+    class="action_button cancel"
+    (click)="onNoClick()"
+  >
+    Cancel
+  </button>
+</mat-dialog-actions>

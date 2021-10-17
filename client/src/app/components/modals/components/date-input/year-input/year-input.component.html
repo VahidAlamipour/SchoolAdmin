@@ -1,0 +1,20 @@
+<div class="row-input datepicker" [formGroup]="parentForm">
+  <div class="label">{{ label }}</div>
+  <mat-form-field>
+    <input
+      matInput
+      autocomplete="off"
+      [matDatepicker]="picker"
+      [max]="maxDate"
+      [placeholder]="placeholder"
+      [formControlName]="formName"
+      [id]="formName"
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker
+      #picker
+      startView="multi-year"
+      (yearSelected)="chosenYearHandler($event, picker)"
+    ></mat-datepicker>
+  </mat-form-field>
+</div>

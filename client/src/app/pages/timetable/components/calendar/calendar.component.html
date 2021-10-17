@@ -1,0 +1,18 @@
+<div class="calendar">
+  <tt-calendar
+    name="dayCalendar"
+    #calendarComponent
+    #dayCalendar="ngModel"
+    [(ngModel)]="dates"
+    [minDate]="validationMinDate"
+    [maxDate]="validationMaxDate"
+    [config]="config"
+    (onSelect)="onSelect($event, true)"
+    (moveToEvent)="onSelect($event, false)"
+    (onGoToCurrent)="onCurrentWeekSelect()"
+    (onGoToYear)="onCurrentYearSelect()"
+    (onGoToMonth)="onCurrentMonthSelect($event)"
+    >
+
+  </tt-calendar>
+</div>

@@ -1,0 +1,91 @@
+$max_input_width: 382px;
+
+@mixin base-input-line {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 6px;
+  min-height: 45px;
+}
+
+@mixin base-input-label {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 14px;
+  color: #666;
+  max-width: 160px;
+  padding: 14px 16px 0 0;
+}
+
+@mixin base-input-block {
+  flex: 2;
+  max-width: 382px;
+  font-size: 14px;
+}
+
+@mixin base-select {
+  mat-form-field {
+    width: calc(100% - 12px);
+    border-radius: 4px;
+    height: 31px;
+    margin-top: 5px;
+    border: 1px solid $light_gray;
+    padding: 0 10px 0 0;
+    line-height: 3px;
+    .mat-form-field-label {
+      padding: 8px;
+      color: $pre-gray;
+    }
+    .mat-form-field-wrapper {
+      .mat-error {
+        line-height: 1;
+      }
+    }
+    .mat-form-field-infix {
+      border-top: 0;
+    }
+    .mat-form-field-underline {
+      display: none;
+    }
+    .mat-select-value {
+      padding: 8px;
+      .mat-select-value-text span {
+        display: inline-block;
+        &::first-letter {
+          text-transform: capitalize;
+        }
+      }
+    }
+    &.mat-form-field-invalid {
+      border-color: #f44336;
+      .mat-form-field-label {
+        color: #f44336;
+      }
+    }
+  }
+}
+
+@mixin base-input-comp {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 6px;
+  min-height: 45px;
+  &:first-child {
+    margin-top: 10px;
+  }
+  &.disabled {
+    color: #bdbdbd;
+    .label {
+      color: #bdbdbd;
+    }
+  }
+  .label {
+    @include base-input-label;
+  }
+  .input {
+    @include base-input-block;
+  }
+}

@@ -1,0 +1,113 @@
+<h1>Institutions</h1>
+<div class="table institutions">
+  <div class="table_header">
+    <h2>All institutions</h2>
+    <button
+      id="create_institution"
+      class="create_button"
+      mat-button
+      (click)="openDialog()"
+    >
+      Create institution
+    </button>
+  </div>
+  <div class="table_search">
+    <search-input
+      [searchString]="searchString"
+      [placeholder]="'Enter name of institution'"
+      (searchEvent)="applyFilter($event)"
+    ></search-input>
+    <div class="filter_box">
+      <span>Filter by city:</span>
+      <mat-form-field>
+        <mat-select
+          disableOptionCentering
+          [(value)]="selectedCityId"
+          (selectionChange)="applyFilter()"
+        >
+          <mat-option *ngFor="let city of filterBox" [value]="city.id">{{
+            city.name
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div
+    [ngClass]="{
+      table_spinner: true,
+      loading: dataSource.loading$ | async
+    }"
+    id="{{ (dataSource.loading$ | async) ? 'loading' : '' }}"
+  >
+    <mat-spinner diameter="50" strokeWidth="3"></mat-spinner>
+  </div>
+  <div
+    [ngClass]="{
+      empty_message: true,
+      hidden: dataSource.institutionsCount$ | async
+    }"
+  >
+    <span> The list is empty. </span>
+  </div>
+
+  <mat-table
+    [class.hidden]="!(dataSource.institutionsCount$ | async)"
+    [dataSource]="dataSource"
+    matSort
+    matSortDisableClear
+    matSortActive="shortName"
+    matSortDirection="asc"
+  >
+    <!-- shortName Column -->
+    <ng-container matColumnDef="shortName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+        Short name
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span>{{ element.name }}</span>
+      </mat-cell>
+    </ng-container>
+
+    <!-- fullName Column -->
+    <ng-container matColumnDef="fullName">
+      <mat-header-cell *matHeaderCellDef>
+        Full name
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <div class="child-container"> 
+        <span class="text">{{ element.fullName }}</span>
+        <i class="warn-icon" *ngIf="element.academicYearList.length === 0"></i>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <!-- city Column -->
+    <ng-container matColumnDef="city">
+      <mat-header-cell *matHeaderCellDef>City</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.city?.name }} </mat-cell>
+    </ng-container>
+
+    <!-- action Column -->
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-icon-button color="primary">
+          <i class="edit-icon"></i>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      (click)="institutionSelected(row, $event)"
+    ></mat-row>
+  </mat-table>
+
+  <mat-paginator
+    showFirstLastButtons
+    [length]="dataSource.institutionsCount$ | async"
+    [pageSizeOptions]="[10, 20, 50, 100]"
+    itemsPerPageLabel="'Show'"
+  ></mat-paginator>
+</div>

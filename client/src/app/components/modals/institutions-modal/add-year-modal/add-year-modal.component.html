@@ -1,0 +1,41 @@
+<div mat-dialog-title class="modal_title">Add new academic year</div>
+
+<select-input
+  [label]="'Academic year'"
+  [placeholder]="'Choose the year'"
+  [required]="true"
+  [parentForm]="dateForm"
+  [formName]="'academicYear'"
+  [dataItems]="data?.years"
+></select-input>
+<div class="vertical-radio-input">
+  <!-- <div class="label" >Copy or new</div> -->
+  <mat-radio-group aria-label="Select an option" (change)="onChangeCreateMode($event)">
+    <mat-radio-button
+    *ngFor="let op of createModeList"
+    class="vertical-radio-group"
+    [checked]="op.checked"
+    [value]="op.id">{{op.label}}</mat-radio-button>
+  </mat-radio-group>
+</div>
+<select-input
+[label]="'Duplicate from'"
+*ngIf="_createModeOption"
+[placeholder]="'Please select one of exist years'"
+[parentForm]="dateForm"
+[formName]="'duplicatedYear'"
+[dataItems]="data?.currentYears"
+></select-input>
+<mat-dialog-actions>
+  <button
+    mat-flat-button
+    class="action_button"
+    [disabled]="addYearDisabler()"
+    (click)="onClick(true)"
+  >
+    Add year
+  </button>
+  <button mat-flat-button class="action_button cancel" (click)="onClick(false)">
+    Cancel
+  </button>
+</mat-dialog-actions>

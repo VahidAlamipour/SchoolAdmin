@@ -1,0 +1,62 @@
+<div class="table profile">
+  <div class="table_header">
+    <h2>Profile</h2>
+  </div>
+  <div class="table_content">
+    <div class="profile__wrapper">
+      <div class="profile-card">
+        <div class="profile-card__img">
+          <img src="assets/images/ava-placeholder.svg" alt="Avatar" />
+        </div>
+        <div class="profile-card__name">
+          <div class="profile-card__firstname">{{ profile?.name }}</div>
+          <div class="profile-card__surname">{{ profile?.surname }}</div>
+        </div>
+      </div>
+      <div class="profile-info">
+        <div class="profile-info__cell">
+          <div class="profile-info__name">Phone:</div>
+          <div class="profile-info__value">{{ profile?.msisdn }}</div>
+        </div>
+        <div class="profile-info__cell">
+          <div class="profile-info__name">Email:</div>
+          <div class="profile-info__value">{{ profile?.email }}</div>
+        </div>
+        <div class="profile-info__cell">
+          <div class="profile-info__name">Education:</div>
+          <div class="profile-info__value">{{ profile?.teacher?.education }}</div>
+        </div>
+        <div class="profile-info__cell">
+          <div class="profile-info__name">University:</div>
+          <div class="profile-info__value">{{ profile?.teacher?.education }}</div>
+        </div>
+        <div class="profile-info__cell">
+          <div class="profile-info__name">Qualification:</div>
+          <div class="profile-info__value">{{ profile?.teacher?.speciality }}</div>
+        </div>
+        <div class="profile-info__cell">
+          <div class="profile-info__name">Year of graduation:</div>
+          <div class="profile-info__value">{{ profile?.teacher?.graduation_date }}</div>
+        </div>
+        <div class="profile-info__cell">
+          <div class="profile-info__name">Category:</div>
+          <div class="profile-info__value">{{ profile?.teacher?.category }}</div>
+        </div>
+        <div class="profile-info__cell">
+          <div class="profile-info__name">Year of latest upgrading:</div>
+          <div class="profile-info__value">{{ profile?.teacher?.refresher_date }}</div>
+        </div>
+        <div class="profile-info__cell">
+          <div class="profile-info__name">Password:</div>
+          <div class="profile-info__password" (click)="changePassword()">Change password</div>
+        </div>
+      </div>
+    </div>
+    <div class="profile-about">
+      <div class="profile-about__text">
+        <i class="warn-icon"></i>
+        To edit your personal data please contact your school service administrator
+      </div>
+    </div>
+  </div>
+</div>

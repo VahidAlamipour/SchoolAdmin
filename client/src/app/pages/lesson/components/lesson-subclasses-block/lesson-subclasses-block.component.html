@@ -1,0 +1,23 @@
+<div class="subgroups">
+  <lesson-subclass
+    *ngFor="let address of subclassesData.controls; let i = index"
+    [title]="getSubclassTitle(i)"
+    [index]="i"
+    [parentForm]="subclassesData.controls[i]"
+    [editMode]="editMode"
+    [existingData]="getExistingData(i)"
+    (deleteSubclass)="deleteSubclass(i)"
+  ></lesson-subclass>
+  <div *ngIf="subclassesData.value.length < maxGroupsNumber" class="subgroup">
+    <div class="title_line">
+      <button
+        id="create_subclass"
+        class="create_button"
+        mat-button
+        (click)="createSubclass()"
+      >
+        Add subclass
+      </button>
+    </div>
+  </div>
+</div>

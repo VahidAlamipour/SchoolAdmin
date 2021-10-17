@@ -1,0 +1,19 @@
+---
+- name: Client
+  hosts: all
+  become: False
+  tasks:
+     - name: npm install
+       command: /usr/bin/npm install chdir={{ appdir }}
+       become: True
+       become_user: "{{ user }}"
+
+     - name: npm run lint
+       shell: npm run lint chdir={{ appdir }}
+       become: True
+       become_user: "{{ user }}"
+
+     - name: npm run build
+       shell: CONFIGURATION={{ build_env }} npm run build chdir={{ appdir }}
+       become: True
+       become_user: "{{ user }}"

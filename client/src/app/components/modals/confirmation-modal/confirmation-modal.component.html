@@ -1,0 +1,10 @@
+<div mat-dialog-title class="modal_title">Delete</div>
+<div mat-dialog-content class="confirm_text">{{ data.title }}</div>
+<mat-dialog-actions>
+  <button mat-flat-button class="action_button" (click)="onClick(true)">
+    Yes
+  </button>
+  <button mat-flat-button class="action_button cancel" (click)="onClick(false)">
+    Cancel
+  </button>
+</mat-dialog-actions>

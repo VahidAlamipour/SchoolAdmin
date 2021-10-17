@@ -1,0 +1,12 @@
+<div class="notifications_group">
+  <notification
+    [@notificationItem]
+    *ngFor="
+      let notification of (service.notificationsStream$ | async);
+      let i = index
+    "
+    [notificationData]="notification"
+    [index]="i"
+    (clearEvent)="clearNotification(i)"
+  ></notification>
+</div>

@@ -1,0 +1,47 @@
+<div
+  [@fade]
+  *ngIf="(service.dataStream | async).length"
+  [ngClass]="{
+    'import-progress': true,
+    small: !service.progressFullsize,
+    full: service.progressFullsize
+  }"
+>
+  <div class="import-progress-title">
+    <i
+      [@fade]
+      *ngIf="!service.progressFullsize"
+      class="import-icon"
+      (click)="service.controlProgressSize(true)"
+    ></i>
+
+    <mat-progress-spinner
+      [@fade]
+      *ngIf="!service.progressFullsize"
+      [diameter]="32"
+      [strokeWidth]="2"
+      [value]="service.approximateProgress"
+    >
+    </mat-progress-spinner>
+
+    <h2 [@fade] *ngIf="service.progressFullsize">Import of users</h2>
+  </div>
+
+  <div [@fade] *ngIf="service.progressFullsize" class="import-progress-wrap">
+    <import-item
+      *ngFor="let item of service.dataStream | async"
+      [data]="item"
+    ></import-item>
+  </div>
+
+  <div [@fade] *ngIf="service.progressFullsize" class="import-progress-clear" (click)="clearImport()">
+    Clear completed
+  </div>
+</div>
+
+<div
+  [@overlay]
+  *ngIf="service.progressFullsize"
+  class="import-progress-overlay"
+  (click)="service.controlProgressSize(false)"
+></div>

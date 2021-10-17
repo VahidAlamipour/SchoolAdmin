@@ -1,0 +1,50 @@
+<ng-template [ngIf]="showSettingsBlock">
+  <div class="wrapper container">
+    <div class="message_box attention" *ngIf="(editMode && parentForm.get(formControls.academicYearControl)?.invalid) || canBeEdited">Set up the Academic Year, Terms, Study Days and Shifts for your institution below. Then, set up your Learners and Timetable
+    </div>
+    <div class="wrapper schedule-settings">
+    <select-input
+      *ngIf="institutionId"
+      [label]="'Academic year'"
+      [placeholder]="'Choose the year'"
+      [parentForm]="parentForm"
+      [formName]="formControls.academicYearControl"
+      [dataItems]="academicYearsList"
+      [addButtonLabel]="editMode ? 'Add new academic year' : false"
+      (addEvent)="addYearHandler()"
+    ></select-input>
+    </div>
+    <div class="wrapper schedule-settings">
+    <select-input
+      *ngIf="!institutionId"
+      [label]="'Academic year'"
+      [placeholder]="'Choose the year'"
+      [parentForm]="parentForm"
+      [formName]="formControls.academicYearControl"
+      [dataItems]="academicYearsList"
+    ></select-input>
+    </div>
+    <div class="wrapper schedule-settings">
+    <terms-block [parentForm]="parentForm" [yearCanBeEdited]="studyDaysCanBeEdited" [academicYearsList]="academicYearsList"></terms-block>
+    </div>
+    <div class="wrapper schedule-settings">
+    <check-line
+      [label]="'Study days'"
+      [required]="true"
+      [readonly]="service.editMode ? !studyDaysCanBeEdited : true"
+      [disabled]="parentForm.get(formControls.academicYearControl)?.invalid"
+      [dataItems]="service?.allDays"
+      [parentForm]="parentForm"
+      [formName]="formControls.studyDaysControl"
+    ></check-line>
+  </div>
+  </div>
+  <div sclass="wrapper schedule-settings">
+  <shifts-block [yearCanBeEdited]="yearCanBeEdited" [parentForm]="parentForm"></shifts-block>
+  </div>
+</ng-template>
+<ng-template [ngIf]="!showSettingsBlock">
+  <div class="row-title left sub">
+    <span>To add Institution schedule click the "Edit Institution" button</span>
+  </div>
+</ng-template>

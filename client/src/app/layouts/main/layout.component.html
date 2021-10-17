@@ -1,0 +1,20 @@
+<notifications></notifications>
+<import-progress></import-progress>
+<div [ngClass]="{ wrap: authService.isLoggedIn }" #wrap>
+  <app-sidebar *ngIf="authService.isLoggedIn"></app-sidebar>
+  <div
+    (scroll)="onScroll($event)"
+    [ngClass]="{
+      content: authService.isLoggedIn,
+      noscroll: layout.noscroll | async
+    }"
+    [@routeAnimation]="
+      o.isActivated && authService.isLoggedIn ? o.activatedRoute : ''
+    "
+  >
+    <router-outlet
+      [ngClass]="{ router: authService.isLoggedIn }"
+      #o="outlet"
+    ></router-outlet>
+  </div>
+</div>

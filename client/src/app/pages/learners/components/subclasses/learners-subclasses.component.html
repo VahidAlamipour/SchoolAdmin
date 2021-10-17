@@ -1,0 +1,90 @@
+<div class="table_search">
+  <div
+    [ngClass]="{
+      empty_message: true,
+      shown: !(hasData | async)
+    }"
+  >
+    <span> The list is empty, create a subclass. </span>
+  </div>
+  <search-input
+    [ngClass]="{
+      hidden: !(hasData | async)
+    }"
+    [searchString]="searchString"
+    [placeholder]="'Enter course'"
+    (searchEvent)="applyFilter($event)"
+  ></search-input>
+  <button
+    mat-button
+    class="create_button"
+    (click)="createSubclassModal()"
+    id="create_subclass"
+  >
+    Create subclass
+  </button>
+</div>
+
+<div
+  [ngClass]="{
+    table_spinner: true,
+    hidden: !(hasData | async),
+    loading: dataSource.loading$ | async
+  }"
+  id="{{ (dataSource.loading$ | async) ? 'loading' : '' }}"
+>
+  <mat-spinner diameter="50" strokeWidth="3"></mat-spinner>
+</div>
+
+<mat-table
+  [class.hidden]="!(hasData | async)"
+  [dataSource]="dataSource"
+  matSort
+>
+  <!-- course Column -->
+  <ng-container matColumnDef="course">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      Сourse
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <span>{{ element.subject.name }}</span>
+    </mat-cell>
+  </ng-container>
+
+  <!-- subclasses Column -->
+  <ng-container matColumnDef="subclasses">
+    <mat-header-cell *matHeaderCellDef>Subclasses</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      {{ getSubgroupsString(element.subgroups) }}
+    </mat-cell>
+  </ng-container>
+
+  <!-- Unassigned learners Column -->
+  <ng-container matColumnDef="learners">
+    <mat-header-cell *matHeaderCellDef> Unassigned learners </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      {{ element.unassignedStudentsCount }} learners
+    </mat-cell>
+  </ng-container>
+
+  <!-- action Column -->
+  <ng-container matColumnDef="action">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <button mat-icon-button color="primary" (click)="openEditPage(element)">
+        <i class="edit-icon"></i>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"> </mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+</mat-table>
+
+<mat-paginator
+  [class.hidden]="!(hasData | async)"
+  showFirstLastButtons
+  [length]="dataSource.groupsCount$ | async"
+  [pageSizeOptions]="[10, 20, 50, 100]"
+  itemsPerPageLabel="'Show'"
+></mat-paginator>

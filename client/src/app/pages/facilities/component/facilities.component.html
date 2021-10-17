@@ -1,0 +1,125 @@
+<h1>Facilities</h1>
+<div class="table facilities">
+  <div class="table_header">
+    <h2>All facilities</h2>
+    <button
+      id="create_facility"
+      class="create_button"
+      mat-button
+      (click)="openCreateDialog()"
+    >
+      Create facility
+    </button>
+  </div>
+  <div [ngClass]="{ empty_message: true, hidden: hasData | async }">
+    <span> The list is empty, create a facility. </span>
+  </div>
+
+  <div [ngClass]="{ table_search: true, hidden: !(hasData | async) }">
+    <search-input
+      [searchString]="searchString"
+      [placeholder]="'Enter name'"
+      (searchEvent)="applyFilter($event)"
+    ></search-input>
+    <div class="filter_box">
+      <span>Filter by course:</span>
+      <mat-form-field>
+        <mat-select
+          disableOptionCentering
+          [(value)]="selectedCourse"
+          (selectionChange)="applyFilter()"
+        >
+          <mat-option *ngFor="let course of filterBox" [value]="course.id">{{
+            course.name
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div
+    [ngClass]="{
+      table_spinner: true,
+      hidden: !(hasData | async),
+      loading: dataSource.loading$ | async
+    }"
+  >
+    <mat-spinner diameter="50" strokeWidth="3"></mat-spinner>
+  </div>
+
+  <mat-table
+    [class.hidden]="!(hasData | async)"
+    [dataSource]="dataSource"
+    matSort
+    matSortDisableClear
+    matSortActive="name"
+    matSortDirection="asc"
+  >
+    <!-- name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+        Name
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span>{{ element.name }}</span>
+      </mat-cell>
+    </ng-container>
+
+    <!-- course Column -->
+    <ng-container matColumnDef="course">
+      <mat-header-cell *matHeaderCellDef> Сourse </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span *ngFor="let course of element.subjects">
+          {{ course.name }}
+        </span>
+      </mat-cell>
+    </ng-container>
+
+    <!-- description Column -->
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.description }}
+      </mat-cell>
+    </ng-container>
+
+    <!-- refersTo Column -->
+    <ng-container matColumnDef="refersTo">
+      <mat-header-cell *matHeaderCellDef> Refers to </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.teacher?.name }} {{ element.teacher?.lastName }}
+      </mat-cell>
+    </ng-container>
+
+    <!-- capacity Column -->
+    <ng-container matColumnDef="capacity">
+      <mat-header-cell *matHeaderCellDef> Capacity </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.capacity }} </mat-cell>
+    </ng-container>
+
+    <!-- action Column -->
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="openEditDialog(element)"
+        >
+          <i class="edit-icon"></i>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <mat-paginator
+    [class.hidden]="!(hasData | async)"
+    showFirstLastButtons
+    [length]="dataSource.facilitiesCount$ | async"
+    [pageSizeOptions]="[10, 20, 50, 100]"
+    itemsPerPageLabel="'Show'"
+  ></mat-paginator>
+</div>

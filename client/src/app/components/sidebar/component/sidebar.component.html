@@ -1,0 +1,130 @@
+<nav>
+  <div class="select_block">
+    <div class="app_selector">
+      <img src="assets/images/logo.svg" alt="BEED" (click)="goToDashboard()" />
+      <mat-form-field *ngIf="modes.length" class="app_dd">
+        <mat-select
+          [panelClass]="'app_select'"
+          [(value)]="selectedMode"
+          (selectionChange)="modeSelectionChange($event)"
+          [disableRipple]="true"
+        >
+          <mat-option *ngFor="let mode of modes" [value]="mode.value">
+            {{ mode.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <app-institution-selector></app-institution-selector>
+  </div>
+
+  <div class="nav_list">
+    <div class="nav_item" routerLink="/dashboard" routerLinkActive="active">
+      <i class="home-icon"></i>
+      <div class="text">Dashboard</div>
+    </div>
+
+    <div class="nav_label">Roles</div>
+    <div
+      routerLink="/learners"
+      [ngClass]="{
+        nav_item: true,
+        active:
+          router.isActive('/learners', true) ||
+          router.isActive('/subclasses', true) ||
+          router.url.split('?')[0] === '/learners'
+      }"
+    >
+      <i class="child-icon"></i>
+      <div class="child-container"> 
+      <div class="text">Learners</div>
+      <i class="warn-icon" *ngIf="!warning.wInstitution ? false : !warning.wLearner" title="There are no classes created. Please create the segment, level, and class to populate your learners" ></i>
+      </div>
+    </div>
+    <div class="nav_item" routerLink="/parents" routerLinkActive="active">
+      <i class="parents-icon"></i>
+      <div class="text">Parents</div>
+    </div>
+    <div class="nav_item" routerLink="/educators" routerLinkActive="active">
+      <i class="teacher-icon"></i>
+      <div class="text">Educators</div>
+    </div>
+
+    <div class="nav_label">Institution</div>
+    <div class="nav_item" routerLink="/timetable" routerLinkActive="active">
+      <i class="schedule-icon"></i>
+      <div class="child-container"> 
+      <div class="text">Timetable</div>
+      <i class="warn-icon" *ngIf="!warning.wInstitution ? true : !warning.wLearner ? false : warning.timetableCount == 0 ? true : false " title="There are no timetables. Please populate the timetable based on the academic year and learners you created" ></i>
+      </div>
+    </div>
+    <div class="nav_item" routerLink="/facilities" routerLinkActive="active">
+      <i class="rooms-icon"></i>
+      <div class="child-container"> 
+      <div class="text">Facilities</div>
+      <i class="warn-icon" *ngIf="!warning.wFacilities" title="There are no facilities Please create facilities for your institute"></i>
+      </div>
+    </div>
+    <div class="nav_item" routerLink="/courses" routerLinkActive="active">
+      <i class="subjects-icon"></i>
+      <div class="child-container"> 
+      <div class="text">Courses</div>
+      <i class="warn-icon" *ngIf="!warning.wCourse" title="There are no courses. Please create courses for your institute"></i>
+      </div>
+    </div>
+    <div class="nav_item" *ngIf="authService.isAccountAdmin" routerLink="/permissions" routerLinkActive="active">
+      <i>
+        <img style="width: 16px; height: 16px; margin: 0px 3.2px;" src="assets/images/permission.svg">
+      </i>
+      <div class="text">Permissions</div>
+    </div>
+    <div class="nav_item" *ngIf="false">
+      <i class="notif-icon"></i>
+      <div class="text">Notifications</div>
+    </div>
+
+    <div class="nav_label">Personnel</div>
+    <div *ngIf="authService.isAccountAdmin" class="nav_item" routerLink="/institutions" routerLinkActive="active">
+      <i class="schools-icon"></i>
+      <div class="child-container"> 
+      <div class="text">Institutions</div>
+      <i class="warn-icon" *ngIf="!warning.wInstitution" title="There are no academic year/current active year. Please create academic year/current active year for your institute">
+      </i>
+      </div>
+    </div>
+    <div *ngIf="!authService.isAccountAdmin" routerLink="/institution" class="nav_item" routerLinkActive="active">
+      <i class="schools-icon"></i>
+      <div class="child-container"> 
+      <div class="text">Institution</div>
+      <i class="warn-icon" *ngIf="!warning.wInstitution" title="There are no academic year/current active year. Please create academic year/current active year for your institute">
+      </i>
+      </div>
+    </div>
+    <div class="nav_item" *ngIf="authService.isAccountAdmin" routerLink="/administrator" routerLinkActive="active">
+      <i class="user-icon"></i>
+      <div class="text">Administrators</div>
+    </div>
+
+    <div class="nav_item_help help nav_label nav-footer" style="margin-top:0 !important;">Help</div>
+    <div [ngClass]="{ nav_item: true, help: true}" (click)="onNavigateFAQ()">
+      <div class="img">
+      <img src="assets/images/icon-faq-white.svg"/></div>
+      <!-- <i class="faq-icon"></i> -->
+      <div class="text">FAQ</div>
+    </div>
+    <div [ngClass]="{ nav_item: true, user: true, active_dd: showDropup }" (click)="openLogout()" style="margin-top:auto !important;">
+      <div [@dropup] *ngIf="showDropup" class="drop_up">
+        <div class="drop_up_item" (click)="logout()">Log out</div>
+        <div class="drop_up_item" (click)="showProfile()">Profile</div>
+        <div class="drop_up_item privacy" (click)="privacyPolicyControl(true)">
+          Privacy Policy
+        </div>
+      </div>
+      <i class="profile-icon"></i>
+      <div class="text">{{ userData?.name }} {{ userData?.middleName }} {{ userData?.lastName }}</div>
+    </div>
+  </div>
+</nav>
+<app-privacy [isOpen]="showPrivacy" (closePrivacy)="privacyPolicyControl($event)"></app-privacy>
+<div [@dropupOverlay] *ngIf="showDropup" class="drop_up_overlay" (click)="showDropup = false"></div>
+<iframe class="logout-frame" *ngIf="logoutFrameSrc" [src]="logoutFrameSrc"></iframe>

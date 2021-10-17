@@ -1,0 +1,18 @@
+<year-input
+  *ngIf="type === 'year'"
+  [label]="label"
+  [placeholder]="placeholder"
+  [parentForm]="parentForm"
+  [formName]="formName"
+></year-input>
+<fulldate-input
+  *ngIf="type !== 'year'"
+  [label]="label"
+  [placeholder]="placeholder"
+  [parentForm]="parentForm"
+  [formName]="formName"
+  [disabled]="disabled"
+  [required]="required"
+  [minDate]="minDate"
+  [maxDate]="maxDate"
+></fulldate-input>

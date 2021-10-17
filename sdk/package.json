@@ -1,0 +1,63 @@
+{
+  "name": "sdk",
+  "version": "0.1.0",
+  "description": "",
+  "main": "sdk.ts",
+  "author": "Artur Chumak",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint . --ext js --ext ts",
+    "build": "tsc",
+    "build:sdk": "tsc -m CommonJS --target es2017 -d --outDir build index.ts"
+  },
+  "dependencies": {
+    "@types/socket.io-client": "^1.4.32",
+    "axios": "^0.18.0",
+    "faker": "^4.1.0",
+    "socket.io-client": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/faker": "^4.1.4",
+    "@types/jest": "^24.0.11",
+    "@types/node": "^11.13.4",
+    "@typescript-eslint/eslint-plugin": "^1.6.0",
+    "@typescript-eslint/parser": "^1.6.0",
+    "eslint": "^5.16.0",
+    "jest": "^24.7.1",
+    "jest-html-reporter": "^2.5.0",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.4.3"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "setupFilesAfterEnv": [
+      "./jest.setup.js"
+    ],
+    "testPathIgnorePatterns": [
+      "/lib/",
+      "/node_modules/"
+    ],
+    "reporters": [
+      "default",
+      [
+        "jest-html-reporter",
+        {
+          "includeFailureMsg": true,
+          "outputPath": "./report/index.html"
+        }
+      ]
+    ]
+  }
+}

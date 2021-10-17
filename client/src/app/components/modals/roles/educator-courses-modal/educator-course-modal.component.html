@@ -1,0 +1,57 @@
+<div mat-dialog-title class="modal_title">{{ data.title }}</div>
+<mat-dialog-content class="modal_form">
+  <form [formGroup]="detailsForm">
+    <select-input
+      [label]="'Segment'"
+      [required]="true"
+      [placeholder]="'Choose the segment'"
+      [parentForm]="detailsForm"
+      [formName]="'segment'"
+      [dataItems]="segmentsData"
+      (selectionChange)="segmentSelectionChange($event)"
+    ></select-input>
+    <div class="row-input">
+      <div class="label">Choose levels *</div>
+      <div class="input">
+        <div class="level_radio_block">
+          <div
+            *ngFor="let level of allLevels; let i = index"
+            [ngClass]="['level_radio_field', level.selected ? 'selected' : '']"
+            id="{{ 'choose_level_' + level.name }}"
+            (click)="levelSelect(level, i)"
+          >
+            {{ level.name }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <auto-input
+      [label]="'Course'"
+      [placeholder]="'Start typing course name'"
+      [required]="true"
+      [parentForm]="detailsForm"
+      [formName]="'subject'"
+      [suggestions]="coursesSuggestions"
+      (loadEvent)="loadCourses()"
+    ></auto-input>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button
+    id="save_button"
+    mat-flat-button
+    class="action_button"
+    (click)="onSubmitFormDetails()"
+    [disabled]="detailsForm.invalid"
+  >
+    {{ data.saveButtonText }}
+  </button>
+  <button
+    mat-flat-button
+    class="action_button cancel"
+    (click)="onNoClick()"
+    id="cancel_button"
+  >
+    Cancel
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,102 @@
+%learners-table {
+  &.learners {
+    margin-bottom: 16px;
+    &.half {
+      flex: 1;
+      &:first-child {
+        margin-right: 16px;
+      }
+    }
+    &.hidden {
+      display: none;
+    }
+    h2 {
+      line-height: 36px;
+    }
+    mat-table {
+      visibility: visible;
+      opacity: 1;
+      transition: all $cubic 0.2s;
+
+      &.hidden {
+        visibility: hidden;
+        opacity: 0;
+        max-height: 0;
+      }
+      mat-header-row {
+        mat-header-cell {
+          // fullName Column
+          &:nth-child(1) {
+            @include fullNameCol;
+          }
+          // parent Column
+          // phoneNumber Column
+          &:nth-child(3) {
+            @include phoneNumberCol;
+          }
+          // status Column
+          &:nth-child(4) {
+            @include statusCol;
+          }
+          // action Column
+          &:nth-child(5) {
+            @include actionCol;
+          }
+        }
+      }
+      mat-row {
+        mat-cell {
+          // fullName Column
+          &:nth-child(1) {
+            @include fullNameCol;
+            span {
+              margin-right: auto;
+            }
+          }
+          // parent Column
+          &:nth-child(2) {
+            @include verticalCol;
+          }
+          // phoneNumber Column
+          &:nth-child(3) {
+            @include phoneNumberCol;
+          }
+          // status Column
+          &:nth-child(4) {
+            @include statusCol;
+          }
+          // action Column
+          &:nth-child(5) {
+            @include actionCol;
+          }
+        }
+      }
+    }
+    mat-paginator {
+      &.hidden {
+        display: none;
+      }
+    }
+    .create_button {
+      min-width: unset;
+    }
+    .search_button {
+      &.hidden {
+        display: none;
+      }
+    }
+    .table_search {
+      .empty_message {
+        display: none;
+        padding: 5px;
+        justify-content: flex-start;
+        &.shown {
+          display: flex;
+        }
+      }
+    }
+    .empty_message {
+      border-top: none;
+    }
+  }
+}

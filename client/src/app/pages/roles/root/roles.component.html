@@ -1,0 +1,86 @@
+<h1 class="headcrumbs">
+  <span [routerLink]="['/', pageMode]"> {{ pageMode }} </span>
+  <span> / Roles</span>
+</h1>
+<div class="table roles">
+  <div class="table_header">
+    <h2>Edit the roles of {{ pageTitle }}</h2>
+  </div>
+  <div class="table_content" [formGroup]="rolesForm">
+    <div class="wrapper">
+      <div class="row-input">
+        <div class="label">Full name</div>
+        <div class="row_data">
+          {{ userRoles?.user?.name }} {{ userRoles?.user?.middleName }}
+          {{ userRoles?.user?.lastName }}
+        </div>
+      </div>
+      <div class="row-input">
+        <div class="label">Phone number</div>
+        <div class="row_data">{{ userRoles?.user?.msisdn }}</div>
+      </div>
+      <chips-block
+        [label]="'Learner\'s role'"
+        [buttonLabel]="'Add learner\'s role'"
+        [parentForm]="rolesForm"
+        [formName]="'learnerRoles'"
+        [modalConfig]="learnerModalConfig"
+        [autocompleteSuggestions]="availableLearnerInstitutions()"
+      ></chips-block>
+
+      <chips-block
+        [label]="'Parent\'s role'"
+        [buttonLabel]="'Add learner'"
+        [parentForm]="rolesForm"
+        [formName]="'students'"
+        [editableIds]="editableInstitutionsIds"
+        [modalConfig]="parentModalConfig"
+      ></chips-block>
+
+      <educators-block
+        [label]="'Educator\'s role'"
+        [buttonLabel]="'Add educator\'s role'"
+        [parentForm]="rolesForm"
+        [formName]="'teacherRoles'"
+        [editableIds]="editableInstitutionsIds"
+        [autocompleteSuggestions]="availableInstitutions()"
+      ></educators-block>
+
+      <chips-block
+        *ngIf="authService.isAccountAdmin"
+        [label]="'Admin\'s role'"
+        [buttonLabel]="'Add admin\'s role'"
+        [parentForm]="rolesForm"
+        [formName]="'adminRoles'"
+        [modalConfig]="adminModalConfig"
+        [autocompleteSuggestions]="availableAdminInstitutions()"
+      ></chips-block>
+      <chips-block
+        *ngIf="authService.isAccountAdmin"
+        [label]="'Account role'"
+        [buttonLabel]="'Add account role'"
+        [parentForm]="rolesForm"
+        [formName]="'accountRoles'"
+        [modalConfig]="accountModalConfig"
+      ></chips-block>
+    </div>
+  </div>
+  <div class="table_actions">
+    <button
+      mat-flat-button
+      class="action_button"
+      (click)="onSubmitRoles()"
+      [disabled]="!formValid || (uploading$ | async)"
+    >
+      Save
+      <mat-spinner
+        *ngIf="uploading$ | async"
+        diameter="15"
+        strokeWidth="1"
+      ></mat-spinner>
+    </button>
+    <button mat-flat-button class="action_button cancel" (click)="onNoClick()">
+      Back
+    </button>
+  </div>
+</div>

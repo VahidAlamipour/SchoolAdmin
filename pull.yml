@@ -1,0 +1,112 @@
+---
+- name: Install latest BeED Administrator panel build from BitBucket
+  hosts: all
+  become: False
+  vars:
+    logdir: /var/log/beed_admin/server
+    appdir: /srv/beed_admin
+    builddir: /srv/beed_admin/client
+    user: beed_admin
+    gitrepo: git@bitbucket.org:bam-boo/eschool-admin.git
+    runwebpack: no
+    version: staging
+    env: production
+    mode: update
+    description: "BeED admin panel service"
+  tasks:
+    - name: Add user for application
+      user: name="{{ user }}" system=yes home="{{ appdir }}" shell="/bin/bash" createhome=no
+      when: mode == "deploy"
+      become: True
+
+    - name: Create destination folder
+      file: path="{{ appdir }}" state=directory owner="{{ user }}" group="{{ user }}"
+      when: mode == "deploy"
+      become: True
+
+    - name: Install Git client
+      apt: name=git state=present update_cache=yes
+      when: mode == "deploy"
+      become: True
+
+    - name: Install C++ compiler
+      apt: name=g++ state=present
+      when: mode == "deploy"
+      become: True
+
+    - name: Install Make
+      apt: name=make state=present
+      when: mode == "deploy"
+      become: True
+
+    - name: Install Acl
+      apt: name=acl state=present
+      when: mode == "deploy"
+      become: True
+
+    - name: Install PM2 process manager
+      npm: name=pm2 global=yes
+      when: mode == "deploy"
+      become: True
+
+    - name: Get current software version
+      shell: git log | head -n 1 | cut -d ' ' -f 2
+      args:
+        chdir: "{{ appdir }}"
+      register: oldversion
+
+    - name: Copy deployment key
+      copy: src="{{ deployment_key }}" dest="/tmp/{{ oldversion.stdout }}" mode=0600 owner="{{ user }}" group="{{ user }}"
+      become: True
+
+    - name: Fetch application from BitBucket
+      git: repo="{{ gitrepo }}"
+          dest="{{ appdir }}"
+          key_file="/tmp/{{ oldversion.stdout }}"
+          accept_hostkey=yes
+          force=yes
+          version="{{ version }}"
+      become: True
+      become_user: "{{ user }}"
+      when: mode == "update"
+
+    - name: Fetch application from BitBucket
+      git: repo="{{ gitrepo }}"
+          dest="{{ appdir }}"
+          key_file="/tmp/{{ oldversion.stdout }}"
+          accept_hostkey=yes
+          force=yes
+          version="{{ version }}"
+      become: True
+      become_user: "{{ user }}"
+      when: mode == "deploy"
+
+    - name: Remove deployment key
+      file: path="/tmp/{{ oldversion.stdout }}" state=absent
+      become: True
+      become_user: "{{ user }}"
+
+    - name: Get installed software version
+      shell: git log | head -n 1 | cut -d ' ' -f 2
+      args:
+        chdir: "{{ appdir }}"
+      register: newversion
+
+    - name: Print versions info
+      debug: 
+          msg: "Commit before update: {{ oldversion.stdout }}; after update: {{ newversion.stdout }}"
+
+    - name: Create logs folder in system log directory
+      file: path="{{ logdir }}" state=directory owner="{{ user }}" group="{{ user }}"
+      when: mode == "deploy"
+      become: True
+
+    - name: Create logs symlink
+      file: path="{{ appdir }}/logs" state=link owner="{{ user }}" group="{{ user }}" src="{{ logdir }}"
+      when: mode == "deploy"
+      become: True
+
+    - name: Create pid folder
+      file: path="{{ appdir }}/pid" state=directory state=directory owner="{{ user }}" group="{{ user }}"
+      when: mode == "deploy"
+      become: True

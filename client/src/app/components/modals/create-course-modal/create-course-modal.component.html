@@ -1,0 +1,53 @@
+<div mat-dialog-title class="modal_title">{{ data.title }}</div>
+<mat-dialog-content class="modal_form">
+  <div *ngIf="existingCourse" class="message_box attention">
+    The name of the course will be changed everywhere it uses.
+  </div>
+  <br />
+  <form [formGroup]="detailsForm">
+    <div class="row-input">
+      <div class="label">Name of course *</div>
+      <mat-form-field [hideRequiredMarker]="true">
+        <input
+          id="course_name"
+          matInput
+          autocomplete="off"
+          placeholder="Enter course name"
+          formControlName="subject"
+          required="true"
+        />
+        <mat-error *ngFor="let validation of validation_messages['subject']">
+          <mat-error
+            class="error-message"
+            *ngIf="
+              detailsForm.get('subject').hasError(validation.type) &&
+              (detailsForm.get('subject').dirty ||
+                detailsForm.get('subject').touched)
+            "
+            >{{ validation.message }}
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button
+    id="save_button"
+    mat-flat-button
+    class="action_button"
+    (click)="onSubmitFormDetails(detailsForm.value)"
+    [disabled]="detailsForm.invalid"
+  >
+    {{ data.saveButtonText }}
+  </button>
+  <button
+    id="cancel_button"
+    mat-flat-button
+    class="action_button cancel"
+    (click)="onNoClick()"
+  >
+    Cancel
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,69 @@
+<div
+  [ngClass]="{
+    'row-input': true,
+    disabled: disabled,
+    readonly: readonly
+  }"
+  [formGroup]="parentForm"
+>
+  <div class="label">{{ label }} {{ required && !readonly ? '*' : '' }}</div>
+  <ng-template [ngIf]="!istextarea && !readonly">
+    <mat-form-field [hideRequiredMarker]="true">
+      <input
+        matInput
+        autocomplete="off"
+        [id]="formName"
+        [placeholder]="readonly ? '' : placeholder"
+        [formControlName]="formName"
+        [required]="required"
+        [readonly]="readonly || disabled"
+        [email]="formName === 'email'"
+        [type]="type === 'number' ? type : ''"
+        [min]="type === 'number' ? 0 : ''"
+        (input)="onTextChanged($event)"
+      />
+      <mat-error *ngFor="let validation of validation_messages[formName]">
+        <mat-error
+          class="error-message"
+          *ngIf="
+            !readonly &&
+            parentForm.get(formName).hasError(validation.type) &&
+            (parentForm.get(formName).dirty || parentForm.get(formName).touched)
+          "
+          >{{ validation.message }}
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+  </ng-template>
+  <ng-template [ngIf]="istextarea && !readonly">
+    <mat-form-field [hideRequiredMarker]="true">
+      <textarea
+        matInput
+        autocomplete="off"
+        [id]="formName"
+        [placeholder]="readonly ? '' : placeholder"
+        [formControlName]="formName"
+        [required]="required"
+        [rows]="readonly ? 1 : ''"
+        [readonly]="readonly || disabled"
+        [email]="formName === 'email'"
+      ></textarea>
+      <mat-error *ngFor="let validation of validation_messages[formName]">
+        <mat-error
+          class="error-message"
+          *ngIf="
+            !readonly &&
+            parentForm.get(formName).hasError(validation.type) &&
+            (parentForm.get(formName).dirty || parentForm.get(formName).touched)
+          "
+          >{{ validation.message }}
+        </mat-error>
+      </mat-error>
+    </mat-form-field>
+  </ng-template>
+  <ng-template [ngIf]="readonly">
+    <p class="mat-form-field readonly-view">
+      {{ parentForm.controls[formName].value }}
+    </p>
+  </ng-template>
+</div>

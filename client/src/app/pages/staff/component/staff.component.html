@@ -1,0 +1,160 @@
+<h1>Administrators</h1>
+<div class="table staff">
+  <div class="table_header">
+    <h2>All administrators</h2>
+    <button
+      id="create_administrator"
+      class="create_button"
+      mat-button
+      (click)="openDialog()"
+    >
+      Add administrator
+    </button>
+  </div>
+  <div [ngClass]="{ empty_message: true, hidden: hasData | async }">
+    <span> The list is empty, add administrator. </span>
+  </div>
+
+  <div [ngClass]="{ table_search: true, hidden: !(hasData | async) }">
+    <search-input
+      [searchString]="searchString"
+      [placeholder]="'Enter phone number, first or last name'"
+      (searchEvent)="applyFilter($event)"
+    ></search-input>
+    <div class="filter_box">
+      <span>Filter by type:</span>
+      <mat-form-field>
+        <mat-select
+          disableOptionCentering
+          [(value)]="selectedTypeFilter"
+          (selectionChange)="applyFilter()"
+        >
+          <mat-option *ngFor="let type of filterBox" [value]="type.value">
+            {{ type.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div
+    [ngClass]="{
+      table_spinner: true,
+      hidden: !(hasData | async),
+      loading: dataSource.loading$ | async
+    }"
+  >
+    <mat-spinner diameter="50" strokeWidth="3"></mat-spinner>
+  </div>
+
+  <mat-table
+    [class.hidden]="!(hasData | async)"
+    [dataSource]="dataSource"
+    matSort
+    matSortDisableClear
+    matSortActive="fullName"
+    matSortDirection="asc"
+  >
+    <!-- full name Column -->
+    <ng-container matColumnDef="fullName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+        Full name
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span
+          >{{ element.name }} {{ element.middleName }}
+          {{ element.lastName }}</span
+        >
+        <app-popup [data]="element"></app-popup>
+      </mat-cell>
+    </ng-container>
+
+    <!-- phoneNumber Column -->
+    <ng-container matColumnDef="phoneNumber">
+      <mat-header-cell *matHeaderCellDef> Phone number </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span>{{ element.msisdn }}</span>
+      </mat-cell>
+    </ng-container>
+
+    <!-- type Column -->
+    <ng-container matColumnDef="address">
+      <mat-header-cell *matHeaderCellDef> Roles </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <!-- {{ element.address }} -->
+        <span
+          [matTooltip]="getTypes(element.types)"
+          matTooltipClass="types_tooltip"
+          >{{ getTypes(element.types) }}</span
+        >
+      </mat-cell>
+    </ng-container>
+
+    <!-- institution Column -->
+    <ng-container matColumnDef="institution">
+      <mat-header-cell *matHeaderCellDef> Institution </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span *ngFor="let item of element.schools">
+          {{ item.name }}
+        </span>
+      </mat-cell>
+    </ng-container>
+
+    <!-- status Column -->
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <i
+          matTooltipClass="types_tooltip"
+          [matTooltip]="getActiveStatus(element)"
+          [ngClass]="getActiveStatusIcon(element)"
+        ></i>
+      </mat-cell>
+    </ng-container>
+
+    <!-- action Column -->
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-icon-button color="primary" [matMenuTriggerFor]="menu">
+          <i class="more-icon"></i>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button
+            id="edit_staff_profile"
+            mat-menu-item
+            (click)="openDialog('edit', element)"
+          >
+            <span>Edit profile</span>
+          </button>
+          <button
+            id="change_staff_role"
+            mat-menu-item
+            (click)="changeTheRoles('roles', element, $event)"
+          >
+            <span>Change the role</span>
+          </button>
+          <button
+            id="deactivate_staff"
+            mat-menu-item
+            [disabled]="!canBeDeactivated(element.active, element.types)"
+            (click)="userActivation(element.id, element.active)"
+          >
+            <span>{{ element.active ? 'Deactivate' : 'Activate' }}</span>
+          </button>
+        </mat-menu>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <mat-paginator
+    [class.hidden]="!(hasData | async)"
+    showFirstLastButtons
+    [length]="dataSource.adminsCount$ | async"
+    [pageSizeOptions]="[10, 20, 50, 100]"
+    itemsPerPageLabel="'Show'"
+  ></mat-paginator>
+</div>

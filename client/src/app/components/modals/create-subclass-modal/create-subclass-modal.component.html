@@ -1,0 +1,62 @@
+<div *ngIf="data" mat-dialog-title class="modal_title">Create subclass</div>
+<mat-dialog-content class="modal_form">
+  <form [formGroup]="detailsForm">
+    <label-input
+      [label]="'Class'"
+      [placeholder]="'Class'"
+      [parentForm]="detailsForm"
+      [disabled]="true"
+      [formName]="'class'"
+    ></label-input>
+    <select-input
+      [label]="'Course'"
+      [required]="true"
+      [placeholder]="'Choose the course'"
+      [parentForm]="detailsForm"
+      [formName]="'subject'"
+      [dataItems]="coursesList"
+      (selectionChange)="courseSelectedChange(detailsForm.get('subject'))"
+    ></select-input>
+    <select-input
+      [label]="'Number of subclasses'"
+      [required]="true"
+      [disabled]="detailsForm.get('subject').invalid"
+      [placeholder]="'Choose the number of subclasses'"
+      [parentForm]="detailsForm"
+      [formName]="'numberOfSubclasses'"
+      [dataItems]="numberOfSubclasses"
+      (selectionChange)="numberOfSubclassesSelectionChange($event)"
+    ></select-input>
+
+    <label-input
+      *ngFor="let input of numberOfSubclassesInputs"
+      [label]="input.label"
+      [placeholder]="'Type subclass name'"
+      [parentForm]="subclassesForm"
+      [formName]="input.formName"
+      (ontextChanged)="textChanged($event)"
+      [required]="true"
+    ></label-input>
+    <div class="error_message"><mat-error *ngIf="disabled">{{errorMsg}}</mat-error> </div> 
+    <br />
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions *ngIf="data">
+  <button
+    id="save_button"
+    mat-flat-button
+    class="action_button"
+    (click)="onSubmitDetails(detailsForm.value)"
+    [disabled]="detailsForm.invalid || disabled"
+  >
+    {{ data.saveButtonText }}
+  </button>
+  <button
+    id="cancel_button"
+    mat-flat-button
+    class="action_button cancel"
+    (click)="onNoClick()"
+  >
+    Cancel
+  </button>
+</mat-dialog-actions>

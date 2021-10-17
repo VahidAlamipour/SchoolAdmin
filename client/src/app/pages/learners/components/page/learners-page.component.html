@@ -1,0 +1,27 @@
+<h1>Learners</h1>
+<slc-selector (classChanged)="classChange($event)"></slc-selector>
+
+<div
+  [ngClass]="{
+    table: true,
+    learners: router.url.split('?')[0] === '/learners',
+    subclasses: router.url === '/subclasses'
+  }"
+  [class.hidden]="!selectedClass"
+>
+  <div class="tab_nav" mat-tab-nav-bar>
+    <a
+      mat-tab-link
+      *ngFor="let link of navLinks"
+      [routerLink]="link.link"
+      routerLinkActive
+      #linkol
+      #rla="routerLinkActive"
+      [active]="rla.isActive"
+      (click)="sendEventForReload(false, selectedClass)"
+    >
+      {{ link.index === 0 ? learnersTabLabel : subclassesTabLabel }}
+    </a>
+  </div>
+  <router-outlet></router-outlet>
+</div>

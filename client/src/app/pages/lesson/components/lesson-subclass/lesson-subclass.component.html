@@ -1,0 +1,58 @@
+<div class="title_line">
+  <h3>{{ title }}</h3>
+  <i
+    id="delete_subclass_{{ index }}"
+    class="delete-icon"
+    (click)="deleteSubclass.emit()"
+  ></i>
+</div>
+<select-input
+  [label]="'nolabel'"
+  [required]="true"
+  [placeholder]="'Choose the course'"
+  [parentForm]="parentForm"
+  [formName]="'subject'"
+  [dataItems]="lessonService.courses$ | async"
+></select-input>
+<div *ngIf="parentForm.get('subject').valid">
+  <select-input
+    [label]="'nolabel'"
+    [required]="true"
+    [placeholder]="'Choose the subclass'"
+    [parentForm]="parentForm"
+    [formName]="'group'"
+    [dataItems]="subGroups$ | async"
+  ></select-input>
+  <select-input
+    [label]="'nolabel'"
+    [required]="true"
+    [placeholder]="'Choose the educator'"
+    [parentForm]="parentForm"
+    [formName]="'teacher'"
+    [dataItems]="educators$ | async"
+  ></select-input>
+  <select-input
+    [label]="'nolabel'"
+    [required]="true"
+    [placeholder]="'Choose the facility'"
+    [parentForm]="parentForm"
+    [formName]="'room'"
+    [dataItems]="facilities$ | async"
+  ></select-input>
+</div>
+<div
+  class="group_list"
+  *ngIf="
+    (learnersList | async)[index] && (learnersList | async)[index].length !== 0
+  "
+>
+  <span class="sub_title"> List of the learners: </span>
+  <div class="scroll">
+    <div
+      *ngFor="let learner of (learnersList | async)[index]"
+      [ngClass]="{ group_box: true, isDuplicate: learner.isDuplicate }"
+    >
+      {{ learner.name }} {{ learner.lastName }}
+    </div>
+  </div>
+</div>

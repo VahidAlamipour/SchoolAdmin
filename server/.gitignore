@@ -1,0 +1,4 @@
+config/*.local.yaml
+config/config.development.*
+server/scripts/files/
+

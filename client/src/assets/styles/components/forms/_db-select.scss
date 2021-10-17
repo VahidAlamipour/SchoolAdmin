@@ -1,0 +1,20 @@
+@import 'base-input';
+
+.db-select {
+  @include base-input-line;
+  .label {
+    @include base-input-label;
+    max-width: 40px;
+  }
+  @include base-select;
+  mat-form-field {
+    max-width: 76px;
+    margin-right: 8px;
+    font-size: 14px;
+  }
+  &.invalid {
+    mat-form-field {
+      border-color: #f44336;
+    }
+  }
+}

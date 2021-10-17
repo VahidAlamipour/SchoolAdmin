@@ -1,0 +1,48 @@
+.notifications_group {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10001;
+  transition: all $cubic 0.4s;
+}
+.notification {
+  display: flex;
+  align-items: flex-start;
+  padding: 16px;
+  margin-top: 16px;
+  width: 240px;
+  min-height: 60px;
+  border-radius: 6px;
+  color: #fff;
+  box-sizing: border-box;
+  box-shadow: $global_shadow;
+  transition: all $cubic 0.4s;
+  user-select: none;
+  cursor: pointer;
+  &.default {
+    background-color: #4386d6;
+  }
+  &.error {
+    background-color: #e74c3c;
+  }
+  &.success {
+    background-color: #509b18;
+  }
+  &:hover {
+    opacity: 0.8;
+  }
+  .message {
+    font-size: 14px;
+    line-height: 16px;
+    overflow: hidden;
+  }
+  i {
+    font-size: 27px;
+    margin: 3px 14px 0 0;
+    &:before {
+      margin: 0;
+    }
+  }
+}

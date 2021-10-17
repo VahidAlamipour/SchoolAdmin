@@ -1,0 +1,42 @@
+<div class="tt_calendar_header">
+  <div class="tt_calendar_header_btn" (click)="leftNavClicked()">
+    <div class="arrow-left-icon"></div>
+    <span
+    [ngStyle]="{'color':minDateReached() === true ? '#B8B8B8' : null }"
+    [innerText]="prevLabel"></span>
+  </div>
+  <div class="tt_calendar_header_title" [innerText]="label"></div>
+  <div class="tt_calendar_header_btn" (click)="rightNavClicked()">
+    <span
+    [ngStyle]="{'color':maxDateReached() === true ? '#B8B8B8' : null }"
+    [innerText]="nextLabel"></span>
+    <div class="arrow-right-icon"></div>
+  </div>
+</div>
+<div class="tt_calendar_selector">
+  <div class="select-input">
+    <div class="select">
+      <mat-form-field>
+        <mat-select [value]="currentMonth" (selectionChange)="monthSelectionChange($event)">
+          <mat-option *ngFor="let month of months" [value]="month">
+            {{ month }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="select-input ">
+    <div class="select year">
+      <mat-form-field>
+        <mat-select [value]="currentYear" (selectionChange)="yearSelectionChange($event)">
+          <mat-option *ngFor="let year of years" [value]="year">
+            {{ year }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div mat-flat-button class="create_button" (click)="currentWeek()">
+    Current week
+  </div>
+</div>

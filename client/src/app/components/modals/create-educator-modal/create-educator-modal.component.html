@@ -1,0 +1,220 @@
+<div mat-dialog-title class="modal_title">
+  {{ editMode ? 'Edit educator' : 'Create educator' }}
+</div>
+
+<mat-dialog-content class="modal_form">
+  <form [formGroup]="detailsForm">
+    <label-input
+      [label]="'Last name'"
+      [placeholder]="'Enter last name'"
+      [required]="true"
+      [parentForm]="detailsForm"
+      [formName]="'lastName'"
+    ></label-input>
+    <label-input
+      [label]="'Name'"
+      [placeholder]="'Enter name'"
+      [required]="true"
+      [parentForm]="detailsForm"
+      [formName]="'name'"
+    ></label-input>
+    <label-input
+      [label]="'Middle name'"
+      [placeholder]="'Enter middle name'"
+      [parentForm]="detailsForm"
+      [formName]="'middleName'"
+    ></label-input>
+    <br />
+    <br />
+    <label-input
+      [label]="'Email'"
+      [placeholder]="'Enter email'"
+      [required]="true"
+      [parentForm]="detailsForm"
+      [formName]="'email'"
+      [disabled]="data?.existing ? true : false"
+    ></label-input>
+    <br />
+    <br />
+    <date-input
+      [label]="'Date of birth'"
+      [placeholder]="'Enter date of birth'"
+      [required]="true"
+      [parentForm]="detailsForm"
+      [formName]="'initBirthday'"
+    ></date-input>
+    <label-input
+      [label]="'Educator’s phone number'"
+      [placeholder]="'Enter phone no.'"
+      [parentForm]="detailsForm"
+      [formName]="'msisdn'"
+    ></label-input>
+    <label-input
+      [label]="'Education'"
+      [placeholder]="'Enter the education information'"
+      [parentForm]="detailsForm"
+      [formName]="'education'"
+    ></label-input>
+    <label-input
+      [label]="'University'"
+      [placeholder]="'Enter university name'"
+      [parentForm]="detailsForm"
+      [formName]="'university'"
+    ></label-input>
+    <label-input
+      [label]="'Speciality'"
+      [placeholder]="'Enter name of speciality'"
+      [parentForm]="detailsForm"
+      [formName]="'speciality'"
+    ></label-input>
+    <label-input
+      [label]="'Category'"
+      [placeholder]="'Enter the category'"
+      [parentForm]="detailsForm"
+      [formName]="'category'"
+    ></label-input>
+    <date-input
+      [type]="'year'"
+      [label]="'Year of graduation'"
+      [placeholder]="'Enter year of graduation'"
+      [parentForm]="detailsForm"
+      [formName]="'graduationYear'"
+    ></date-input>
+    <date-input
+      [type]="'year'"
+      [label]="'Last career training'"
+      [placeholder]="'Enter year of last career training'"
+      [parentForm]="detailsForm"
+      [formName]="'trainingYear'"
+    ></date-input>
+    <div *ngIf="!data?.existing" class="types_block">
+      <div class="row-input head">
+        <div class="label"><h3>Educator roles</h3></div>
+        <div class="input"></div>
+      </div>
+      <toggle-input
+        [label]="'Director'"
+        [parentForm]="detailsForm.controls.roles"
+        [formName]="'isDirector'"
+      ></toggle-input>
+      <toggle-input
+        [label]="'Curriculum Director'"
+        [parentForm]="detailsForm.controls.roles"
+        [formName]="'isCurriculumDirector'"
+      ></toggle-input>
+      <chips-block
+        [label]="'Head of Department'"
+        [buttonLabel]="'Add course'"
+        [parentForm]="detailsForm.controls.roles"
+        [formName]="'headOfSubjects'"
+        [modalConfig]="headOfDepartmentModalConfig"
+      ></chips-block>
+      <chips-block
+        [label]="'Educator'"
+        [buttonLabel]="'Add course'"
+        [parentForm]="detailsForm.controls.roles"
+        [formName]="'teacherSubjects'"
+        [modalConfig]="educatorCoursesModalConfig"
+        [additionalData]="educatorCoursesModalData()"
+      ></chips-block>
+      <div class="toggle-input">
+        <div class="label">Homeroom educator</div>
+        <div class="toggle">
+          <mat-slide-toggle
+            (change)="homeRoomEduEnabled($event)"
+            id="homeroomEducator"
+            formControlName="homeroomEducatorToggle"
+            [disableRipple]="true"
+            [color]="'primary'"
+          ></mat-slide-toggle>
+        </div>
+      </div>
+      <auto-input
+        *ngIf="detailsForm.controls.homeroomEducatorToggle.value"
+        [@fade]
+        [label]="'Class name'"
+        [placeholder]="'Start typing class name'"
+        [suggestions]="classesSuggestions"
+        (loadEvent)="loadClasses()"
+        [parentForm]="detailsForm.controls.roles"
+        [formName]="'homeClass'"
+        [inputTypeHomeRoomClass]="true"
+        [inputTypeHomeRoomClassFlag]="homeroomEducatorToggle"
+      ></auto-input>
+
+      <div
+      *ngIf="homeroomEducatorToggle"
+      [ngClass]="{ 'chips-block': true}">
+        <div class="block_wrap">
+          <div class="block_line">
+            <div
+              style="flex-direction: column;"
+              class="block_chip"
+              *ngFor="let item of this.schedService.selectedHomeRoomClassesArr; let i = index">
+
+              <div style="flex-direction: row;">       
+                <span
+                [ngStyle]="homeroomEducatorToggle && {'font-weight': 'bold'}"
+                > Class {{ item.name }}
+                </span>
+                <i
+                *ngIf=""
+                class="cancel-icon"
+                (click)="removeHomeRoomItem(i)">
+                </i>
+              </div>
+
+              <div style="flex-direction: row;">
+                <span [ngStyle]="homeroomEducatorToggle && {'font-size': '12px'}">
+                  {{item.start}}
+                </span>
+
+                <span [ngStyle]="homeroomEducatorToggle && {'font-size': '12px'}">
+                  - {{item.end}}
+                </span>
+
+                <span [ngStyle]="homeroomEducatorToggle && {'font-size': '12px'}">
+                  - {{item.segment !== undefined ? item.segment.name : item.segmentname !== undefined ? item.segmentname : ''}}
+                </span>
+
+                <span [ngStyle]="homeroomEducatorToggle && {'font-size': '12px'}">
+                  - Level {{item.level !== undefined ? item.level.name : ''}}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button
+    id="delete_button"
+    class="action_button delete"
+    *ngIf="data?.existing"
+    mat-button
+    (click)="onDeleteClick()"
+  >
+    Delete educator
+  </button>
+  <button
+    id="save_button"
+    class="action_button"
+    mat-flat-button
+    (click)="onSubmitFormDetails(detailsForm.value)"
+    [disabled]="detailsForm.invalid"
+  >
+    {{ data.saveButtonText }}
+  </button>
+  <button
+    id="cancel_button"
+    class="action_button cancel"
+    mat-flat-button
+    (click)="onNoClick()"
+  >
+    Cancel
+  </button>
+</mat-dialog-actions>

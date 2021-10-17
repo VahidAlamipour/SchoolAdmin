@@ -1,0 +1,17 @@
+<div
+  class="toggle-input"
+  [ngClass]="{ disabled: disabled }"
+  [formGroup]="parentForm"
+  [ngStyle]="mainStyle"
+>
+  <div class="label" [ngStyle]="labelStyle">{{ label }} {{ required ? '*' : '' }}</div>
+  <div class="toggle">
+    <mat-slide-toggle
+      formControlName="{{formName}}"
+      [disableRipple]="true"
+      [color]="'primary'"
+      id="{{formName}}"
+    >
+    </mat-slide-toggle>
+  </div>
+</div>

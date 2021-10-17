@@ -1,0 +1,84 @@
+<div>
+  <div style="display: flex; justify-content: space-between">
+    <h1>Permissions</h1>
+    <button
+      id="save_button"
+      class="action_button"
+      mat-flat-button
+      (click)="onSubmitFormDetails(permissionsForm.value)"
+      style="width: 64px; height: 36px"
+      [disabled]="!hasPermission"
+    >
+      Save
+    </button>
+  </div>
+
+  <form [formGroup]="permissionsForm">
+    <div class="form-group" style="margin-bottom:40px">
+      <div class="table">
+        <div class="table_header" style="background: lightgray">
+          <h2>Plagiarism Checker</h2>
+        </div>
+        <div *ngIf="hasPlagiarismChecker" class="table_header">
+          <h2>Submission Summary</h2>
+          <div style="display: inline-flex">
+            <toggle-input
+              [label]="'Freeze Plagiarism Checker'"
+              [parentForm]="permissionsForm"
+              [formName]="'isPlagiarismCheckerInactive'"
+              [labelStyle]="{ flex: 'auto', 'max-width': '260px' }"
+              [mainStyle]="{ 'margin-top': '0px' }"
+            ></toggle-input>
+            <app-popup [data]="plagiarismCheckerForm.info" [position]="'left'" style="margin-top: 12px; margin-left: 5px;"></app-popup>
+          </div>
+        </div>
+        <div
+          *ngIf="hasPlagiarismChecker"
+          class="table_header plagiarism-checker-usage-container"
+        >
+          <div
+            [innerHtml]="plagiarismCheckerForm.usageMessage"
+            style="width: 50%"
+          ></div>
+          <mat-progress-bar
+            mode="determinate"
+            [value]="plagiarismCheckerForm.usageRatio"
+            class="permissions-usage-bar"
+          ></mat-progress-bar>
+        </div>
+        <div
+          *ngIf="hasPlagiarismChecker"
+          class="message_box attention plagiarism-checker-message-box"
+          [innerHtml]="plagiarismCheckerForm.message"
+        ></div>
+        <div *ngIf="!hasPlagiarismChecker" class="feature-unavaible-txt">
+          Plagiarism Checker feature is not subscribed.
+        </div>
+      </div>
+    </div>
+    <!-- KIV feature: Uncomment the below div for download document feature [DO NOT DELETE] -->
+    <!-- <div class="form-group">
+      <div class="table">
+        <div class="table_header" style="background: lightgray">
+          <h2>Download Curriculum</h2>
+        </div>
+        <div class="table_header">
+          <h2>Give users permission to download any documents they have permission to edit</h2>
+          <div style="display: inline-flex">
+            <toggle-input
+              [label]="'Allow Download'"
+              [parentForm]="permissionsForm"
+              [formName]="'isDownloadDocumentEnable'"
+              [labelStyle]="{ flex: 'auto', 'max-width': '260px' }"
+              [mainStyle]="{ 'margin-top': '0px' }"
+            ></toggle-input>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  </form>
+</div>
+
+<!-- <div *ngIf="!hasPermission" style="text-align: center; color: gray; width: 100%; height: 100%; font-size: 20px;">
+    <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">No Customizable Permission Allowed </span>
+</div> -->

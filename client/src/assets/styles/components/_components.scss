@@ -1,0 +1,54 @@
+@import './notifications/notifications';
+@import './baseblock';
+@import './start_page';
+@import './login';
+@import './forms/forms';
+@import './institution_selector';
+@import './sidebar';
+@import './tables/tables';
+@import './modals/modal';
+@import './dropdown';
+@import './popup';
+@import './search_input';
+@import './big_search';
+@import './tickets';
+@import './subgroups';
+@import './tooltip';
+@import './message';
+@import './tt_builder';
+@import './tt_calendar';
+@import './privacy';
+@import './import-progress';
+@import './file-holder';
+
+@import './profile';
+
+.empty_message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 30px 0;
+  color: #999;
+  box-sizing: border-box;
+  cursor: default;
+  user-select: none;
+  span {
+    position: relative;
+    padding-left: 35px;
+    font-size: 14px;
+    line-height: 24px;
+    &:before {
+      display: block;
+      content: '\e81c';
+      font-family: 'schoolos-icons';
+      font-size: 19px;
+      position: absolute;
+      left: 0;
+    }
+  }
+  &.hidden {
+    display: none;
+  }
+}

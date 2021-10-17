@@ -1,0 +1,50 @@
+<div class="chips-block educators" [formGroup]="parentForm">
+  <div class="label">{{ label }}</div>
+  <div class="block_wrap">
+    <div class="block_line">
+      <div class="block_chip" *ngFor="let chips of parentForm.get(formName).value; let i = index">
+        <div class="block_chip_title">
+          <div>
+            <span> {{ chips.school.name }} </span>
+            <span> {{ chips.school.city.name }} </span>
+          </div>
+          <div *ngIf="isEditable(i)">
+            <i class="edit-icon" (click)="editDataModal(chips)"></i>
+            <i class="cancel-icon" (click)="removeItem(i)" *ngIf="showBlockDeleter()"></i>
+          </div>
+        </div>
+        <div class="block_chip_roleblock" *ngFor="let roleblock of getRolesBlock(chips);">
+          <div *ngIf="roleblock.roles.length">
+            <div class="block_chip_roleblock_title">
+              {{ roleblock.title }}
+            </div>
+            <div class="roleblock_element_wrapper">
+              <div class="roleblock_element" *ngFor="let element of roleblock.roles; let elI = index">
+                <div style=" vertical-align: top; display: inline-block;  ">
+                  <span>
+                    {{
+                    roleblock.code === 'teacherSubjects' ? getEducatorsRoleElement(element)
+                    : element.name
+                    }}
+                  </span>
+
+                  <i style="text-align: right !important;float:right !important"
+                    *ngIf="isEditable(i) && showElementDeleter(chips)" class="cancel-icon"
+                    (click)="removeRolesBlock(roleblock, i, elI)"></i>
+
+                  <span style="display: block;text-align: left;font-size: 10px !important;">
+                   {{roleblock.code === 'homeClass' ? homeRoomTextMaker(element) : ""}}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button mat-button class="create_button" type="button" [id]="buttonLabel" [disabled]="!canBeAdded()"
+      (click)="editDataModal()">
+      {{ buttonLabel }}
+    </button>
+  </div>
+</div>

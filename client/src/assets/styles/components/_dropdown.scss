@@ -1,0 +1,95 @@
+app-dropdown {
+  display: block;
+  box-sizing: border-box;
+}
+.dropdown {
+  position: relative;
+  user-select: none;
+  &_template {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 16px;
+    .value {
+      display: flex;
+      flex-direction: column;
+      margin-right: auto;
+      .name {
+        font-size: 16px;
+        color: #000;
+        margin-bottom: 4px;
+      }
+      .info {
+        font-size: 14px;
+        color: #666;
+      }
+    }
+    .controls {
+      display: flex;
+      align-items: center;
+      i {
+        color: #666;
+        &.edit-icon {
+          font-size: 17px;
+        }
+        &.arrow-down-icon {
+          font-size: 12px;
+          margin: 0 15px;
+          transition: all $cubic 0.3s;
+        }
+        &.check-icon {
+          margin-right: 13px;
+          font-size: 13px;
+          color: #fff;
+        }
+      }
+    }
+    &:hover {
+      .arrow-down-icon {
+        color: $blue;
+      }
+    }
+  }
+  &_action {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    z-index: 1001;
+    background: #fff;
+    max-height: 400px;
+    overflow: auto;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.4);
+    border-radius: $global_border_radius;
+    .dropdown_template {
+      &:not(:last-child) {
+        border-bottom: 1px solid $light_gray;
+      }
+      &:not(.selected):hover {
+        background: rgba($blue, 0.05);
+        i.check-icon {
+          color: rgba($blue, 0.05);
+        }
+      }
+      &.selected {
+        background: $blue;
+        .value {
+          .name {
+            color: #fff;
+          }
+          .info {
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+  &_overlay {
+    position: fixed;
+    z-index: 1000;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background: transparent;
+  }
+}

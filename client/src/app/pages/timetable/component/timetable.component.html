@@ -1,0 +1,118 @@
+<h1>Timetable</h1>
+<div class="baseblock_holder">
+  <div class="baseblock_column half">
+    <div class="baseblock">
+      <div class="baseblock_header"><h2>Academic year</h2></div>
+      <div
+        [ngClass]="{
+          table_spinner: true,
+          timetable: true,
+          loading: service.loadingYears$ | async
+        }"
+        id="{{ (service.loadingLevels$ | async) ? 'loading' : '' }}"
+      >
+        <mat-spinner diameter="30" strokeWidth="2"></mat-spinner>
+      </div>
+      <app-dropdown
+        [name]="'timetableYear'"
+        [data]="service.years$ | async"
+        [editable]="false"
+        (init)="yearReselected($event, true, true)"
+        (reselect)="yearReselected($event, true, false)"
+        [activeyear]="service.activeYear$ | async"
+      ></app-dropdown>
+    </div>
+    <div class="baseblock">
+      <div class="baseblock_header"><h2>Levels</h2></div>
+      <div
+        [ngClass]="{
+          table_spinner: true,
+          timetable: true,
+          loading: service.loadingLevels$ | async
+        }"
+        id="{{ (service.loadingLevels$ | async) ? 'loading' : '' }}"
+      >
+        <mat-spinner diameter="30" strokeWidth="2"></mat-spinner>
+      </div>
+      <app-dropdown
+        [name]="'timetableLevel'"
+        [data]="service.levels$ | async"
+        [editable]="false"
+        (init)="levelInit($event)"
+        (reselect)="levelReselected($event)"
+      ></app-dropdown>
+    </div>
+    <div class="baseblock">
+      <div class="baseblock_header"><h2>Classes</h2></div>
+      <div
+        [ngClass]="{
+          table_spinner: true,
+          timetable: true,
+          loading: service.loadingClasses$ | async
+        }"
+        id="{{ (service.loadingClasses$ | async) ? 'loading' : '' }}"
+      >
+        <mat-spinner diameter="30" strokeWidth="2"></mat-spinner>
+      </div>
+      <app-dropdown
+        [name]="'timetableClasses'"
+        [data]="service.classes$ | async"
+        [editable]="false"
+        (init)="classesReselected($event, true)"
+        (reselect)="classesReselected($event, true)"
+      ></app-dropdown>
+    </div>
+  </div>
+  <div class="baseblock_column half">
+    <calendar
+      #calendarParentComp
+      class="baseblock calendar"
+      (weekSelect)="weekSelect($event)"
+      (currentWeekSelect)="currentWeekSelect()"
+      (currentYearSelect)="YearSelect()"
+      (currentMonthSelect)="MonthSelect($event)"
+    ></calendar>
+  </div>
+</div>
+<div class="baseblock tt_builder">
+  <div *ngIf="shifts?.length !== 0" class="baseblock_tabs">
+    <mat-tab-group
+      class="tabs"
+      dynamicHeight
+      [selectedIndex]="selectedShiftIndex"
+      (selectedIndexChange)="selectedShiftIndex = $event"
+      (selectedTabChange)="tabsEvent($event)"
+    >
+      <mat-tab
+        *ngFor="let shift of shifts; let index = index"
+        label="{{ shift.name }}"
+      >
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+  <div
+    [ngClass]="{
+      table_spinner: true,
+      tt_builder: true,
+      loading: service.loadingLessons$ | async
+    }"
+    id="{{ (service.loadingLessons$ | async) ? 'loading' : '' }}"
+  >
+    <mat-spinner diameter="30" strokeWidth="2"></mat-spinner>
+  </div>
+  <div
+    *ngIf="!(service.lessons$ | async) || !(service.lessons$ | async).length"
+    class="empty_message"
+  >
+    <span> There is no lessons for this week. </span>
+  </div>
+  <div class="tt_content">
+    <day
+      class="tt_day"
+      *ngFor="let day of service.lessons$  | async; index as i;"
+      [day]="day"
+      [index]="i"
+      (lessonDelete)="loadLessons()"
+    ></day>
+  </div>
+</div>

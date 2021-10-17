@@ -1,0 +1,22 @@
+<div class="s_time">{{ lesson.time?.start }} - {{ lesson.time?.end }}</div>
+<div class="s_info">
+  <span [innerHTML]="getLessonTitle(lesson)"></span>
+  <span class="action">
+    <span>
+        <app-popup [data]="lesson" [position]="dayIndex % 2 ? 'left' : 'right'"></app-popup>
+    </span>
+    <span *ngIf="editable">
+      <button mat-icon-button color="primary" [matMenuTriggerFor]="menu">
+        <i class="more-icon"></i>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button id="edit_lesson" mat-menu-item (click)="editLesson(lesson.id)">
+          <span>Edit</span>
+        </button>
+        <button id="delete_lesson" mat-menu-item (click)="deleteLesson()">
+          <span>Delete</span>
+        </button>
+      </mat-menu>
+    </span>
+  </span>
+</div>

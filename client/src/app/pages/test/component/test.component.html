@@ -1,0 +1,34 @@
+<h1>Test page</h1>
+
+<div class="table test">
+  <div class="table_header">
+    <h2>Test notifications</h2>
+  </div>
+
+  <div class="table_wrap">
+    <button mat-flat-button color="primary" (click)="testClick()">
+      Default
+    </button>
+    <button mat-flat-button color="primary" (click)="testClick(1)">
+      Permanent
+    </button>
+    <button mat-flat-button color="warn" (click)="errorClick()">
+      Error
+    </button>
+    <button mat-flat-button color="accent" (click)="successClick()">
+      Success
+    </button>
+  </div>
+  <a href="assets/templates/educators.csv" > educator </a>
+  <a href="assets/templates/learners.csv" > learner </a>
+  <a href="assets/templates/parents.csv" > parent </a>
+
+  <div class="table_wrap">
+    <button mat-flat-button color="warn" (click)="errorClick(1)">
+      Error with extra long message
+    </button>
+    <button mat-flat-button color="accent" (click)="twoInARow()">
+      Two in a row
+    </button>
+  </div>
+</div>

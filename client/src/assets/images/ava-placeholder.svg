@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="94px" height="94px" viewBox="0 0 94 94" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+  <title>image</title>
+  <desc>Created with Sketch.</desc>
+  <defs>
+    <linearGradient x1="0%" y1="0%" x2="100%" y2="92.3454122%" id="linearGradient-1">
+      <stop stop-color="#3398C7" offset="0%"></stop>
+      <stop stop-color="#3377C7" offset="100%"></stop>
+    </linearGradient>
+    <circle id="path-2" cx="47" cy="47" r="47"></circle>
+    <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-4">
+      <stop stop-color="#3398C7" offset="0%"></stop>
+      <stop stop-color="#3377C7" offset="100%"></stop>
+    </linearGradient>
+  </defs>
+  <g id="Schedule" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="02---Schedule" transform="translate(-73.000000, -100.000000)">
+      <g id="Left-Sidebar" transform="translate(0.000000, 60.000000)">
+        <g id="image" transform="translate(73.000000, 40.000000)">
+          <mask id="mask-3" fill="white">
+            <use xlink:href="#path-2"></use>
+          </mask>
+          <use id="Mask" fill-opacity="0.2" fill="url(#linearGradient-1)" fill-rule="nonzero" xlink:href="#path-2"></use>
+          <path d="M78,86 L46.4604492,100.654297 L17,86 L17,80.6338364 C17,76.0706727 19.5341522,71.9667455 23.6118696,69.9254 L36.2799783,63.5863455 C37.4747826,62.9877455 38.2173913,61.7852364 38.2173913,60.4473455 L38.2173913,55.9598364 C37.9137174,55.5882 37.5941304,55.1648 37.2639348,54.6976 C35.620913,52.3748727 34.3041087,49.7893455 33.3466739,47.0007455 C31.4755652,46.142 30.2608696,44.2904545 30.2608696,42.2 L30.2608696,36.8909091 C30.2608696,35.6127455 30.7382609,34.3744 31.5869565,33.4068182 L31.5869565,26.3470545 C31.5126957,25.6170545 31.2209565,21.2715636 34.3611304,17.6866 C37.084913,14.5768 41.5047609,13 47.5,13 C53.4952391,13 57.915087,14.5768 60.6388696,17.6866 C63.7790435,21.2715636 63.4873043,25.6170545 63.4130435,26.3470545 L63.4130435,33.4068182 C64.2617391,34.3744 64.7391304,35.6127455 64.7391304,36.8909091 L64.7391304,42.2 C64.7391304,44.2904545 63.5244348,46.142 61.6533261,47.0007455 C60.6958913,49.7893455 59.379087,52.3748727 57.7360652,54.6976 C57.4058696,55.1648 57.0862826,55.5882 56.7826087,55.9598364 L56.7826087,60.4473455 C56.7826087,61.7852364 57.5252174,62.9877455 58.7200217,63.5863455 L71.3881304,69.9254 C75.4658478,71.9667455 78,76.0706727 78,80.6338364 L78,86 Z" id="Path" fill="url(#linearGradient-4)" fill-rule="nonzero" opacity="0.3" mask="url(#mask-3)"></path>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

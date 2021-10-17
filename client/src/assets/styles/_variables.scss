@@ -1,0 +1,25 @@
+$cubic: cubic-bezier(0.25, 0.8, 0.25, 1);
+
+$global_shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+$global_border_radius: 6px;
+
+$lightest_gray: #fbfcfe;
+$light_gray: #ebebeb;
+$pre-gray: #d8d8d8;
+$gray: #c5c5c5;
+
+$blue: #4386d6;
+$blue_dark: #1c5ca7;
+$blue_gradient: linear-gradient(-135deg, #4193d4 0%, #256abb 100%);
+$blue_gradient_right: linear-gradient(90deg, #4193d4 0%, #256abb 100%);
+
+$green: #509b18;
+$green_light: #18a910;
+$green_washed: #2aaec2;
+
+$orange: #d68b43;
+$yellow: #f7b731;
+
+// $red: #cc2313;
+$red: #e74c3c;
+$pinky_red: #d64343;

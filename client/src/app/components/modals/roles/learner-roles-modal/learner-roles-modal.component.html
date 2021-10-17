@@ -1,0 +1,78 @@
+<div mat-dialog-title class="modal_title">
+  {{ data.title }}
+</div>
+<mat-dialog-content class="modal_form">
+  <form [formGroup]="institutionForm">
+    <!-- [formName]="'institution'" | with back-->
+    <auto-input
+      label="Institution name"
+      placeholder="Start typing institution name"
+      [required]="true"
+      [parentForm]="institutionForm"
+      formName="school"
+      [suggestions]="institutionSuggestions"
+    ></auto-input>
+    <select-input
+      label="Academic year"
+      [required]="true"
+      placeholder="Choose the academic year"
+      [parentForm]="institutionForm"
+      formName="year"
+      [dataItems]="yearsData"
+      (selectionChange)="yearSelectionChange($event)"
+    ></select-input>
+    <select-input
+      label="Segment"
+      [required]="true"
+      placeholder="Choose the segment"
+      [parentForm]="institutionForm"
+      formName="segment"
+      [dataItems]="segmentsData"
+      (selectionChange)="segmentSelectionChange($event)"
+    ></select-input>
+    <div class="row-input" *ngIf="levelsData.length">
+      <div class="label">Choose levels *</div>
+      <div class="input">
+        <div class="level_radio_block">
+          <div
+            *ngFor="let level of levelsData; let i = index"
+            [ngClass]="['level_radio_field', level.selected ? 'selected' : '']"
+            id="{{ 'choose_level_' + level.name }}"
+            (click)="levelSelect(level, i)"
+          >
+            {{ level.name }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <select-input
+      label="Class"
+      [required]="true"
+      placeholder="Choose the class"
+      [parentForm]="institutionForm"
+      formName="class"
+      [dataItems]="classesData"
+      (selectionChange)="classSelectionChange($event)"
+    ></select-input>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button
+    id="save_button"
+    mat-flat-button
+    class="action_button"
+    [disabled]="!formValid"
+    (click)="transferData()"
+  >
+    {{ data.saveButtonText }}
+  </button>
+  <button
+    id="cancel_button"
+    mat-flat-button
+    class="action_button cancel"
+    (click)="onNoClick()"
+  >
+    Cancel
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,178 @@
+.big {
+  &_wrap {
+    position: relative;
+  }
+  &-search {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: $global_border_radius;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 2;
+    i {
+      transition: all $cubic 0.3s;
+      z-index: 1;
+      &.big-search-icon {
+        position: absolute;
+        color: $pre-gray;
+        font-size: 30px;
+        left: 20px;
+      }
+      &.cancel-icon {
+        color: #999;
+        font-size: 16px;
+        margin-right: 16px;
+        cursor: pointer;
+        &:hover {
+          color: #666;
+        }
+      }
+    }
+    .big_input {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 20px;
+      font-weight: 300;
+      padding: 20px 20px 20px 76px;
+      cursor: default;
+      &:focus + i {
+        color: #000;
+      }
+      &:not(:focus):hover + i {
+        color: $blue;
+      }
+    }
+    .action_button {
+      margin-right: 16px;
+    }
+  }
+  &_dropdown {
+    position: relative;
+    border-radius: $global_border_radius;
+    overflow: auto;
+    height: 350px;
+    z-index: 1;
+    mark {
+      color: $blue;
+      background: transparent;
+      font-weight: 500;
+    }
+    .dropdown {
+      &_item {
+        display: flex;
+        align-items: center;
+        height: 70px;
+        transition: all $cubic 0.1s;
+        user-select: none;
+        cursor: pointer;
+        i.icon {
+          margin: 16px 20px;
+          position: relative;
+          width: 36px;
+          height: 36px;
+          text-align: center;
+          font-size: 17px;
+          line-height: 35px;
+          border-radius: 50%;
+          color: #fff;
+          background: #fff;
+          // background: $blue_gradient;
+          &.child-icon {
+            background: $green_light;
+            &::before {
+              width: 17px;
+            }
+          }
+          &.subjects-icon {
+            line-height: 32px;
+            background: $red;
+            &::before {
+              width: 17px;
+            }
+          }
+          &.teacher-icon {
+            line-height: 35px;
+            background: $orange;
+            &::before {
+              width: 30px;
+            }
+          }
+          &.parents-icon {
+            line-height: 35px;
+            background: $green_washed;
+            &::before {
+              width: 14px;
+            }
+          }
+          &.user-icon {
+            line-height: 35px;
+            background: $pinky_red;
+            &::before {
+              width: 14px;
+            }
+          }
+        }
+        &:last-child {
+          .dropdown_body,
+          .dropdown_meta {
+            border-bottom: none;
+          }
+        }
+        &:hover {
+          background: $lightest_gray;
+        }
+      }
+      &_body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        flex: 1;
+        border-bottom: 1px solid $light_gray;
+        color: #666;
+        div {
+          color: #999;
+          margin-bottom: 5px;
+          span {
+            display: inline-block;
+            margin-right: 5px;
+            &::first-letter {
+              text-transform: capitalize;
+            }
+          }
+        }
+      }
+      &_meta {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        width: 120px;
+        border-bottom: 1px solid $light_gray;
+        padding-right: 16px;
+        i {
+          margin-right: 12px;
+          font-size: 12px;
+          &.check-icon,
+          &.check-icon + span {
+            color: $green;
+          }
+          &.cross-icon,
+          &.cross-icon + span {
+            color: $red;
+          }
+        }
+        span {
+          font-size: 14px;
+        }
+      }
+    }
+    .empty_message {
+      padding: 0;
+    }
+  }
+}

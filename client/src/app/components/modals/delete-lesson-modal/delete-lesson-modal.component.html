@@ -1,0 +1,34 @@
+<div mat-dialog-title class="modal_title">Delete</div>
+<div mat-dialog-content>
+  <p [@fade] *ngIf="title">
+    {{ title }}
+  </p>
+  <select-input
+    [@fade]
+    *ngIf="lastDate"
+    [label]="'Period'"
+    [placeholder]="'Choose the period'"
+    [required]="true"
+    [parentForm]="lessonDeleteForm"
+    [formName]="'period'"
+    [dataItems]="periods"
+  ></select-input>
+</div>
+<mat-dialog-actions>
+  <button
+    id="delete_lesson"
+    mat-flat-button
+    class="action_button"
+    (click)="onClick(true)"
+  >
+    Yes
+  </button>
+  <button
+    id="cancel_delete"
+    mat-flat-button
+    class="action_button cancel"
+    (click)="onClick(false)"
+  >
+    Cancel
+  </button>
+</mat-dialog-actions>

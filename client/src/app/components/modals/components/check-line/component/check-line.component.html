@@ -1,0 +1,21 @@
+<ng-container [formGroup]="parentForm">
+  <div class="label">
+    {{ label }} {{ required && (!disabled && !readonly) ? '*' : '' }}
+  </div>
+  <div class="box_wrapper">
+    <span *ngIf="!dataItems">
+      {{ showPlaceholder }}
+    </span>
+    <div
+      *ngFor="let item of dataItems"
+      [ngClass]="{
+        box_item: true,
+        selected: isSelected(item),
+        disabled: disabled || readonly
+      }"
+      (click)="selectItem(item)"
+    >
+      {{ item.code }}
+    </div>
+  </div>
+</ng-container>

@@ -1,0 +1,64 @@
+<div
+  [ngClass]="{
+    'select-input': true,
+    disabled: disabled && !readonly,
+    readonly: readonly
+  }"
+  [formGroup]="parentForm"
+>
+  <div *ngIf="showLabel" class="label">
+    {{ label }} {{ required && !readonly ? '*' : '' }}
+  </div>
+  <div [ngClass]="{ select: true, fullwidth: !showLabel }">
+    <ng-template [ngIf]="showAddButton">
+      <button
+        mat-button
+        class="create_button"
+        type="button"
+        (click)="addEvent.emit()"
+      >
+        {{ addButtonLabel }}
+      </button>
+    </ng-template>
+    <ng-template [ngIf]="!showAddButton">
+      <mat-form-field>
+        <mat-select
+          #select
+          disableOptionCentering
+          [id]="formName"
+          [placeholder]="showPlaceholder"
+          [formControlName]="formName"
+          [compareWith]="compareFn"
+          (selectionChange)="selectionChange.emit($event.value)"
+        >
+          <mat-option *ngIf="zeroOption">None</mat-option>
+          <mat-option
+            *ngFor="let dataItem of dataItems"
+            [value]="dataItem"
+            [innerHTML]="itemTitle(dataItem)"
+          >
+          </mat-option>
+          <div
+            class="mat-option add-button"
+            *ngIf="addButtonLabel"
+            (click)="addEvent.emit(); select.close()"
+          >
+            {{ addButtonLabel }}
+          </div>
+        </mat-select>
+        <mat-error *ngFor="let validation of validation_messages[formName]">
+          <mat-error
+            class="error-message"
+            *ngIf="
+              !readonly &&
+              parentForm.get(formName).hasError(validation.type) &&
+              (parentForm.get(formName).dirty ||
+                parentForm.get(formName).touched)
+            "
+            >{{ validation.message }}
+          </mat-error>
+        </mat-error>
+      </mat-form-field>
+    </ng-template>
+  </div>
+</div>

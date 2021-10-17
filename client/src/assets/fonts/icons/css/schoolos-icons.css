@@ -1,0 +1,105 @@
+@font-face {
+  font-family: 'schoolos-icons';
+  src: url('../font/schoolos-icons.eot?72392418');
+  src: url('../font/schoolos-icons.eot?72392418#iefix') format('embedded-opentype'),
+       url('../font/schoolos-icons.woff2?72392418') format('woff2'),
+       url('../font/schoolos-icons.woff?72392418') format('woff'),
+       url('../font/schoolos-icons.ttf?72392418') format('truetype'),
+       url('../font/schoolos-icons.svg?72392418#schoolos-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'schoolos-icons';
+    src: url('../font/schoolos-icons.svg?72392418#schoolos-icons') format('svg');
+  }
+}
+*/
+ 
+ [class$="-icon"]:before, [class*="-icon "]:before {
+  font-family: "schoolos-icons";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+ 
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+ 
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+ 
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+ 
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+ 
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+ 
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+ 
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+ 
+.user-icon:before { content: '\e800'; } /* '' */
+.visibility-off-icon:before { content: '\e801'; } /* '' */
+.key-icon:before { content: '\e802'; } /* '' */
+.visibility-icon:before { content: '\e803'; } /* '' */
+.teacher-icon:before { content: '\e804'; } /* '' */
+.subjects-icon:before { content: '\e805'; } /* '' */
+.schools-icon:before { content: '\e806'; } /* '' */
+.schedule-icon:before { content: '\e807'; } /* '' */
+.rooms-icon:before { content: '\e808'; } /* '' */
+.referral-icon:before { content: '\e809'; } /* '' */
+.parents-icon:before { content: '\e80a'; } /* '' */
+.notif-icon:before { content: '\e80b'; } /* '' */
+.home-icon:before { content: '\e80c'; } /* '' */
+.child-icon:before { content: '\e80d'; } /* '' */
+.ad-icon:before { content: '\e80e'; } /* '' */
+.ticket-icon:before { content: '\e80f'; } /* '' */
+.search-icon:before { content: '\e810'; } /* '' */
+.profile-icon:before { content: '\e811'; } /* '' */
+.info-icon:before { content: '\e812'; } /* '' */
+.d-arrow-right-icon:before { content: '\e813'; } /* '' */
+.d-arrow-left-icon:before { content: '\e814'; } /* '' */
+.cross-icon:before { content: '\e815'; } /* '' */
+.check-icon:before { content: '\e816'; } /* '' */
+.cancel-icon:before { content: '\e817'; } /* '' */
+.arrow-up-icon:before { content: '\e818'; } /* '' */
+.arrow-right-icon:before { content: '\e819'; } /* '' */
+.arrow-left-icon:before { content: '\e81a'; } /* '' */
+.arrow-down-icon:before { content: '\e81b'; } /* '' */
+.alert-icon:before { content: '\e81c'; } /* '' */
+.more-icon:before { content: '\e81d'; } /* '' */
+.time-icon:before { content: '\e81e'; } /* '' */
+.settings-icon:before { content: '\e81f'; } /* '' */
+.on-icon:before { content: '\e820'; } /* '' */
+.off-icon:before { content: '\e821'; } /* '' */
+.edit-icon:before { content: '\e822'; } /* '' */
+.delete-icon:before { content: '\e823'; } /* '' */
+.attach-icon:before { content: '\e824'; } /* '' */
+.add-group-icon:before { content: '\e825'; } /* '' */
+.warn-icon:before { content: '\e826'; } /* '' */
+.big-search-icon:before { content: '\e827'; } /* '' */
+.border_arrow-icon:before { content: '\e828'; } /* '' */
+.attention-icon:before { content: '\e829'; } /* '' */
+.done-icon:before { content: '\e82a'; } /* '' */
+.error-icon:before { content: '\e82b'; } /* '' */
+.alert-o-icon:before { content: '\e82c'; } /* '' */
+.done-o-icon:before { content: '\e82d'; } /* '' */
+.load-icon:before { content: '\e82e'; } /* '' */
+.import-icon:before { content: '\e830'; } /* '' */

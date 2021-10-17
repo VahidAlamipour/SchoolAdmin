@@ -1,0 +1,36 @@
+<div mat-dialog-title class="modal_title">
+  {{ data.title }}
+</div>
+<mat-dialog-content class="modal_form">
+  <form [formGroup]="institutionForm">
+    <!-- [formName]="'institution'" | with back-->
+    <auto-input
+      [label]="'Institution name'"
+      [placeholder]="'Start typing institution name'"
+      [required]="true"
+      [parentForm]="institutionForm"
+      [formName]="'school'"
+      [suggestions]="institutionSuggestions"
+    ></auto-input>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button
+    id="save_button"
+    mat-flat-button
+    class="action_button"
+    [disabled]="!formValid"
+    (click)="transferData()"
+  >
+    {{ data.saveButtonText }}
+  </button>
+  <button
+    id="cancel_button"
+    mat-flat-button
+    class="action_button cancel"
+    (click)="onNoClick()"
+  >
+    Cancel
+  </button>
+</mat-dialog-actions>

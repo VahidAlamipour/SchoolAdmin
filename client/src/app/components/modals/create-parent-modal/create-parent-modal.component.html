@@ -1,0 +1,172 @@
+<div mat-dialog-title class="modal_title">{{ data.title }}</div>
+<mat-dialog-content class="modal_form">
+  <form [formGroup]="parentDetailsForm">
+    <label-input
+      [label]="'Last name'"
+      [placeholder]="'Enter last name'"
+      [required]="true"
+      [parentForm]="parentDetailsForm"
+      [formName]="'lastName'"
+    ></label-input>
+    <label-input
+      [label]="'Name'"
+      [placeholder]="'Enter name'"
+      [required]="true"
+      [parentForm]="parentDetailsForm"
+      [formName]="'name'"
+    ></label-input>
+    <label-input
+      [label]="'Middle name'"
+      [placeholder]="'Enter middle name'"
+      [parentForm]="parentDetailsForm"
+      [formName]="'middleName'"
+    ></label-input>
+    <br />
+    <br />
+    <label-input
+      [label]="'Email'"
+      [placeholder]="'Enter email'"
+      [required]="true"
+      [parentForm]="parentDetailsForm"
+      [formName]="'email'"
+      [disabled]="data?.existing ? true : false"
+    ></label-input>
+    <br />
+    <br />
+    <select-input
+      [label]="'Family role'"
+      [placeholder]="'Choose role'"
+      [parentForm]="parentDetailsForm"
+      [formName]="'familyRole'"
+      [dataItems]="familyRoles"
+    ></select-input>
+
+    <div class="vertical-radio-input">
+      <div class="label">Marital status</div>
+      <mat-radio-group
+        class="vertical-radio-group"
+        [(ngModel)]="parentStatusOption"
+        [ngModelOptions]="{ standalone: true }"
+        (change)="parentDetailsForm.updateValueAndValidity()"
+      >
+        <mat-radio-button
+          class="vertical-radio-button"
+          *ngFor="let parentStatus of parentsStatusesArray"
+          disableRipple="true"
+          [value]="parentStatus"
+        >
+          {{ parentStatus }}
+        </mat-radio-button>
+        <mat-radio-button
+          class="vertical-radio-button with_input"
+          disableRipple="true"
+          value="other"
+        >
+          <mat-form-field class="input">
+            <input
+              matInput
+              placeholder="Other"
+              [(ngModel)]="customParentStatus"
+              [ngModelOptions]="{ standalone: true }"
+              (ngModelChange)="parentStatusOption = 'other'"
+              id="otherRadio"
+            />
+          </mat-form-field>
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <label-input
+      [label]="'Nationality'"
+      [placeholder]="'Enter nationality'"
+      [parentForm]="parentDetailsForm"
+      [formName]="'nationality'"
+    ></label-input>
+    <label-input
+      [label]="'Passport/ICNo'"
+      [placeholder]="'Enter passport or IC no.'"
+      [parentForm]="parentDetailsForm"
+      [formName]="'passportBirthCertificate'"
+    ></label-input>
+    <date-input
+      [label]="'Date of birth'"
+      [placeholder]="'Enter date of birth'"
+      [required]="true"
+      [parentForm]="parentDetailsForm"
+      [formName]="'initBirthday'"
+    ></date-input>
+    <label-input
+      [label]="'Address'"
+      [placeholder]="'Enter address'"
+      [parentForm]="parentDetailsForm"
+      [formName]="'address'"
+    ></label-input>
+    <br />
+    <br />
+    <label-input
+      [label]="'Mobile'"
+      [placeholder]="'Enter mobile no.'"
+      [parentForm]="parentDetailsForm"
+      [formName]="'msisdn'"
+    ></label-input>
+    <label-input
+      [label]="'Telephone'"
+      [placeholder]="'Enter telephone no.'"
+      [parentForm]="parentDetailsForm"
+      [formName]="'phoneNumber'"
+    ></label-input>
+    <br />
+    <br />
+    <label-input
+      [label]="'Designation/Occupation'"
+      [placeholder]="'Enter designation/occupation'"
+      [parentForm]="parentDetailsForm"
+      [formName]="'designation'"
+    ></label-input>
+    <label-input
+      [label]="'Company'"
+      [placeholder]="'Enter company name'"
+      [parentForm]="parentDetailsForm"
+      [formName]="'company'"
+    ></label-input>
+    <label-input
+      [label]="'Company address'"
+      [placeholder]="'Enter company address'"
+      [parentForm]="parentDetailsForm"
+      [formName]="'companyAddress'"
+    ></label-input>
+    <br />
+    <chips-block
+      [label]="'Learners'"
+      [buttonLabel]="'Add learner'"
+      [parentForm]="parentDetailsForm"
+      [formName]="'students'"
+      [required]="true"
+      [modalConfig]="learnersModalConfig"
+    ></chips-block>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button
+    mat-button
+    id="delete_button"
+    *ngIf="data?.existing"
+    class="action_button delete"
+    (click)="onDeleteClick()"
+  >
+    Delete parent
+  </button>
+  <button
+    mat-flat-button
+    class="action_button"
+    (click)="onSubmitParentDetails(parentDetailsForm.value)"
+    [disabled]="parentDetailsForm.invalid"
+    id="save_button"
+  >
+    {{ data.saveButtonText }}
+  </button>
+  <button mat-flat-button class="action_button cancel" (click)="onNoClick()">
+    Cancel
+  </button>
+</mat-dialog-actions>

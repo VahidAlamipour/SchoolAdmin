@@ -1,0 +1,78 @@
+<div class="shifts_container">
+  <div class="shifts_header"></div>
+  <div class="shifts_wrapper">
+    <div
+      [@widthFade]
+      class="s_box"
+      *ngFor="let shift of service.shiftsList; let i = index"
+    >
+      <div class="s_head">
+        <span>{{ shift.name }}</span>
+        <i
+          *ngIf="
+            canBeEdited &&
+            shiftCanBeDeleted(shift.timesList) &&
+            !parentForm.get(formControls.academicYearControl)?.invalid
+          "
+          [id]="'delete_shift_' + i"
+          [ngClass]="{ 'delete-icon': true, show: service.shiftCanBeDeleted }"
+          (click)="deleteShift(i)"
+        ></i>
+      </div>
+      <div
+        [ngClass]="{
+          s_block: true,
+          disabled:
+            !canBeEdited &&
+            !parentForm.get(formControls.academicYearControl)?.invalid
+        }"
+      >
+        <div class="empty_message" *ngIf="!shift.timesList?.length">
+          <span>The list is empty</span>
+        </div>
+        <div
+          *ngFor="let time of shift?.timesList; let ti = index"
+          [ngClass]="{ s_time: true, duplicate: time.isDuplicate }"
+        >
+          <span>{{ ti + 1 }}</span>
+          <span>{{ time.start }}</span> -
+          <span>{{ time.end }}</span>
+          <i
+            *ngIf="
+              canBeEdited &&
+              !parentForm.get(formControls.academicYearControl)?.invalid &&
+              !time.isBlocked
+            "
+            [id]="'delete_time_' + i + '_' + ti"
+            class="cancel-icon"
+            (click)="deleteTime(i, ti)"
+          ></i>
+        </div>
+        <div
+          *ngIf="
+            canBeEdited &&
+            !parentForm.get(formControls.academicYearControl)?.invalid
+          "
+          id="add_time"
+          class="add_time"
+          (click)="addTimeModal(i)"
+        >
+          Add duration
+        </div>
+      </div>
+    </div>
+    <div
+      [@width]
+      *ngIf="
+        canBeEdited &&
+        !parentForm.get(formControls.academicYearControl)?.invalid &&
+        service.shiftCanBeAdded
+      "
+      class="s_box"
+    >
+      <div id="add_shift" class="add_time" (click)="service.addShift()">
+        Add shift
+      </div>
+    </div>
+  </div>
+</div>

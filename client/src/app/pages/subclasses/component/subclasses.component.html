@@ -1,0 +1,158 @@
+<h1 class="headcrumbs">
+  <span [routerLink]="['/learners']">Learners</span> <span> / Subclasses</span>
+</h1>
+<div class="table subclasses-page">
+  <div class="table_header"><h2>Edit subclasses</h2></div>
+  <div class="table_content">
+    <div class="wrapper">
+      <div class="row-label">
+        <div class="label">Class</div>
+        <div class="row_data">
+          {{ currentData?.class?.level?.name }} {{ currentData?.class?.name }}
+        </div>
+      </div>
+      <div class="row-label">
+        <div class="label">Course</div>
+        <div class="row_data">{{ currentData?.subject?.name }}</div>
+      </div>
+    </div>
+    <div class="subgroups" cdkDropListGroup>
+      <div class="def">
+        <div class="title_line">List of learners (default subclass)</div>
+        <div
+          cdkDropList
+          class="group_list"
+          [cdkDropListData]="defaultSubclass"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <span class="sub_title">
+            Learners quantity: {{ defaultSubclass?.length }}
+          </span>
+          <div
+            class="scroll"
+            [style.top.px]="
+              layout.contentScrollTopNumber >= 310
+                ? layout.contentScrollTopNumber - 280
+                : 30
+            "
+          >
+            <div class="group_box" *ngFor="let item of defaultSubclass" cdkDrag>
+              {{ item.name }} {{ item.lastName }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sub">
+        <div class="title_line">
+          <button
+            mat-button
+            class="sort_button"
+            id="sort_button"
+            (click)="sortSubSubclasses()"
+          >
+            A-Z
+          </button>
+          <button
+            mat-button
+            class="create_button"
+            id="add_subclass_button"
+            [disabled]="
+              subSubclasses && subSubclasses.length >= maxSubclassesCount
+            "
+            (click)="addSubclass()"
+          >
+            Add subclass
+          </button>
+        </div>
+
+        <div
+          class="sub_group"
+          *ngFor="let subclass of subSubclasses; let subI = index"
+        >
+          <span class="sub_title">
+            Learners quantity: {{ subclass?.students?.length }}
+          </span>
+          <div class="row-field">
+            <mat-form-field [hideRequiredMarker]="true">
+              <input
+                matInput
+                autocomplete="off"
+                required="true"
+                placeholder="Subclass name"
+                [(ngModel)]="subclass.name"
+                (input)="onTextChanged(subclass,subI)"
+              />
+            </mat-form-field>
+            <i
+              tooltip="Delete subclass"
+              placement="bottom"
+              theme="light"
+              tooltip-class="tooltip"
+              class="delete-icon"
+              (click)="removeSubSubclass(subI, subclass.students)"
+            ></i>
+          </div>
+          <div class="error_message_edit"><mat-error>{{subclass.msg}}</mat-error></div>
+          <div
+            cdkDropList
+            [ngClass]="{
+              group_list: true,
+              empty: subclass.students?.length === 0
+            }"
+            [cdkDropListData]="subclass.students"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div
+              *ngIf="subclass.students?.length === 0"
+              class="group_box_empty"
+            ></div>
+            <div
+              class="group_box"
+              *ngFor="let item of subclass.students; let i = index"
+              cdkDrag
+            >
+              <span>{{ item.name }} {{ item.lastName }}</span>
+              <i
+                class="cancel-icon"
+                (click)="removeItem(subclass.students, i)"
+              ></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="table_actions">
+    <button
+      mat-button
+      class="action_button delete"
+      style="margin-left: 0"
+      id="delete_button"
+      (click)="onDeleteClick()"
+    >
+      Delete subclasses
+    </button>
+    <button
+      mat-flat-button
+      class="action_button"
+      id="save_button"
+      (click)="onSubmitSubclass()"
+      [disabled]="(uploading$ | async) || disabled"
+    >
+      Save
+      <mat-spinner
+        *ngIf="uploading$ | async"
+        diameter="15"
+        strokeWidth="1"
+      ></mat-spinner>
+    </button>
+    <button
+      mat-flat-button
+      class="action_button cancel"
+      id="back_button"
+      (click)="onNoClick()"
+    >
+      Back
+    </button>
+  </div>
+</div>

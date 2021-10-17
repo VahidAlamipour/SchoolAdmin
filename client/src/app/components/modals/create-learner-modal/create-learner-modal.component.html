@@ -1,0 +1,188 @@
+<div *ngIf="data" mat-dialog-title class="modal_title">{{ data.title }}</div>
+<mat-dialog-content class="modal_form">
+  <form [formGroup]="detailsForm">
+    <div *ngIf="SLCBlockVisible">
+      <select-input
+        [label]="'Segment'"
+        [required]="true"
+        [placeholder]="'Choose the segment'"
+        [parentForm]="detailsForm"
+        [formName]="'segment'"
+        [dataItems]="segmentsData"
+        (selectionChange)="segmentSelectionChange($event)"
+      ></select-input>
+      <select-input
+        [label]="'Level'"
+        [required]="true"
+        [placeholder]="'Choose the level'"
+        [parentForm]="detailsForm"
+        [formName]="'level'"
+        [dataItems]="levelsData"
+        [disabled]="detailsForm.get('segment').invalid"
+        (selectionChange)="levelSelectionChange($event)"
+      ></select-input>
+      <select-input
+        [label]="'Class'"
+        [required]="true"
+        [placeholder]="'Choose the class'"
+        [parentForm]="detailsForm"
+        [formName]="'class'"
+        [dataItems]="classsData"
+        [disabled]="
+          detailsForm.get('level').invalid || detailsForm.get('level').disabled
+        "
+      ></select-input>
+      <br />
+      <hr />
+      <br />
+    </div>
+    <label-input
+      [label]="'Last name'"
+      [placeholder]="'Enter last name'"
+      [required]="true"
+      [parentForm]="detailsForm"
+      [formName]="'lastName'"
+    ></label-input>
+    <label-input
+      [label]="'First name'"
+      [placeholder]="'Enter the first name'"
+      [required]="true"
+      [parentForm]="detailsForm"
+      [formName]="'name'"
+    ></label-input>
+    <label-input
+      [label]="'Middle name'"
+      [placeholder]="'Enter middle name'"
+      [parentForm]="detailsForm"
+      [formName]="'middleName'"
+    ></label-input>
+    <br />
+    <br />
+    <label-input
+      [label]="'Email'"
+      [placeholder]="'Enter email'"
+      [required]="true"
+      [parentForm]="detailsForm"
+      [formName]="'email'"
+      [disabled]="data?.existing ? true : false"
+    ></label-input>
+    <br />
+    <br />
+    <date-input
+      [label]="'Date of birth'"
+      [placeholder]="'Enter date of birth'"
+      [required]="true"
+      [parentForm]="detailsForm"
+      [formName]="'initBirthday'"
+    ></date-input>
+    <label-input
+      [label]="'Age'"
+      [disabled]="true"
+      [parentForm]="detailsForm"
+      [formName]="'age'"
+    ></label-input>
+    <select-input
+      [label]="'Gender'"
+      [required]="true"
+      [placeholder]="'Select gender'"
+      [parentForm]="detailsForm"
+      [formName]="'gender'"
+      [dataItems]="gendersData"
+    ></select-input>
+    <br />
+    <br />
+    <label-input
+      [label]="'Local address'"
+      [placeholder]="'Type an address'"
+      [parentForm]="detailsForm"
+      [formName]="'localAddress'"
+    ></label-input>
+    <label-input
+      [label]="'Phone number'"
+      [placeholder]="'Enter telephone no.'"
+      [parentForm]="detailsForm"
+      [formName]="'phoneNumber'"
+    ></label-input>
+    <label-input
+      [label]="'Mobile number'"
+      [placeholder]="'Enter mobile no.'"
+      [parentForm]="detailsForm"
+      [formName]="'msisdn'"
+    ></label-input>
+    <label-input
+      [label]="'Permanent address'"
+      [placeholder]="'Type an address'"
+      [parentForm]="detailsForm"
+      [formName]="'address'"
+    ></label-input>
+    <br />
+    <br />
+    <label-input
+      [label]="'Nationality'"
+      [placeholder]="'Enter nationality'"
+      [parentForm]="detailsForm"
+      [formName]="'nationality'"
+    ></label-input>
+    <label-input
+      [label]="'Religion'"
+      [placeholder]="'Enter religion'"
+      [parentForm]="detailsForm"
+      [formName]="'religion'"
+    ></label-input>
+    <label-input
+      [label]="'Race'"
+      [placeholder]="'Enter race'"
+      [parentForm]="detailsForm"
+      [formName]="'race'"
+    ></label-input>
+    <br />
+    <br />
+    <label-input
+      [label]="'Other'"
+      [placeholder]="'Enter additional information'"
+      [parentForm]="detailsForm"
+      [formName]="'other'"
+    ></label-input>
+    <label-input
+      [label]="'Passport/Birth certificate'"
+      [placeholder]="'Enter passport or birth certificate no.'"
+      [parentForm]="detailsForm"
+      [formName]="'passportBirthCertificate'"
+    ></label-input>
+    <chips-block
+      [label]="'Parents'"
+      [buttonLabel]="'Add parent'"
+      [parentForm]="detailsForm"
+      [formName]="'parents'"
+      [modalConfig]="parentsModalConfig"
+    ></chips-block>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions *ngIf="data">
+  <button
+    id="delete_button"
+    *ngIf="data?.existing"
+    mat-button
+    class="action_button delete"
+    (click)="onDeleteClick()"
+  >
+    Delete learner
+  </button>
+  <button
+    id="save_button"
+    mat-flat-button
+    class="action_button"
+    (click)="onSubmitFormDetails(detailsForm.value)"
+    [disabled]="detailsForm.invalid"
+  >
+    {{ data.saveButtonText }}
+  </button>
+  <button
+    id="cancel_button"
+    mat-flat-button
+    class="action_button cancel"
+    (click)="onNoClick()"
+  >
+    Cancel
+  </button>
+</mat-dialog-actions>

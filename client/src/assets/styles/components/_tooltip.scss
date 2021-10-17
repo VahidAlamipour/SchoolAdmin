@@ -1,0 +1,22 @@
+.tooltip {
+  font-size: 12px;
+  color: #666 !important;
+  background: #fff !important;
+  padding: 12px 20px !important;
+  border: none !important;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2) !important;
+}
+
+.types_tooltip {
+  background: #fff;
+  box-shadow: $global_shadow;
+  font-size: 12px;
+  text-align: center;
+  color: #666 !important;
+  &.after {
+    margin-left: 0;
+  }
+  &:not(.after) {
+    margin-top: 2px !important;
+  }
+}

@@ -1,0 +1,92 @@
+.profile {
+  &__wrapper {
+    display: flex;
+    padding: 40px;
+  }
+
+  &-card {
+    display: inline-block;
+    width: 200px;
+    height: 290px;
+    padding: 30px;
+    margin-right: 30px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+
+    &__name {
+      margin-top: 20px;
+      font-size: 1.25rem;
+      font-weight: 500;
+      line-height: 1.8;
+    }
+
+    &__img {
+      img {
+        width: 140px;
+        height: 140px;
+      }
+    }
+  }
+
+  &-info {
+    flex: 1;
+
+    &__cell {
+      display: flex;
+      margin-top: 18px;
+    }
+
+    &__name {
+      flex: 0 0 auto;
+      font-size: 0.875rem;
+      line-height: 1.14;
+      color: #999;
+      margin-right: 30px;
+      width: 170px;
+    }
+
+    &__value {
+      flex: 1;
+      font-size: 0.875rem;
+      line-height: 1.14;
+    }
+
+    &__password {
+      font-size: 14px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.14;
+      letter-spacing: normal;
+      color: #3377c7;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
+  &-about {
+    border-top: 1px solid #dbdbdb;
+    margin-top: 40px;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+
+    &__text {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-width: 390px;
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.25;
+      color: #999;
+    }
+
+    i {
+      font-size: 40px;
+      margin-right: 20px;
+    }
+  }
+}

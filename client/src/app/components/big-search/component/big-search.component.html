@@ -1,0 +1,38 @@
+<div class="big_wrap">
+  <div class="big-search">
+    <input class="big_input" type="text" [placeholder]="'Search for ' + mode" [(ngModel)]="searchString"
+      (keydown.enter)="searchData(searchString)" />
+    <i class="big-search-icon"></i>
+    <i *ngIf="searchString.length !== 0" class="cancel-icon" (click)="clearSearch()"></i>
+    <button mat-flat-button class="action_button" (click)="searchData(searchString)">
+      Search
+    </button>
+  </div>
+  <div *ngIf="dropdownOpened" class="big_dropdown" [@bigSearch]>
+    <div *ngIf="!dropdownData || dropdownData.length === 0" class="empty_message" [@fade]>
+      <span> There is no results for "{{ searchString }}" in {{ mode }}. </span>
+    </div>
+    <div *ngFor="let item of dropdownData" class="dropdown_item" [@dropdownItem]
+      (click)="itemSelected(item, mode === 'all users' ? item?.type : mode)">
+      <i [@dropdownIcon] [ngClass]="{
+          icon: true,
+          'child-icon': mode === 'learners' || item?.type === 'learner',
+          'parents-icon': mode === 'parents' || item?.type === 'parent',
+          'teacher-icon': mode === 'educators' || item?.type === 'educator',
+          'user-icon': mode === 'staff' || item?.type === 'staff'
+        }"></i>
+      <div class="dropdown_body">
+        <div>
+          <span *ngIf="item.name" innerHTML="{{ item.name | highlight: searchString }}"></span>
+          <span *ngIf="item.middleName" innerHTML="{{ item.middleName | highlight: searchString }}"></span>
+          <span *ngIf="item.lastName" innerHTML="{{ item.lastName | highlight: searchString }}"></span>
+        </div>
+        <span innerHTML="{{ item.msisdn | highlight: searchString }}"></span>
+      </div>
+      <div class="dropdown_meta">
+        <i class="{{ item.active ? 'check' : 'cross' }}-icon"></i>
+        <span>{{ item.active ? 'active' : 'not active' }}</span>
+      </div>
+    </div>
+  </div>
+</div>

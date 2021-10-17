@@ -1,0 +1,75 @@
+<div mat-dialog-title class="modal_title">
+  Import learner
+</div>
+<mat-dialog-content class="modal_form institution">
+  <form [formGroup]="loadLearnerForm">
+    <!-- <div class="row-title"><span>select specefic class</span></div> -->
+    <select-input
+      [label]="'Academic year'"
+      [placeholder]="'Choose the year'"
+      [required]="true"
+      [parentForm]="loadLearnerForm"
+      [formName]="'academicYear'"
+      [dataItems]="academicYears"
+      (selectionChange)="classFiltering()"
+    ></select-input>
+    <select-input
+      [label]="'Segment'"
+      [placeholder]="'Choose the city'"
+      [required]="true"
+      [parentForm]="loadLearnerForm"
+      [formName]="'segment'"
+      [dataItems]="segments"
+      (selectionChange)="levelFiltering()"
+    ></select-input>
+    <select-input
+      [label]="'Level'"
+      [placeholder]="'Choose the city'"
+      [required]="true"
+      [parentForm]="loadLearnerForm"
+      [formName]="'level'"
+      [dataItems]="levels"
+      (selectionChange)="classFiltering()"
+    ></select-input>
+    <select-input
+      [label]="'class'"
+      [placeholder]="'Choose the class'"
+      [required]="true"
+      [parentForm]="loadLearnerForm"
+      [formName]="'class'"
+      [dataItems]="classs"
+      (selectionChange)="modalConfigChanger()"
+    ></select-input>
+    <br />
+    <chips-block
+      [label]="'Learners'"
+      [buttonLabel]="'Add learner'"
+      [parentForm]="loadLearnerForm"
+      [formName]="'students'"
+      [required]="true"
+      [modalConfig]="learnersModalConfig"
+      [disabled]="!loadLearnerForm.controls.class.value"
+    ></chips-block>
+
+
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button
+    id="import_button"
+    mat-flat-button
+    class="action_button"
+    (click)="onImportClick()"
+    [disabled]="this.loadLearnerForm.controls.students.value.length < 1"
+  >
+    Import
+  </button>
+  <button
+    id="cancel_button"
+    mat-flat-button
+    class="action_button cancel"
+    (click)="onNoClick()"
+  >
+    Cancel
+  </button>
+</mat-dialog-actions>

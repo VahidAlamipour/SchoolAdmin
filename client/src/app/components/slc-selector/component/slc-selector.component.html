@@ -1,0 +1,111 @@
+
+<div class="message_box attention" *ngIf="(service.years$ | async)?.length  == 0">Please create an Academic Year in the
+  <div (click)="goToInstitution()" [ngStyle]="{ 'text-decoration' : 'underline', 'margin' : '0 5px', 'cursor' : 'pointer' }"> Institution Schedule</div> 
+  first.
+</div>
+<div class="row">
+    <div class="table learners half">
+        <div class="table_header">
+            <h2>Academic year</h2>
+            <!-- <button class="create_button" id="create_segment" mat-button (click)="openCreateDialog(1)">
+        Create segment
+      </button> -->
+        </div>
+        <div class="table_content">
+            <div class="table_spinner learners {{
+        (service.loadingStructure$ | async) ||
+        (service.loadingSegments$ | async)
+          ? 'loading'
+          : ''
+      }}" id="{{
+        (service.loadingStructure$ | async) ||
+        (service.loadingSegments$ | async)
+          ? 'loading'
+          : ''
+      }}">
+                <mat-spinner diameter="30" strokeWidth="2"></mat-spinner>
+            </div>
+            <app-dropdown [name]="'year'" [data]="service.years$ | async" [editable]="false" (reselect)="yearReselected($event)" (init)="yearInit($event)" [activeyear]="service.activeYear$ | async"></app-dropdown>
+            <!-- (init)="yearReselected($event, true, true)"
+        (reselect)="yearReselected($event, true, false)" -->
+            <!-- <app-dropdown [name]="'segment'" [data]="originAcademicYearslist"
+        (edit)="openEditDialog('segment', $event)" (reselect)="segmentReselected($event)"></app-dropdown> -->
+        </div>
+    </div>
+    <div class="table learners half">
+        <div class="table_header">
+            <h2>Segments</h2>
+            <button class="create_button" id="create_segment" *ngIf="(service.years$ | async)?.length !== 0" mat-button (click)="openCreateDialog(1)">
+        Create segment
+      </button>
+        </div>
+        <div class="table_content">
+            <div class="table_spinner learners {{
+        (service.loadingStructure$ | async) ||
+        (service.loadingSegments$ | async)
+          ? 'loading'
+          : ''
+      }}" id="{{
+        (service.loadingStructure$ | async) ||
+        (service.loadingSegments$ | async)
+          ? 'loading'
+          : ''
+      }}">
+                <mat-spinner diameter="30" strokeWidth="2"></mat-spinner>
+            </div>
+            <app-dropdown #segmentDropDown [name]="'segment'" [data]="service.segments$ | async" (init)="segmentInit($event)" (edit)="openEditDialog('segment', $event)" (reselect)="segmentReselected($event)"></app-dropdown>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="table learners half">
+        <div class="table_header">
+            <h2>Levels</h2>
+            <button class="create_button" id="create_level" *ngIf="(service.segments$ | async)?.length !== 0" mat-button (click)="openCreateDialog(2)">
+        Create level
+      </button>
+        </div>
+        <div class="table_content">
+            <div class="table_spinner learners {{
+          (service.loadingStructure$ | async) ||
+          (service.loadingLevels$ | async)
+            ? 'loading'
+            : ''
+        }}" id="{{
+          (service.loadingStructure$ | async) ||
+          (service.loadingLevels$ | async)
+            ? 'loading'
+            : ''
+        }}">
+                <mat-spinner diameter="30" strokeWidth="2"></mat-spinner>
+            </div>
+            <app-dropdown [name]="'level'" [data]="service.levels$ | async" (init)="levelInit($event)" (edit)="openEditDialog('level', $event)" (reselect)="levelReselected()"></app-dropdown>
+        </div>
+    </div>
+
+    <div class="table learners half">
+        <div class="table_header">
+            <h2>Classes</h2>
+            <button class="create_button" id="create_class" *ngIf="(service.levels$ | async)?.length !== 0" mat-button (click)="openCreateDialog(3)">
+        Create class
+      </button>
+        </div>
+        <div class="table_content">
+            <div class="table_spinner learners {{
+          (service.loadingStructure$ | async) ||
+          (service.loadingClasses$ | async)
+            ? 'loading'
+            : ''
+        }}" id="{{
+          (service.loadingStructure$ | async) ||
+          (service.loadingClasses$ | async)
+            ? 'loading'
+            : ''
+        }}">
+                <mat-spinner diameter="30" strokeWidth="2"></mat-spinner>
+            </div>
+            <app-dropdown [name]="'class'" [levels]="service.levels$ | async" [data]="service.classes$ | async" (edit)="openEditDialog('class', $event)" (init)="classChange($event)" (reselect)="classChange($event)">
+            </app-dropdown>
+        </div>
+    </div>
+</div>

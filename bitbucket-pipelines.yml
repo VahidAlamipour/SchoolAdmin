@@ -1,0 +1,38 @@
+image: node:10.16.3
+pipelines:
+  default:
+    - parallel:
+        - step:
+            caches:
+              - client
+              - sdk
+            script:
+              - cd sdk/
+              - npm i
+              - cd ../
+              - cd client/
+              - npm i
+              - npm run lint
+              - npm run build
+        - step:
+            caches:
+              - server
+            script:
+              - cd server/
+              - npm i
+              - npm run lint
+              - npm run build
+        - step:
+            caches:
+              - sdk
+            script:
+              - cd sdk/
+              - npm i
+              - npm run lint
+              - npm run build
+
+definitions:
+  caches:
+    client: client/node_modules
+    server: server/node_modules
+    sdk: sdk/node_modules

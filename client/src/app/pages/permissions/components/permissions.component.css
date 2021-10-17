@@ -1,0 +1,31 @@
+.permissions-usage-bar {
+  height: 15px !important;
+  border-radius: 5px;
+}
+
+.feature-unavaible-txt {
+  text-align: center;
+  padding: 30px;
+}
+
+/* Plagiarism Checker */
+.plagiarism-checker-usage-container {
+  border: 1px solid lightgray;
+  font-size: 14px;
+}
+
+.plagiarism-checker-message-box {
+  justify-content: left;
+  margin: 0px;
+  padding: 20px;
+}
+
+.plagiarism-checker-text-usage {
+  color: red;
+  font-weight: bold;
+}
+
+.plagiarism-checker-text-email {
+  color: white;
+  font-weight: bolder;
+}

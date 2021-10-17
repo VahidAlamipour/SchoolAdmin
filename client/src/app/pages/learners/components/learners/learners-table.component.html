@@ -1,0 +1,95 @@
+<div class="table_search">
+  <div [ngClass]="{ empty_message: true, shown: !(hasData | async) }">
+    <span> The list is empty, create a learner. </span>
+  </div>
+  <search-input [ngClass]="{ hidden: !(hasData | async) }" [searchString]="searchString"
+    [placeholder]="'Enter mobile number, first or last name'" (searchEvent)="applyFilter($event)"></search-input>
+  <button id="create_learner" class="create_button" style="margin-left: auto;" mat-button
+    (click)="openCreateDialog('create')">
+    Create learner
+  </button>
+  <div class="group-icon-button">
+    <button id="import_learner" title="import learner by excel file" class="create_button" mat-button (click)="importModal()">
+      <img class="group-icon-button-icon" src="assets/images/excel.png" alt="excel" />
+    </button>
+    <button id="import_learner_fom" title="import learner" class="create_button" mat-button (click)="importPreYearsModal()">
+      <img class="group-icon-button-icon" src="assets/images/calendarimport.png" alt="privious year" />
+    </button>
+  </div>
+</div>
+<div [ngClass]="{
+    table_spinner: true,
+    hidden: !(hasData | async),
+    loading: dataSource.loading$ | async
+  }" id="{{ (dataSource.loading$ | async) ? 'loading' : '' }}">
+  <mat-spinner diameter="50" strokeWidth="3"></mat-spinner>
+</div>
+
+<mat-table [class.hidden]="!(hasData | async)" [dataSource]="dataSource" matSort>
+  <!-- fullName Column -->
+  <ng-container matColumnDef="fullName">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      Full name
+    </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <span>{{ element.name }} {{ element.middleName }}
+        {{ element.lastName }}</span>
+      <app-popup [data]="element"></app-popup>
+    </mat-cell>
+  </ng-container>
+
+  <!-- parent Column -->
+  <ng-container matColumnDef="parent">
+    <mat-header-cell *matHeaderCellDef>Parent</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <span *ngFor="let item of element.parents">
+        <span>{{ item.name }} {{ item.middleName }} {{ item.lastName }}</span>
+      </span>
+    </mat-cell>
+  </ng-container>
+
+  <!-- phoneNumber Column -->
+  <ng-container matColumnDef="phoneNumber">
+    <mat-header-cell *matHeaderCellDef>Mobile number</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.msisdn }} </mat-cell>
+  </ng-container>
+
+  <!-- status Column -->
+  <ng-container matColumnDef="status">
+    <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <i [matTooltip]="getActiveStatus(element)" matTooltipClass="types_tooltip"
+        class="{{ element.active ? 'check' : 'cross' }}-icon"></i>
+    </mat-cell>
+  </ng-container>
+
+  <!-- action Column -->
+  <ng-container matColumnDef="action">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <button mat-icon-button color="primary" (click)="addParentsModal(element)">
+        <i class="parents-icon"></i>
+      </button>
+      <button mat-icon-button color="primary" [matMenuTriggerFor]="menu">
+        <i class="more-icon"></i>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button id="edit_learner_profile" mat-menu-item (click)="openCreateDialog('edit', element)">
+          <span>Edit profile</span>
+        </button>
+        <button id="change_parent_role" mat-menu-item (click)="changeTheRoles('roles', element, $event)">
+          <span>Change the role</span>
+        </button>
+        <button id="deactivate_learner" mat-menu-item (click)="userActivation(element.id, element.active)">
+          <span>{{ element.active ? 'Deactivate' : 'Activate' }}</span>
+        </button>
+      </mat-menu>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
+
+<mat-paginator [class.hidden]="!(hasData | async)" showFirstLastButtons [length]="dataSource.learnersCount$ | async"
+  [pageSizeOptions]="[10, 20, 50, 100]" itemsPerPageLabel="'Show'"></mat-paginator>

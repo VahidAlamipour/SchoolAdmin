@@ -1,0 +1,29 @@
+---
+- name: Tests
+  hosts: all
+  become: False
+  tasks:
+    - name: yarn
+      command: /usr/bin/yarn chdir={{ appdir }}
+      become: True
+      become_user: "{{ user }}"
+
+    - name: npm run lint
+      shell: npm run lint chdir={{ appdir }}
+      become: True
+      become_user: "{{ user }}"
+      
+    - name: npm test
+      shell: "{{ enviroment }} npm test chdir={{ appdir }}"
+      register: tests_result
+      become: True
+      become_user: "{{ user }}"
+      ignore_errors: True
+
+    - name: copy report
+      fetch: src="{{ appdir }}/report/index.html" dest="/var/lib/jenkins/workspace/{{ job_name }}/reports/{{ build_number }}.html" flat=yes
+
+    - name: tests failed
+      fail:
+        msg: "Tests failed"
+      when: "'Test failed' in tests_result.stderr"

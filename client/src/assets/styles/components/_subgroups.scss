@@ -1,0 +1,330 @@
+.subgroups {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 16px;
+  border-top: 1px solid $light_gray;
+
+  .title_line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 40px;
+    color: #000;
+    line-height: 35px;
+    font-size: 14px;
+    margin-bottom: 16px;
+
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .sort_button {
+      color: #999;
+      font-weight: 400;
+      padding: 0 10px;
+      min-width: unset;
+      margin: 0 -10px;
+    }
+
+    .create_button {
+      padding: 0 10px;
+      margin: 0 -10px;
+    }
+  }
+
+  .def {
+    flex: 1;
+    border-right: 1px solid $light_gray;
+
+    .group_list {
+      height: calc(100% - 51px);
+      min-height: 660px;
+    }
+  }
+
+  .sub {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .title_line {
+      width: 260px;
+      padding: 0;
+    }
+
+    &_title {
+      display: flex;
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 16px;
+      width: 260px;
+    }
+
+    &_group {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+
+      &:before {
+        position: absolute;
+        content: '';
+        background: #fff url('../images/arrow_groups.svg') no-repeat;
+        height: 21px;
+        width: 22px;
+        background-size: 22px 48px;
+        background-position-y: -14px;
+        top: 36px;
+        left: -1px;
+      }
+
+      .row-field {
+        width: 260px;
+        margin-top: 0;
+        align-items: center;
+
+        i {
+          font-size: 20px;
+          margin-left: 6px;
+          color: #616161;
+          cursor: pointer;
+          transition: color $cubic 0.4s;
+
+          &:hover {
+            color: #585858;
+          }
+        }
+      }
+
+      .group_list {
+        width: 260px;
+        padding: 20px 0;
+      }
+
+      .group_box {
+        background: $blue_dark;
+        color: #fff;
+
+        i {
+          display: block;
+        }
+
+        &:before {
+          content: '';
+          opacity: 1;
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          transition: all $cubic 1s;
+          left: 0;
+          top: 0;
+          z-index: 0;
+          background: $blue_gradient;
+        }
+
+        &:not(.last):hover:before {
+          opacity: 0;
+        }
+      }
+    }
+  }
+
+  app-lesson & {
+    margin-bottom: -21px;
+  }
+
+  .subgroup,
+  lesson-subclass {
+    flex: 1 1 calc(50% - 82px);
+    max-width: calc(50% - 80px);
+    border-bottom: 1px solid $light_gray;
+    padding: 24px 40px 0;
+    min-height: 635px;
+
+    .title_line {
+      padding: 0;
+
+      i {
+        font-size: 18px;
+        color: #999;
+        cursor: pointer;
+        transition: all $cubic 0.3s;
+
+        &:hover {
+          color: $blue;
+        }
+      }
+    }
+
+    .group_list {
+      height: 358px;
+      padding: 0;
+
+      .sub_title {
+        position: relative;
+        margin-top: 16px;
+        width: 100%;
+
+        &:before {
+          content: '';
+          position: absolute;
+          height: 1px;
+          width: calc(100% + 50px);
+          right: -25px;
+          left: -25px;
+          bottom: -8px;
+          background: $light_gray;
+        }
+      }
+
+      .group_box {
+        max-width: unset;
+      }
+
+      .scroll {
+        width: 100%;
+        position: relative;
+        padding: 15px 25px 15px 0;
+        height: calc(100% - 60px);
+        top: unset;
+      }
+
+      &:before,
+      &:after {
+        position: absolute;
+        content: '';
+        left: 0;
+        width: 100%;
+        height: 40px;
+        background: #000;
+        z-index: 1;
+      }
+
+      &:before {
+        top: 30px;
+        background: linear-gradient(to bottom, #ffffff 0%, transparent 100%);
+      }
+
+      &:after {
+        bottom: 0;
+        background: linear-gradient(to top, #ffffff 0%, transparent 100%);
+      }
+    }
+
+    &:nth-child(-n + 2) {
+      margin: -16px 0 0;
+    }
+
+    &:nth-child(odd) {
+      border-right: 1px solid $light_gray;
+    }
+  }
+
+  .cdk-drag-placeholder {
+    opacity: 0;
+  }
+}
+
+.group {
+  &_list {
+    position: relative;
+    padding-left: 40px;
+    min-height: 42px;
+
+    .scroll {
+      position: absolute;
+      width: calc(100% - 40px);
+      overflow: auto;
+      bottom: 0;
+      top: 30px;
+    }
+
+    &.fixed {
+      position: fixed;
+      top: 14px;
+    }
+
+    &.empty {
+      height: 0;
+      overflow: visible;
+    }
+  }
+
+  &_box {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    max-width: 236px;
+    min-height: 18px;
+    background: $light_gray;
+    border-radius: 50px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 18px;
+    transition: background $cubic 0.3s;
+    margin: 4px 0;
+
+    &_empty {
+      position: absolute;
+      min-height: 32px;
+      border-radius: 50px;
+      width: calc(100% - 2px);
+      transition: all $cubic 0.6s;
+      border: 1px dashed $light_gray;
+      margin: 5px 0;
+    }
+
+    &.isDuplicate {
+      background: $red;
+      color: #fff;
+    }
+
+    span {
+      position: relative;
+    }
+
+    i {
+      display: none;
+      font-size: 17px;
+      position: relative;
+      right: -8px;
+      color: #fff;
+      opacity: 0.7;
+      cursor: pointer;
+      transition: opacity $cubic 0.3s;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    &.cdk-drag-preview {
+      max-width: 236px;
+      background: $pre-gray;
+      border-radius: 50px;
+      padding: 6px 12px;
+      font-size: 14px;
+      line-height: 18px;
+      height: unset !important;
+    }
+
+    &:not(.isDuplicate):hover {
+      background: $pre-gray;
+    }
+  }
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1),
+    all 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.group_list.cdk-drop-list-dragging .group_box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1),
+    all 250ms cubic-bezier(0, 0, 0.2, 1);
+}

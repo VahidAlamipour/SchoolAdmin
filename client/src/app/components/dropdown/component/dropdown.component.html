@@ -1,0 +1,42 @@
+<div *ngIf="data && data.length" class="dropdown">
+  <div class="dropdown_template" (click)="onClick($event.target)">
+    <div class="value">
+      <div class="name" [innerHTML]="itemTitle(selectedItem)"></div>
+      <div class="info" [innerHTML]="itemInfo(selectedItem)"></div>
+    </div>
+    <div class="controls">
+      <button
+        *ngIf="editable"
+        mat-icon-button
+        color="primary"
+        (click)="onEditClick()"
+      >
+        <i class="edit-icon"></i>
+      </button>
+      <i class="arrow-down-icon"></i>
+    </div>
+  </div>
+  <div *ngIf="dropdownOpened" class="dropdown_action" [@dropdownAction]>
+    <div
+      class="dropdown_template {{
+        selectedItem?.id === item?.id ? 'selected' : ''
+      }}"
+      *ngFor="let item of data; let i = index"
+      (click)="selectDropdownItem(item, i)"
+    >
+      <div class="value">
+        <div class="name" [innerHTML]="itemTitle(item)"></div>
+        <div class="info" [innerHTML]="itemInfo(item)"></div>
+      </div>
+      <div class="controls"><i class="check-icon"></i></div>
+    </div>
+  </div>
+  <div
+    *ngIf="dropdownOpened"
+    class="dropdown_overlay"
+    (click)="closeDropdown()"
+  ></div>
+</div>
+<div *ngIf="!data || !data.length" class="empty_message">
+  <span> The list is empty, create a {{ itemName(name) }}. </span>
+</div>

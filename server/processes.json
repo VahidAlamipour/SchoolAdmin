@@ -1,0 +1,11 @@
+{
+    "apps": [
+        {
+            "name": "beed_admin",
+            "script": "npm",
+            "args": "start",
+            "pid_file": "pid/server.pid",
+            "exec_mode": "cluster"
+        }
+    ]
+}

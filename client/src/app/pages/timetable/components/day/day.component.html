@@ -1,0 +1,24 @@
+<div [ngClass]="{ tt_day_header: true, today: isToday }">
+  <span>{{
+    isToday ? getWeekday(day.date) + ' / Today' : getWeekday(day.date)
+  }}</span>
+  <span>{{ getFormatDate(day.date) }}</span>
+</div>
+<div class="tt_day_courses">
+  <div class="empty_message" *ngIf="day.lessons.length === 0">
+    <span> The list is empty, create a lesson. </span>
+  </div>
+  <course
+    class="tt_course"
+    *ngFor="let lesson of day.lessons"
+    [lesson]="lesson"
+    [editable]="!isBefore"
+    [dayIndex]="index"
+    (lessonDelete)="lessonDelete.emit()"
+  ></course>
+</div>
+<div *ngIf="!isBefore" class="tt_day_bottom">
+  <div mat-flat-button class="create_button" (click)="addLesson()">
+    Add lesson
+  </div>
+</div>

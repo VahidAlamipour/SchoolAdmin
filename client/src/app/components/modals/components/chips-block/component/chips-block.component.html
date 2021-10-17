@@ -1,0 +1,37 @@
+<div
+  [ngClass]="{ 'chips-block': true, disabled: disabled, readonly: readonly }"
+  [formGroup]="parentForm"
+>
+  <div class="label">{{ label }} {{ required && !readonly ? '*' : '' }}</div>
+  <div class="block_wrap">
+    <div class="block_line">
+      <div
+        class="block_chip"
+        *ngFor="let item of parentForm.get(formName).value; let i = index"
+      >
+        <span> {{ chipsTitle(item) }} </span>
+        <i
+          *ngIf="formName === 'teacherRoles' ? isEditable(i) : false"
+          class="edit-icon"
+          (click)="editItemClick(item)"
+        ></i>
+        <i
+          *ngIf="(editableIds ? isEditable(i) : (!readonly && showDeleteElements())) && showRemoveIcon"
+          class="cancel-icon"
+          (click)="removeItem(i)"
+        ></i>
+      </div>
+    </div>
+    <button
+      *ngIf="!readonly"
+      mat-button
+      class="create_button"
+      type="button"
+      [id]="buttonLabel"
+      [disabled]="disabled || !canBeAdded()"
+      (click)="addDataModal()"
+    >
+      {{ buttonLabel }}
+    </button>
+  </div>
+</div>

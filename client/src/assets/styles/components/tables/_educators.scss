@@ -1,0 +1,41 @@
+%educators-table {
+  &.educators {
+    mat-table {
+      mat-header-row,
+      mat-row {
+        mat-header-cell,
+        mat-cell {
+          // fullName Column
+          &:nth-child(1) {
+            @include fullNameCol;
+          }
+          // phoneNumber Column
+          &:nth-child(2) {
+            @include phoneNumberCol;
+          }
+          // type Column
+          &:nth-child(4) {
+            @include flexEllipsisCol;
+          }
+          // status Column
+          &:nth-child(5) {
+            @include statusCol;
+          }
+          // action Column
+          &:nth-child(6) {
+            @include actionCol;
+            width: 40px;
+          }
+        }
+      }
+      mat-row {
+        mat-cell {
+          // education Column
+          &:nth-child(3) {
+            @include verticalCol;
+          }
+        }
+      }
+    }
+  }
+}

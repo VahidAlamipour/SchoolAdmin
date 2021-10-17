@@ -1,0 +1,30 @@
+<div class="start_page">
+  <header>
+    <img src="assets/images/logo-white.svg" alt="BEED OS" />
+    <a id="logout" (click)="logout()">Back to login</a>
+  </header>
+  <section *ngIf="!interfaces.length">
+      <p>
+        Sorry, you have no access to any part of the education ecosystem.
+      </p>
+      <span>
+        Please, contact to <a [attr.href]="'mailto:' + email">{{ email }}</a>
+      </span>
+  </section>
+  <section *ngIf="interfaces.length">
+      <p>Sorry, you do not have access to Admin panel.</p>
+      <span>Maybe you want to get in to</span>
+      <div class="btn-group">
+        <span class="iface" *ngFor="let iface of interfaces; let odd = odd">
+            <button (click)="changeStatus(iface)" [ngClass]="{ green: odd }">{{ iface }}</button>
+        </span>
+      </div>
+  </section>
+  <section>
+    <img
+      class="noaccess"
+      src="assets/images/noaccess.svg"
+      alt="No access"
+    />
+  </section>
+</div>

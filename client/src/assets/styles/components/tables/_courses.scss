@@ -1,0 +1,16 @@
+%courses-table {
+  &.courses {
+    margin-bottom: 16px;
+    mat-table {
+      mat-row {
+        mat-cell {
+          // action Column
+          &:nth-child(2) {
+            @include actionCol;
+            width: 40px;
+          }
+        }
+      }
+    }
+  }
+}

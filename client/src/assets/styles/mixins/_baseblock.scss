@@ -1,0 +1,6 @@
+@mixin base {
+  background: #fff;
+  box-shadow: $global_shadow;
+  border-radius: $global_border_radius;
+  position: relative;
+}

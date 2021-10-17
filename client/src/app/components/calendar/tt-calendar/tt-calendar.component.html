@@ -1,0 +1,43 @@
+<div class="tt_calendar">
+  <calendar-nav
+    #calNav
+    [label]="navLabel"
+    [prevLabel]="prevNavLabel"
+    [nextLabel]="nextNavLabel"
+    [currentDate]="currentDateView"
+    (onLeftNav)="onLeftNavClick()"
+    (onRightNav)="onRightNavClick()"
+    (onGoToCurrent)="goToCurrent()"
+    (onGoToMonth)="goToMonth($event)"
+    (onGoToYear)="goToYear($event)"
+  >
+  </calendar-nav>
+
+  <div class="tt_calendar_wrapper">
+    <div class="tt_calendar_wrapper_weekdays">
+      <span
+        *ngFor="let weekday of weekdays"
+        [innerText]="getWeekdayName(weekday)"
+      >
+      </span>
+    </div>
+    <div
+      *ngFor="let week of weeks"
+      [ngClass]="{
+        tt_calendar_wrapper_week: true,
+        'selected-week': getDayInWeek(week)
+      }"
+    >
+      <div
+        class="tt_calendar_wrapper_week_day"
+        *ngFor="let day of week"
+        [attr.data-date]="day.date.format(componentConfig.format)"
+        (click)="dayClicked(day)"
+        [ngClass]="getSelectedDayCssClass(day)"
+      >
+      <!-- getDayBtnCssClass(day) original selected day ngclass -->
+        <span [innerText]="getDayBtnText(day)"></span>
+      </div>
+    </div>
+  </div>
+</div>

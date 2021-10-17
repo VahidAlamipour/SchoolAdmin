@@ -1,0 +1,35 @@
+<div
+  [ngClass]="{ 'row-input': true, datepicker: true, disabled: disabled }"
+  [formGroup]="parentForm"
+>
+  <div class="label">{{ label }} {{ required ? '*' : '' }}</div>
+  <mat-form-field>
+    <input
+      matInput
+      autocomplete="off"
+      [matDatepicker]="picker"
+      [min]="minDate"
+      [max]="maxDate"
+      [readonly]="disabled"
+      [placeholder]="placeholder"
+      [formControlName]="formName"
+      [id]="formName"
+      />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker
+      #picker
+      [disabled]="disabled"
+      startView="multi-year"
+    ></mat-datepicker>
+    <mat-error *ngFor="let validation of validation_messages[formName]">
+      <mat-error
+        class="error-message"
+        *ngIf="
+          parentForm.get(formName).hasError(validation.type) &&
+          (parentForm.get(formName).dirty || parentForm.get(formName).touched)
+        "
+        >{{ validation.message }}
+      </mat-error>
+    </mat-error>
+  </mat-form-field>
+</div>

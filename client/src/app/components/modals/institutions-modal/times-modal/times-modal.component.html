@@ -1,0 +1,60 @@
+<div mat-dialog-title class="modal_title">
+  Enter the time of the lesson
+</div>
+<div [ngClass]="{ 'db-select': true, invalid: !startIsBefore }">
+  <div class="label">
+    Start *
+  </div>
+  <mat-form-field>
+    <mat-select [(value)]="selectedStartHour">
+      <mat-option *ngFor="let hour of hours" [value]="hour">
+        {{ hour }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select [(value)]="selectedStartMinute">
+      <mat-option *ngFor="let minute of minutes" [value]="minute">
+        {{ minute }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div [ngClass]="{ 'db-select': true, invalid: !startIsBefore }">
+  <div class="label">
+    End *
+  </div>
+  <mat-form-field>
+    <mat-select [(value)]="selectedEndHour">
+      <mat-option *ngFor="let hour of hours" [value]="hour">
+        {{ hour }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select [(value)]="selectedEndMinute">
+      <mat-option *ngFor="let minute of minutes" [value]="minute">
+        {{ minute }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<p [@fade] class="time_error" *ngIf="!startIsBefore">
+  Wrong time
+</p>
+
+<mat-dialog-actions>
+  <button
+    mat-flat-button
+    class="action_button"
+    [disabled]="!startIsBefore"
+    (click)="onClick(true)"
+  >
+    Add time
+  </button>
+  <button mat-flat-button class="action_button cancel" (click)="onClick(false)">
+    Cancel
+  </button>
+</mat-dialog-actions>

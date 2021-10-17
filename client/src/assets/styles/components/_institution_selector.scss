@@ -1,0 +1,130 @@
+app-institution-selector {
+  width: 100%;
+}
+.institution_selector {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  user-select: none;
+  background: #fff;
+  box-shadow: 0 -2px 5px 0 rgba(0, 0, 0, 0.2);
+  border-radius: $global_border_radius;
+  .selector {
+    &_item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 12px;
+      height: 14px;
+      transition: all $cubic 0.3s;
+      span {
+        font-size: 14px;
+        color: #333;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        padding-right: 5px;
+      }
+      i {
+        color: #666;
+        font-size: 10px;
+        &.arrow-down-icon {
+          margin-left: auto;
+          width: 18px;
+          transition: all $cubic 0.3s;
+        }
+      }
+      &:nth-child(1) {
+        border-radius: $global_border_radius $global_border_radius 0 0;
+        border-bottom: 1px solid $light_gray;
+      }
+      &:nth-child(2) {
+        border-radius: 0 0 $global_border_radius $global_border_radius;
+      }
+      &:hover {
+        background: $lightest_gray;
+        .arrow-down-icon {
+          color: $blue;
+        }
+      }
+      &.active {
+        background: $lightest_gray;
+        .arrow-down-icon {
+          transform: rotate(180deg);
+        }
+      }
+    }
+    &_drop {
+      position: absolute;
+      width: 100%;
+      top: 100%;
+      left: 0;
+      z-index: 1001;
+      background: #fff;
+      overflow: hidden;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.4);
+      border-radius: $global_border_radius;
+      &.city {
+        top: calc(100% - 44px);
+      }
+      .drop {
+        &_search {
+          padding: 10px 12px;
+          border-bottom: 1px solid $light_gray;
+          .filter_input {
+            display: flex;
+            align-items: center;
+            position: relative;
+            border-radius: $global_border_radius;
+            border: 1px solid $light_gray;
+            flex: 1;
+            overflow: hidden;
+            i {
+              position: absolute;
+              left: 8px;
+              font-size: 14px;
+              color: #999;
+            }
+            input {
+              flex: 1;
+              border: none;
+              outline: none;
+              padding: 9px 8px 9px 32px;
+              z-index: 1;
+              font-size: 14px;
+              background: transparent;
+            }
+          }
+        }
+        &_content {
+          overflow: auto;
+          max-height: 210px;
+        }
+        &_line {
+          padding: 8px 12px;
+          color: #333;
+          font-size: 14px;
+          line-height: 20px;
+          transition: all $cubic 0.3s;
+          overflow: hidden;
+          &:hover {
+            background: $lightest_gray;
+          }
+          &.selected {
+            color: $blue;
+          }
+        }
+      }
+    }
+    &_overlay {
+      position: fixed;
+      z-index: 1000;
+      height: 100%;
+      width: 100%;
+      left: 0;
+      top: 0;
+      background: transparent;
+    }
+  }
+}

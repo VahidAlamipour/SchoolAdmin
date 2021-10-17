@@ -1,0 +1,21 @@
+.plagiarism-checker-usage-container {
+  border: 1px solid lightgray;
+  font-size: 14px;
+}
+
+.plagiarism-checker-message-box {
+  justify-content: left;
+  margin: 0px;
+  padding: 20px;
+}
+
+.plagiarism-checker-text-usage {
+  color: red;
+  font-weight: bold;
+}
+
+.plagiarism-checker-text-email 
+{ 
+    color: white; 
+    font-weight: bolder; 
+}

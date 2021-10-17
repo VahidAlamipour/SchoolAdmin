@@ -1,0 +1,259 @@
+@import '../../mixins/table';
+
+@import 'dashboard';
+@import 'learners';
+@import 'subclasses';
+@import 'parents';
+@import 'educators';
+@import 'facilities';
+@import 'test';
+@import 'courses';
+@import 'institutions';
+@import 'staff';
+@import 'roles';
+
+.table {
+  @extend %dashboard;
+  @extend %learners-table;
+  @extend %subclasses-table;
+  @extend %parents-table;
+  @extend %educators-table;
+  @extend %facilities-table;
+  @extend %test-table;
+  @extend %courses-table;
+  @extend %institutions-table;
+  @extend %staff-table;
+  @extend %roles-table;
+
+  &.lesson {
+    margin-bottom: 20px;
+  }
+  background: #fff;
+  box-shadow: $global_shadow;
+  border-radius: $global_border_radius;
+  position: relative;
+  mat-table {
+    mat-header {
+      &-row {
+        min-height: 40px;
+      }
+      &-cell {
+        font-size: 11px;
+        color: rgba(0, 0, 0, 0.38);
+        letter-spacing: 0.37px;
+        text-align: left;
+        line-height: 1px;
+      }
+    }
+    mat-row {
+      align-items: flex-start;
+      &:nth-child(odd) {
+        background: $lightest_gray;
+      }
+      mat-cell {
+        overflow: visible;
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.87);
+        letter-spacing: 0.21px;
+        line-height: 20px;
+        &:last-child {
+          flex: 0;
+        }
+      }
+    }
+  }
+  &_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 11px;
+    padding-right: 16px;
+    padding-bottom: 11px;
+    padding-left: 16px;
+    // min-height: 36px;
+    h2 {
+      line-height: 36px;
+    }
+    &.bordered {
+      border-top: 1px solid $light_gray;
+      border-bottom: 1px solid $light_gray;
+    }
+  }
+  &_search {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+    padding: 16px;
+    background: #fff;
+    border-radius: $global_border_radius;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  }
+  &_spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 100px;
+    z-index: 1;
+    width: 100%;
+    height: calc(100% - 100px);
+    background: rgba(204, 204, 204, 0.2);
+    border-radius: 6px;
+    transition: all $cubic 0.5s;
+    &.learners {
+      top: unset;
+      height: 82px;
+      background: #fff;
+    }
+    &.timetable {
+      top: unset;
+      height: 70px;
+      background: #fff;
+    }
+    &.tt_builder {
+      top: 48px;
+      height: calc(100% - 48px);
+      min-height: unset;
+      background: #fff;
+    }
+    &.loading {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+  &_content {
+    border-top: 1px solid $light_gray;
+    .wrapper {
+      max-width: 600px;
+    }
+  }
+  &_wrap {
+    padding: 20px;
+  }
+  &_actions {
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid $light_gray;
+    min-height: unset;
+    margin: 20px 0 0;
+    padding: 16px;
+    .action_button {
+      margin-left: 16px;
+    }
+  }
+
+  .tab_nav {
+    border-bottom: none;
+    a {
+      padding: 0 4px;
+      margin-left: 20px;
+      opacity: 1;
+      font-size: 14px;
+      font-weight: 400;
+      color: #666;
+      min-width: unset;
+      user-select: none;
+      &.mat-tab-label-active {
+        color: $blue;
+      }
+    }
+    .mat-ink-bar {
+      background: $blue;
+      height: 4px;
+    }
+  }
+  mat-tab-group.tabs {
+    .mat-tab-header {
+      border-bottom: none;
+    }
+    .mat-tab-labels {
+      padding: 0 25px;
+      .mat-tab-label {
+        padding: 2px;
+        opacity: 1;
+        font-size: 14px;
+        font-weight: 400;
+        color: #666;
+        min-width: unset;
+        margin-right: 24px;
+        user-select: none;
+        &-active {
+          color: $blue;
+        }
+      }
+    }
+    .mat-ink-bar {
+      background: $blue;
+      height: 4px;
+    }
+    .mat-tab-body-wrapper {
+      box-shadow: 0 -5px 5px -5px rgba(0, 0, 0, 0.2);
+    }
+  }
+  mat-paginator.mat-paginator {
+    background: transparent;
+    .mat-paginator-container {
+      justify-content: space-between;
+      flex-direction: row-reverse;
+      min-height: unset;
+      padding: 16px;
+      .mat-paginator-range-actions {
+        min-height: unset;
+        .mat-paginator-range-label {
+          // display: none;
+          order: 2;
+        }
+        .mat-icon-button {
+          width: 25px;
+          height: 25px;
+          line-height: 1;
+          .mat-paginator-icon {
+            width: 25px;
+          }
+        }
+      }
+      .mat-paginator-page-size {
+        font-size: 14px;
+        margin: 0;
+        mat-form-field {
+          &.mat-paginator-page-size-select {
+            border: 1px solid $light_gray;
+            padding: 0 8px;
+            border-radius: $global_border_radius;
+            margin: 0 0 0 12px;
+            width: 50px;
+            .mat-form-field-wrapper {
+              padding: 0;
+            }
+            .mat-form-field-infix {
+              width: 68px;
+              border-top: 0;
+            }
+            .mat-form-field-underline {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  .empty_message {
+    border-top: 1px solid #ebebeb;
+    margin-top: -1px;
+  }
+
+  hr {
+    border: none;
+    height: 1px;
+    background: #ebebeb;
+    margin: 20px 0;
+  }
+}

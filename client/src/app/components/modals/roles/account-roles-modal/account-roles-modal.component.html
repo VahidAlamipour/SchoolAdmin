@@ -1,0 +1,37 @@
+<div mat-dialog-title class="modal_title">
+  {{ data.title }}
+</div>
+<mat-dialog-content class="modal_form">
+  <form [formGroup]="accountForm">
+    <toggle-input
+      [label]="'Director'"
+      [parentForm]="accountForm"
+      [formName]="'isDirector'"
+    ></toggle-input>
+    <toggle-input
+      [label]="'Curriculum Director'"
+      [parentForm]="accountForm"
+      [formName]="'isCurriculumDirector'"
+    ></toggle-input>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button
+    id="save_button"
+    mat-flat-button
+    class="action_button"
+    [disabled]="!formValid"
+    (click)="transferData()"
+  >
+    {{ data.saveButtonText }}
+  </button>
+  <button
+    id="cancel_button"
+    mat-flat-button
+    class="action_button cancel"
+    (click)="onNoClick()"
+  >
+    Cancel
+  </button>
+</mat-dialog-actions>

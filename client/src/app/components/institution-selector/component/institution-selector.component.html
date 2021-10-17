@@ -1,0 +1,81 @@
+<div class="institution_selector">
+  <div
+    class="selector_item"
+    [ngClass]="{
+      active: selectorData.opened && selectorData.name === 'city',
+      'selected-city': selectedCity
+    }"
+    (click)="onSelectedItemClick('city')"
+  >
+    <mat-spinner
+      *ngIf="!selectedCity"
+      diameter="20"
+      strokeWidth="2"
+    ></mat-spinner>
+    <span *ngIf="selectedCity">{{ selectedCity?.name }}</span>
+    <i class="arrow-down-icon"></i>
+  </div>
+  <div
+    class="selector_item"
+    [ngClass]="{
+      active: selectorData.opened && selectorData.name === 'institution',
+      'selected-institution': selectedInstitution
+    }"
+    (click)="onSelectedItemClick('institution')"
+  >
+    <mat-spinner
+      *ngIf="!selectedInstitution"
+      diameter="20"
+      strokeWidth="2"
+    ></mat-spinner>
+    <span *ngIf="selectedInstitution"
+      >{{ selectedInstitution?.name }}
+      {{
+        selectedInstitution?.branch
+          ? '(' + selectedInstitution?.branch?.name + ')'
+          : ''
+      }}</span
+    >
+    <i class="arrow-down-icon"></i>
+  </div>
+  <div
+    *ngIf="selectorData.opened"
+    class="selector_drop"
+    [ngClass]="{ city: selectorData.name === 'city' }"
+    [@selectorDrop]
+  >
+    <div class="drop_search">
+      <div class="filter_input">
+        <i class="search-icon"></i>
+        <input
+          type="text"
+          placeholder="Enter the {{ selectorData.name }}"
+          [(ngModel)]="searchValue"
+          (keyup)="searchItems()"
+          autofocus
+          #filterInput
+        />
+      </div>
+    </div>
+    <div class="drop_content">
+      <div
+        *ngFor="let item of selectorData.filteredArray"
+        class="drop_line"
+        [ngClass]="{
+          selected:
+            (selectorData.name === 'city' && item.id === selectedCity.id) ||
+            (selectorData.name === 'institution' &&
+              item.id === selectedInstitution.id)
+        }"
+        (click)="onListItemClick(item, selectorData.name)"
+      >
+        {{ item.name }}
+      </div>
+    </div>
+  </div>
+  <div
+    *ngIf="selectorData.opened"
+    class="selector_overlay"
+    (click)="closeSelector()"
+  ></div>
+</div>

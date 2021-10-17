@@ -1,0 +1,41 @@
+@import 'base-input';
+
+%row-title {
+  @include base-input-line;
+  > span {
+    @include base-input-label;
+    font-weight: 500;
+    color: #000;
+    text-transform: uppercase;
+  }
+  .row-data {
+    flex: 2;
+    max-width: 382px;
+  }
+  &.left {
+    padding-left: 16px;
+    > span {
+      justify-content: flex-start;
+    }
+  }
+  &.sub {
+    margin: 0 !important;
+    > span {
+      color: #999;
+      font-weight: 400;
+      text-transform: none;
+      max-width: unset;
+      padding-left: 14px;
+      margin-top: -15px;
+      font-size: 12px;
+    }
+    &:after {
+      display: none !important;
+    }
+  }
+  &:not(.notonly):after {
+    @include base-input-block;
+    content: '';
+    display: block;
+  }
+}

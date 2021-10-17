@@ -1,0 +1,79 @@
+@import '../mixins/baseblock';
+
+.baseblock {
+  @include base;
+  margin-bottom: 16px;
+  &_holder {
+    display: flex;
+  }
+  &_column {
+    display: flex;
+    flex-direction: column;
+    &.half {
+      flex: 1;
+      &:first-child {
+        margin-right: 16px;
+      }
+    }
+  }
+  &_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 11px 16px;
+    min-height: 25px;
+    border-bottom: 1px solid $light_gray;
+  }
+  &_tabs {
+    // display: flex;
+    // justify-content: space-between;
+    // align-items: center;
+    // padding: 11px 16px;
+    // min-height: 25px;
+    border-bottom: 1px solid $light_gray;
+  }
+  &.calendar {
+    height: 100%;
+  }
+  .empty_message {
+    padding: 24px 0;
+  }
+  .dropdown_template {
+    padding: 19px 16px;
+    min-height: 72px;
+    max-height: 72px;
+    box-sizing: border-box;
+  }
+  mat-tab-group.tabs {
+    .mat-tab-header {
+      border-bottom: none;
+    }
+    .mat-tab-body-content {
+      display: none;
+    }
+    .mat-tab-labels {
+      padding: 0 25px;
+      .mat-tab-label {
+        padding: 2px;
+        opacity: 1;
+        font-size: 14px;
+        font-weight: 400;
+        text-transform: uppercase;
+        color: #666;
+        min-width: unset;
+        margin-right: 24px;
+        user-select: none;
+        &-active {
+          color: $blue;
+        }
+      }
+    }
+    .mat-ink-bar {
+      background: $blue;
+      height: 4px;
+    }
+    .mat-tab-body-wrapper {
+      box-shadow: 0 -5px 5px -5px rgba(0, 0, 0, 0.2);
+    }
+  }
+}

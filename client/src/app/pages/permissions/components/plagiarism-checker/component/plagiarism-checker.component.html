@@ -1,0 +1,30 @@
+<div class="table">
+  <div class="table_header" style="background: lightgray">
+    <h2>Plagiarism Checker</h2>
+  </div>
+  <div class="table_header">
+    <h2>Submission Summary</h2>
+    <toggle-input
+      [label]="'Freeze Plagiarism Checker'"
+      [parentForm]="institutionForm"
+      [formName]="'isInactive'"
+      [labelStyle]="{ flex: 'auto', 'max-width': '260px' }"
+      [mainStyle]="{ 'margin-top': '0px' }"
+    ></toggle-input>
+  </div>
+  <div class="table_header plagiarism-checker-usage-container">
+    <div [innerHtml]="usageMessage" style="width: 50%"></div>
+    <mat-progress-bar
+      mode="determinate"
+      [value]="usageRatio"
+      class="permissions-usage-bar"
+    ></mat-progress-bar>
+
+    <!-- <div style="background: blue; height: 10px; width: 50%;"></div> -->
+  </div>
+  <div
+    class="message_box attention plagiarism-checker-message-box"
+    [innerHtml]="message"
+  ></div>
+  <div class="table_header"></div>
+</div>

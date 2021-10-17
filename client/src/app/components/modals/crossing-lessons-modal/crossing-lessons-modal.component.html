@@ -1,0 +1,44 @@
+<div mat-dialog-title class="modal_title">Lesson creation</div>
+<div mat-dialog-content>
+  <p>Lessons are already created on the selected date and time</p>
+  <p>What do you want to do?</p>
+  <mat-radio-group class="radio-holder" [(ngModel)]="selectedOption">
+    <mat-radio-button disableRipple [value]="crossLessons.remove">
+      <span>Replace previously created lessons</span>
+      <span class="desc">
+        previously created lessons will be replaced by a new one according to a determined time interval</span
+      >
+    </mat-radio-button>
+    <mat-radio-button disableRipple [value]="crossLessons.ignore">
+      <span>Leave previously created lessons</span>
+      <span class="desc">
+        lesson will be created on free slots, previously created lessons won't be replaced
+      </span>
+    </mat-radio-button>
+  </mat-radio-group>
+  <div class="lessons-list">
+    <div class="lessons-list-title">List of previously created lessons</div>
+    <div class="lessons-list-table">
+      <div class="lessons-list-table-title">
+        <div class="lessons-list-table-cell">Date</div>
+        <div class="lessons-list-table-cell">Time</div>
+        <div class="lessons-list-table-cell">Name of lesson</div>
+      </div>
+      <div [ngClass]="{ 'lessons-list-table-holder': true, blur: selectedOption === crossLessons.remove }">
+        <div class="lessons-list-table-row" *ngFor="let lesson of crossLessonsData">
+          <div class="lessons-list-table-cell">{{ lesson.date | date: 'dd/MM' }}</div>
+          <div class="lessons-list-table-cell">{{ lesson.time }}</div>
+          <div class="lessons-list-table-cell">{{ lesson.subjectName }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<mat-dialog-actions>
+  <button mat-flat-button class="action_button" (click)="onClick(selectedOption)" [disabled]="selectedOption === crossLessons.break">
+    Accept
+  </button>
+  <button mat-flat-button class="action_button cancel" (click)="onClick(undefined)">
+    Cancel
+  </button>
+</mat-dialog-actions>

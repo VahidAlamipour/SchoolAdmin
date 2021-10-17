@@ -1,0 +1,55 @@
+<div
+  [ngClass]="{
+    'chips-block': true,
+    'chips-terms': true,
+    readonly: !canBeEdited,
+    disabled: parentForm.get(formControls.academicYearControl)?.invalid
+  }"
+>
+  <div class="label">Terms {{ canBeEdited ? '*' : '' }}</div>
+  <div class="block_wrap">
+    <div class="block_line">
+      <div
+        *ngFor="
+          let item of parentForm.get('terms')?.value;
+          let i = index;
+          let last = last
+        "
+        class="block_chip"
+      >
+        <span>{{ i + 1 }} term &nbsp; – </span>
+        <span
+          >{{ item.startDate }} - {{ item.endDate }}
+          <ng-container *ngIf="canBeEdited">
+            <i
+              *ngIf="!last"
+              matTooltipClass="types_tooltip after"
+              [matTooltip]="'To delete this term, delete the last one first.'"
+              [matTooltipPosition]="'after'"
+              [id]="'delete_term_' + i"
+              class="cancel-icon disabled"
+            ></i>
+            <i
+              *ngIf="last"
+              [id]="'delete_term_' + i"
+              class="cancel-icon"
+              (click)="deleteTerm(i, last)"
+            ></i>
+          </ng-container>
+        </span>
+      </div>
+    </div>
+    <div
+      *ngIf="canBeEdited"
+      id="add_term"
+      [ngClass]="{
+        add_term: true,
+        disabled: parentForm.get(formControls.academicYearControl).invalid
+      }"
+      class="add_term"
+      (click)="addTermModal()"
+    >
+      Add term
+    </div>
+  </div>
+</div>

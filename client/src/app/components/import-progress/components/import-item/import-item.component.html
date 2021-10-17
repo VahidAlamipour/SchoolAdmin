@@ -1,0 +1,25 @@
+<div class="import-item {{ getItemStatus() }}">
+  <div class="import-item-icon">
+    <i [class]="getIconClass()"></i>
+  </div>
+  <div class="import-item-wrap">
+    <div class="ii-title">
+      <div>Import {{ data.mode }}s</div>
+      <div>
+        {{ data.progress.value }}%
+        <span *ngIf="itemErrors"
+          >({{ itemErrors }} error{{ itemErrors > 1 ? 's' : '' }})</span
+        >
+      </div>
+    </div>
+    <div class="ii-progress">
+      <mat-progress-bar [mode]="mode" [value]="data.progress.value">
+      </mat-progress-bar>
+    </div>
+    <div class="ii-path">{{ getItemPath() }}</div>
+  </div>
+  <div class="import-item-action">
+    <i *ngIf="!itemIsLoaded" class="cancel-icon" (click)="stopImport()"></i>
+    <i *ngIf="itemIsLoaded" class="arrow-right-icon" (click)="openImportModal()"></i>
+  </div>
+</div>

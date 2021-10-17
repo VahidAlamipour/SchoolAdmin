@@ -1,0 +1,15 @@
+app-not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  img {
+    width: 230px;
+    margin-bottom: 20px;
+  }
+  h1 {
+    color: #b4c2cc;
+    text-align: center;
+  }
+}

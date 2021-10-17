@@ -1,0 +1,91 @@
+<div mat-dialog-title class="modal_title">{{ data.title }}</div>
+<mat-dialog-content class="modal_form">
+  <form [formGroup]="detailsForm">
+    <label-input
+      [label]="'First name'"
+      [placeholder]="'Enter the first name'"
+      [required]="true"
+      [parentForm]="detailsForm"
+      [formName]="'name'"
+    ></label-input>
+    <label-input
+      [label]="'Last name'"
+      [placeholder]="'Enter last name'"
+      [required]="true"
+      [parentForm]="detailsForm"
+      [formName]="'lastName'"
+    ></label-input>
+    <label-input
+      [label]="'Middle name'"
+      [placeholder]="'Enter middle name'"
+      [parentForm]="detailsForm"
+      [formName]="'middleName'"
+    ></label-input>
+    <date-input
+      [label]="'Date of birth'"
+      [placeholder]="'Enter date of birth'"
+      [required]="true"
+      [parentForm]="detailsForm"
+      [formName]="'birthday'"
+    ></date-input>
+    <label-input
+      [label]="'Email'"
+      [placeholder]="'Enter email'"
+      [required]="true"
+      [parentForm]="detailsForm"
+      [formName]="'email'"
+      [disabled]="data?.data ? true : false"
+    ></label-input>
+    <label-input
+      [label]="'Phone number'"
+      [placeholder]="'Enter phone no.'"
+      [parentForm]="detailsForm"
+      [formName]="'msisdn'"
+    ></label-input>
+    <label-input
+      [label]="'City and Address'"
+      [placeholder]="'Enter the city and address'"
+      [parentForm]="detailsForm"
+      [formName]="'address'"
+    ></label-input>
+
+    <chips-block
+      *ngIf="!editMode"
+      [label]="'Institution'"
+      [buttonLabel]="'Add institution'"
+      [parentForm]="detailsForm"
+      [formName]="'institutions'"
+      [required]="true"
+      [modalConfig]="institutionsModalConfig"
+    ></chips-block>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button
+    mat-button
+    id="delete_button"
+    *ngIf="data?.data && canBeDeleted()"
+    class="action_button delete"
+    (click)="onDeleteClick()"
+  >
+    Delete administrator
+  </button>
+  <button
+    mat-flat-button
+    class="action_button"
+    (click)="onSubmitForm(detailsForm.value)"
+    [disabled]="!formValid || (uploading$ | async)"
+    id="save_button"
+  >
+    {{ data.saveButtonText }}
+    <mat-spinner
+      *ngIf="(uploading$ | async)"
+      diameter="15"
+      strokeWidth="1"
+    ></mat-spinner>
+  </button>
+  <button mat-flat-button class="action_button cancel" (click)="onNoClick()">
+    Cancel
+  </button>
+</mat-dialog-actions>

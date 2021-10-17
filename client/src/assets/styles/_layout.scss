@@ -1,0 +1,55 @@
+$padding_width: 20px;
+
+.wrap {
+  display: flex;
+  height: 100%;
+  filter: blur(0);
+  will-change: filter;
+  &.blurred {
+    animation: blur 0.2s 1 forwards;
+  }
+}
+.content {
+  position: relative;
+  flex: 1;
+  padding: 30px $padding_width;
+  overflow: auto;
+  max-width: 1440px;
+  min-width: 840px;
+  &.noscroll {
+    overflow: hidden;
+  }
+}
+
+.row {
+  display: flex;
+}
+
+.fader {
+  position: relative;
+  > * {
+    position: absolute;
+    width: 100%;
+  }
+}
+
+.router ~ * {
+  position: absolute;
+  height: calc(100% - (#{$padding_width} * 2));
+  width: calc(100% - (#{$padding_width} * 2));
+}
+
+@keyframes blur {
+  0% {
+    filter: blur(0);
+  }
+  100% {
+    filter: blur(3px);
+  }
+}
+app-start-select,
+app-sign-in {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}

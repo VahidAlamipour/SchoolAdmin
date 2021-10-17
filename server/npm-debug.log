@@ -1,0 +1,683 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'i' ]
+2 info using npm@1.3.11
+3 info using node@v0.10.20
+4 verbose node symlink C:\Program Files\nodejs\\node.exe
+5 verbose readDependencies using package.json deps
+6 verbose install where, deps [ 'C:\\projects\\LMS-AdminPanel\\server',
+6 verbose install   [ '@sentry/node',
+6 verbose install     'amqplib',
+6 verbose install     'axios',
+6 verbose install     'body-parser',
+6 verbose install     'compression',
+6 verbose install     'connect-redis',
+6 verbose install     'cookie-parser',
+6 verbose install     'cors',
+6 verbose install     'csvtojson',
+6 verbose install     'dayjs',
+6 verbose install     'deep-object-diff',
+6 verbose install     'express',
+6 verbose install     'express-async-errors',
+6 verbose install     'express-fileupload',
+6 verbose install     'express-session',
+6 verbose install     'express-socket.io-session',
+6 verbose install     'helmet',
+6 verbose install     'ioredis',
+6 verbose install     'lodash',
+6 verbose install     'morgan',
+6 verbose install     'mysql',
+6 verbose install     'mysql2',
+6 verbose install     'nconf',
+6 verbose install     'nconf-yaml',
+6 verbose install     'openid-client',
+6 verbose install     'passport',
+6 verbose install     'passport-local',
+6 verbose install     'sequelize',
+6 verbose install     'socket.io',
+6 verbose install     'uuid',
+6 verbose install     'winston',
+6 verbose install     'xlsx',
+6 verbose install     'yup',
+6 verbose install     '@types/express',
+6 verbose install     '@types/express-session',
+6 verbose install     '@types/ioredis',
+6 verbose install     '@types/node',
+6 verbose install     '@types/passport',
+6 verbose install     '@types/sequelize',
+6 verbose install     '@typescript-eslint/eslint-plugin',
+6 verbose install     '@typescript-eslint/parser',
+6 verbose install     'eslint',
+6 verbose install     'jest',
+6 verbose install     'nodemon',
+6 verbose install     'pm2',
+6 verbose install     'sequelize-auto',
+6 verbose install     'ts-node',
+6 verbose install     'typescript' ] ]
+7 info preinstall server@1.2.0
+8 warn package.json copy-descriptor@0.1.1 No README data
+9 warn package.json estraverse@4.2.0 No README data
+10 warn package.json get-value@2.0.6 No README data
+11 warn package.json jest-config@24.3.1 No description
+12 warn package.json jest-config@24.3.1 No README data
+13 warn package.json jest-diff@24.3.1 No description
+14 warn package.json jest-diff@24.3.1 No README data
+15 warn package.json jest-environment-jsdom@24.3.1 No description
+16 warn package.json jest-environment-jsdom@24.3.1 No README data
+17 warn package.json jest-environment-node@24.3.1 No description
+18 warn package.json jest-environment-node@24.3.1 No README data
+19 warn package.json jest-get-type@24.3.0 No README data
+20 warn package.json jest-haste-map@24.3.1 No description
+21 warn package.json jest-haste-map@24.3.1 No README data
+22 warn package.json jest-jasmine2@24.3.1 No description
+23 warn package.json jest-jasmine2@24.3.1 No README data
+24 warn package.json jest-matcher-utils@24.3.1 No README data
+25 warn package.json jest-message-util@24.3.0 No description
+26 warn package.json jest-message-util@24.3.0 No README data
+27 warn package.json jest-regex-util@24.3.0 No description
+28 warn package.json jest-regex-util@24.3.0 No README data
+29 warn package.json jest-resolve@24.3.1 No description
+30 warn package.json jest-resolve@24.3.1 No README data
+31 warn package.json jest-resolve-dependencies@24.3.1 No description
+32 warn package.json jest-resolve-dependencies@24.3.1 No README data
+33 warn package.json jest-runner@24.3.1 No description
+34 warn package.json jest-runner@24.3.1 No README data
+35 warn package.json jest-runtime@24.3.1 No description
+36 warn package.json jest-runtime@24.3.1 No README data
+37 warn package.json jest-snapshot@24.3.1 No description
+38 warn package.json jest-snapshot@24.3.1 No README data
+39 warn package.json jest-util@24.3.0 No description
+40 warn package.json jest-util@24.3.0 No README data
+41 warn package.json jest-watcher@24.3.0 No README data
+42 warn package.json object-copy@0.1.0 No README data
+43 warn package.json path-is-inside@1.0.2 No README data
+44 warn package.json pstree.remy@1.1.6 No repository field.
+45 warn package.json pstree.remy@1.1.6 No README data
+46 warn package.json static-extend@0.1.2 No README data
+47 warn package.json callsite@1.0.0 No repository field.
+48 warn package.json escape-regexp@0.0.1 No repository field.
+49 warn package.json event-loop-inspector@1.2.2 No repository field.
+50 warn package.json has-binary2@1.0.3 No repository field.
+51 warn package.json indexof@0.0.1 No repository field.
+52 warn package.json object-component@0.0.3 No repository field.
+53 warn package.json pause@0.0.1 No repository field.
+54 warn package.json secure-keys@1.0.0 No repository field.
+55 verbose readDependencies using package.json deps
+56 verbose cache add [ '@types/express@^4.16.0', null ]
+57 verbose cache add name=undefined spec="@types/express@^4.16.0" args=["@types/express@^4.16.0",null]
+58 verbose parsed url { protocol: null,
+58 verbose parsed url   slashes: null,
+58 verbose parsed url   auth: null,
+58 verbose parsed url   host: null,
+58 verbose parsed url   port: null,
+58 verbose parsed url   hostname: null,
+58 verbose parsed url   hash: null,
+58 verbose parsed url   search: null,
+58 verbose parsed url   query: null,
+58 verbose parsed url   pathname: '@types/express@^4.16.0',
+58 verbose parsed url   path: '@types/express@^4.16.0',
+58 verbose parsed url   href: '@types/express@^4.16.0' }
+59 verbose cache add name="" spec="types/express@^4.16.0" args=["","types/express@^4.16.0"]
+60 verbose parsed url { protocol: null,
+60 verbose parsed url   slashes: null,
+60 verbose parsed url   auth: null,
+60 verbose parsed url   host: null,
+60 verbose parsed url   port: null,
+60 verbose parsed url   hostname: null,
+60 verbose parsed url   hash: null,
+60 verbose parsed url   search: null,
+60 verbose parsed url   query: null,
+60 verbose parsed url   pathname: 'types/express@^4.16.0',
+60 verbose parsed url   path: 'types/express@^4.16.0',
+60 verbose parsed url   href: 'types/express@^4.16.0' }
+61 verbose cache add name="types/express" spec="^4.16.0" args=["types/express","^4.16.0"]
+62 verbose parsed url { protocol: null,
+62 verbose parsed url   slashes: null,
+62 verbose parsed url   auth: null,
+62 verbose parsed url   host: null,
+62 verbose parsed url   port: null,
+62 verbose parsed url   hostname: null,
+62 verbose parsed url   hash: null,
+62 verbose parsed url   search: null,
+62 verbose parsed url   query: null,
+62 verbose parsed url   pathname: '^4.16.0',
+62 verbose parsed url   path: '^4.16.0',
+62 verbose parsed url   href: '^4.16.0' }
+63 verbose addNamed [ 'types/express', '^4.16.0' ]
+64 verbose addNamed [ null, '>=4.16.0-0 <5.0.0-0' ]
+65 verbose already installed skipping socket.io@^2.3.0 C:\projects\LMS-AdminPanel\server
+66 verbose cache add [ '@types/express-session@^1.15.11', null ]
+67 verbose cache add name=undefined spec="@types/express-session@^1.15.11" args=["@types/express-session@^1.15.11",null]
+68 verbose parsed url { protocol: null,
+68 verbose parsed url   slashes: null,
+68 verbose parsed url   auth: null,
+68 verbose parsed url   host: null,
+68 verbose parsed url   port: null,
+68 verbose parsed url   hostname: null,
+68 verbose parsed url   hash: null,
+68 verbose parsed url   search: null,
+68 verbose parsed url   query: null,
+68 verbose parsed url   pathname: '@types/express-session@^1.15.11',
+68 verbose parsed url   path: '@types/express-session@^1.15.11',
+68 verbose parsed url   href: '@types/express-session@^1.15.11' }
+69 verbose cache add name="" spec="types/express-session@^1.15.11" args=["","types/express-session@^1.15.11"]
+70 verbose parsed url { protocol: null,
+70 verbose parsed url   slashes: null,
+70 verbose parsed url   auth: null,
+70 verbose parsed url   host: null,
+70 verbose parsed url   port: null,
+70 verbose parsed url   hostname: null,
+70 verbose parsed url   hash: null,
+70 verbose parsed url   search: null,
+70 verbose parsed url   query: null,
+70 verbose parsed url   pathname: 'types/express-session@^1.15.11',
+70 verbose parsed url   path: 'types/express-session@^1.15.11',
+70 verbose parsed url   href: 'types/express-session@^1.15.11' }
+71 verbose cache add name="types/express-session" spec="^1.15.11" args=["types/express-session","^1.15.11"]
+72 verbose parsed url { protocol: null,
+72 verbose parsed url   slashes: null,
+72 verbose parsed url   auth: null,
+72 verbose parsed url   host: null,
+72 verbose parsed url   port: null,
+72 verbose parsed url   hostname: null,
+72 verbose parsed url   hash: null,
+72 verbose parsed url   search: null,
+72 verbose parsed url   query: null,
+72 verbose parsed url   pathname: '^1.15.11',
+72 verbose parsed url   path: '^1.15.11',
+72 verbose parsed url   href: '^1.15.11' }
+73 verbose addNamed [ 'types/express-session', '^1.15.11' ]
+74 verbose addNamed [ null, '>=1.15.11-0 <2.0.0-0' ]
+75 verbose already installed skipping uuid@^3.3.3 C:\projects\LMS-AdminPanel\server
+76 verbose cache add [ '@types/ioredis@^4.0.3', null ]
+77 verbose cache add name=undefined spec="@types/ioredis@^4.0.3" args=["@types/ioredis@^4.0.3",null]
+78 verbose parsed url { protocol: null,
+78 verbose parsed url   slashes: null,
+78 verbose parsed url   auth: null,
+78 verbose parsed url   host: null,
+78 verbose parsed url   port: null,
+78 verbose parsed url   hostname: null,
+78 verbose parsed url   hash: null,
+78 verbose parsed url   search: null,
+78 verbose parsed url   query: null,
+78 verbose parsed url   pathname: '@types/ioredis@^4.0.3',
+78 verbose parsed url   path: '@types/ioredis@^4.0.3',
+78 verbose parsed url   href: '@types/ioredis@^4.0.3' }
+79 verbose cache add name="" spec="types/ioredis@^4.0.3" args=["","types/ioredis@^4.0.3"]
+80 verbose parsed url { protocol: null,
+80 verbose parsed url   slashes: null,
+80 verbose parsed url   auth: null,
+80 verbose parsed url   host: null,
+80 verbose parsed url   port: null,
+80 verbose parsed url   hostname: null,
+80 verbose parsed url   hash: null,
+80 verbose parsed url   search: null,
+80 verbose parsed url   query: null,
+80 verbose parsed url   pathname: 'types/ioredis@^4.0.3',
+80 verbose parsed url   path: 'types/ioredis@^4.0.3',
+80 verbose parsed url   href: 'types/ioredis@^4.0.3' }
+81 verbose cache add name="types/ioredis" spec="^4.0.3" args=["types/ioredis","^4.0.3"]
+82 verbose parsed url { protocol: null,
+82 verbose parsed url   slashes: null,
+82 verbose parsed url   auth: null,
+82 verbose parsed url   host: null,
+82 verbose parsed url   port: null,
+82 verbose parsed url   hostname: null,
+82 verbose parsed url   hash: null,
+82 verbose parsed url   search: null,
+82 verbose parsed url   query: null,
+82 verbose parsed url   pathname: '^4.0.3',
+82 verbose parsed url   path: '^4.0.3',
+82 verbose parsed url   href: '^4.0.3' }
+83 verbose addNamed [ 'types/ioredis', '^4.0.3' ]
+84 verbose addNamed [ null, '>=4.0.3-0 <5.0.0-0' ]
+85 verbose already installed skipping winston@3.1.0 C:\projects\LMS-AdminPanel\server
+86 verbose already installed skipping xlsx@^0.15.2 C:\projects\LMS-AdminPanel\server
+87 verbose already installed skipping yup@^0.27.0 C:\projects\LMS-AdminPanel\server
+88 silly lockFile f0e15535-types-express-4-16-0 types/express@^4.16.0
+89 verbose lock types/express@^4.16.0 C:\Users\ACD\AppData\Roaming\npm-cache\f0e15535-types-express-4-16-0.lock
+90 silly lockFile e1d75e6e-types-express-session-1-15-11 types/express-session@^1.15.11
+91 verbose lock types/express-session@^1.15.11 C:\Users\ACD\AppData\Roaming\npm-cache\e1d75e6e-types-express-session-1-15-11.lock
+92 silly lockFile 736d50d0-types-ioredis-4-0-3 types/ioredis@^4.0.3
+93 verbose lock types/ioredis@^4.0.3 C:\Users\ACD\AppData\Roaming\npm-cache\736d50d0-types-ioredis-4-0-3.lock
+94 silly addNameRange { name: 'types/express',
+94 silly addNameRange   range: '>=4.16.0-0 <5.0.0-0',
+94 silly addNameRange   hasData: false }
+95 silly addNameRange { name: 'types/express-session',
+95 silly addNameRange   range: '>=1.15.11-0 <2.0.0-0',
+95 silly addNameRange   hasData: false }
+96 silly addNameRange { name: 'types/ioredis',
+96 silly addNameRange   range: '>=4.0.3-0 <5.0.0-0',
+96 silly addNameRange   hasData: false }
+97 verbose url raw types/express
+98 verbose url resolving [ 'https://registry.npmjs.org/', './types/express' ]
+99 verbose url resolved https://registry.npmjs.org/types/express
+100 info trying registry request attempt 1 at 17:35:38
+101 http GET https://registry.npmjs.org/types/express
+102 verbose url raw types/express-session
+103 verbose url resolving [ 'https://registry.npmjs.org/', './types/express-session' ]
+104 verbose url resolved https://registry.npmjs.org/types/express-session
+105 info trying registry request attempt 1 at 17:35:38
+106 http GET https://registry.npmjs.org/types/express-session
+107 verbose url raw types/ioredis
+108 verbose url resolving [ 'https://registry.npmjs.org/', './types/ioredis' ]
+109 verbose url resolved https://registry.npmjs.org/types/ioredis
+110 info trying registry request attempt 1 at 17:35:38
+111 http GET https://registry.npmjs.org/types/ioredis
+112 verbose cache add [ '@types/node@^10.11.4', null ]
+113 verbose cache add name=undefined spec="@types/node@^10.11.4" args=["@types/node@^10.11.4",null]
+114 verbose parsed url { protocol: null,
+114 verbose parsed url   slashes: null,
+114 verbose parsed url   auth: null,
+114 verbose parsed url   host: null,
+114 verbose parsed url   port: null,
+114 verbose parsed url   hostname: null,
+114 verbose parsed url   hash: null,
+114 verbose parsed url   search: null,
+114 verbose parsed url   query: null,
+114 verbose parsed url   pathname: '@types/node@^10.11.4',
+114 verbose parsed url   path: '@types/node@^10.11.4',
+114 verbose parsed url   href: '@types/node@^10.11.4' }
+115 verbose cache add name="" spec="types/node@^10.11.4" args=["","types/node@^10.11.4"]
+116 verbose parsed url { protocol: null,
+116 verbose parsed url   slashes: null,
+116 verbose parsed url   auth: null,
+116 verbose parsed url   host: null,
+116 verbose parsed url   port: null,
+116 verbose parsed url   hostname: null,
+116 verbose parsed url   hash: null,
+116 verbose parsed url   search: null,
+116 verbose parsed url   query: null,
+116 verbose parsed url   pathname: 'types/node@^10.11.4',
+116 verbose parsed url   path: 'types/node@^10.11.4',
+116 verbose parsed url   href: 'types/node@^10.11.4' }
+117 verbose cache add name="types/node" spec="^10.11.4" args=["types/node","^10.11.4"]
+118 verbose parsed url { protocol: null,
+118 verbose parsed url   slashes: null,
+118 verbose parsed url   auth: null,
+118 verbose parsed url   host: null,
+118 verbose parsed url   port: null,
+118 verbose parsed url   hostname: null,
+118 verbose parsed url   hash: null,
+118 verbose parsed url   search: null,
+118 verbose parsed url   query: null,
+118 verbose parsed url   pathname: '^10.11.4',
+118 verbose parsed url   path: '^10.11.4',
+118 verbose parsed url   href: '^10.11.4' }
+119 verbose addNamed [ 'types/node', '^10.11.4' ]
+120 verbose addNamed [ null, '>=10.11.4-0 <11.0.0-0' ]
+121 silly lockFile 92815c54-types-node-10-11-4 types/node@^10.11.4
+122 verbose lock types/node@^10.11.4 C:\Users\ACD\AppData\Roaming\npm-cache\92815c54-types-node-10-11-4.lock
+123 verbose cache add [ '@types/passport@^1.0.0', null ]
+124 verbose cache add name=undefined spec="@types/passport@^1.0.0" args=["@types/passport@^1.0.0",null]
+125 verbose parsed url { protocol: null,
+125 verbose parsed url   slashes: null,
+125 verbose parsed url   auth: null,
+125 verbose parsed url   host: null,
+125 verbose parsed url   port: null,
+125 verbose parsed url   hostname: null,
+125 verbose parsed url   hash: null,
+125 verbose parsed url   search: null,
+125 verbose parsed url   query: null,
+125 verbose parsed url   pathname: '@types/passport@^1.0.0',
+125 verbose parsed url   path: '@types/passport@^1.0.0',
+125 verbose parsed url   href: '@types/passport@^1.0.0' }
+126 verbose cache add name="" spec="types/passport@^1.0.0" args=["","types/passport@^1.0.0"]
+127 verbose parsed url { protocol: null,
+127 verbose parsed url   slashes: null,
+127 verbose parsed url   auth: null,
+127 verbose parsed url   host: null,
+127 verbose parsed url   port: null,
+127 verbose parsed url   hostname: null,
+127 verbose parsed url   hash: null,
+127 verbose parsed url   search: null,
+127 verbose parsed url   query: null,
+127 verbose parsed url   pathname: 'types/passport@^1.0.0',
+127 verbose parsed url   path: 'types/passport@^1.0.0',
+127 verbose parsed url   href: 'types/passport@^1.0.0' }
+128 verbose cache add name="types/passport" spec="^1.0.0" args=["types/passport","^1.0.0"]
+129 verbose parsed url { protocol: null,
+129 verbose parsed url   slashes: null,
+129 verbose parsed url   auth: null,
+129 verbose parsed url   host: null,
+129 verbose parsed url   port: null,
+129 verbose parsed url   hostname: null,
+129 verbose parsed url   hash: null,
+129 verbose parsed url   search: null,
+129 verbose parsed url   query: null,
+129 verbose parsed url   pathname: '^1.0.0',
+129 verbose parsed url   path: '^1.0.0',
+129 verbose parsed url   href: '^1.0.0' }
+130 verbose addNamed [ 'types/passport', '^1.0.0' ]
+131 verbose addNamed [ null, '>=1.0.0-0 <2.0.0-0' ]
+132 silly lockFile eca2925d-types-passport-1-0-0 types/passport@^1.0.0
+133 verbose lock types/passport@^1.0.0 C:\Users\ACD\AppData\Roaming\npm-cache\eca2925d-types-passport-1-0-0.lock
+134 verbose cache add [ '@types/sequelize@^4.27.28', null ]
+135 verbose cache add name=undefined spec="@types/sequelize@^4.27.28" args=["@types/sequelize@^4.27.28",null]
+136 verbose parsed url { protocol: null,
+136 verbose parsed url   slashes: null,
+136 verbose parsed url   auth: null,
+136 verbose parsed url   host: null,
+136 verbose parsed url   port: null,
+136 verbose parsed url   hostname: null,
+136 verbose parsed url   hash: null,
+136 verbose parsed url   search: null,
+136 verbose parsed url   query: null,
+136 verbose parsed url   pathname: '@types/sequelize@^4.27.28',
+136 verbose parsed url   path: '@types/sequelize@^4.27.28',
+136 verbose parsed url   href: '@types/sequelize@^4.27.28' }
+137 verbose cache add name="" spec="types/sequelize@^4.27.28" args=["","types/sequelize@^4.27.28"]
+138 verbose parsed url { protocol: null,
+138 verbose parsed url   slashes: null,
+138 verbose parsed url   auth: null,
+138 verbose parsed url   host: null,
+138 verbose parsed url   port: null,
+138 verbose parsed url   hostname: null,
+138 verbose parsed url   hash: null,
+138 verbose parsed url   search: null,
+138 verbose parsed url   query: null,
+138 verbose parsed url   pathname: 'types/sequelize@^4.27.28',
+138 verbose parsed url   path: 'types/sequelize@^4.27.28',
+138 verbose parsed url   href: 'types/sequelize@^4.27.28' }
+139 verbose cache add name="types/sequelize" spec="^4.27.28" args=["types/sequelize","^4.27.28"]
+140 verbose parsed url { protocol: null,
+140 verbose parsed url   slashes: null,
+140 verbose parsed url   auth: null,
+140 verbose parsed url   host: null,
+140 verbose parsed url   port: null,
+140 verbose parsed url   hostname: null,
+140 verbose parsed url   hash: null,
+140 verbose parsed url   search: null,
+140 verbose parsed url   query: null,
+140 verbose parsed url   pathname: '^4.27.28',
+140 verbose parsed url   path: '^4.27.28',
+140 verbose parsed url   href: '^4.27.28' }
+141 verbose addNamed [ 'types/sequelize', '^4.27.28' ]
+142 verbose addNamed [ null, '>=4.27.28-0 <5.0.0-0' ]
+143 silly lockFile 87f1b3e0-types-sequelize-4-27-28 types/sequelize@^4.27.28
+144 verbose lock types/sequelize@^4.27.28 C:\Users\ACD\AppData\Roaming\npm-cache\87f1b3e0-types-sequelize-4-27-28.lock
+145 verbose cache add [ '@typescript-eslint/eslint-plugin@^1.6.0', null ]
+146 verbose cache add name=undefined spec="@typescript-eslint/eslint-plugin@^1.6.0" args=["@typescript-eslint/eslint-plugin@^1.6.0",null]
+147 verbose parsed url { protocol: null,
+147 verbose parsed url   slashes: null,
+147 verbose parsed url   auth: null,
+147 verbose parsed url   host: null,
+147 verbose parsed url   port: null,
+147 verbose parsed url   hostname: null,
+147 verbose parsed url   hash: null,
+147 verbose parsed url   search: null,
+147 verbose parsed url   query: null,
+147 verbose parsed url   pathname: '@typescript-eslint/eslint-plugin@^1.6.0',
+147 verbose parsed url   path: '@typescript-eslint/eslint-plugin@^1.6.0',
+147 verbose parsed url   href: '@typescript-eslint/eslint-plugin@^1.6.0' }
+148 verbose cache add name="" spec="typescript-eslint/eslint-plugin@^1.6.0" args=["","typescript-eslint/eslint-plugin@^1.6.0"]
+149 verbose parsed url { protocol: null,
+149 verbose parsed url   slashes: null,
+149 verbose parsed url   auth: null,
+149 verbose parsed url   host: null,
+149 verbose parsed url   port: null,
+149 verbose parsed url   hostname: null,
+149 verbose parsed url   hash: null,
+149 verbose parsed url   search: null,
+149 verbose parsed url   query: null,
+149 verbose parsed url   pathname: 'typescript-eslint/eslint-plugin@^1.6.0',
+149 verbose parsed url   path: 'typescript-eslint/eslint-plugin@^1.6.0',
+149 verbose parsed url   href: 'typescript-eslint/eslint-plugin@^1.6.0' }
+150 verbose cache add name="typescript-eslint/eslint-plugin" spec="^1.6.0" args=["typescript-eslint/eslint-plugin","^1.6.0"]
+151 verbose parsed url { protocol: null,
+151 verbose parsed url   slashes: null,
+151 verbose parsed url   auth: null,
+151 verbose parsed url   host: null,
+151 verbose parsed url   port: null,
+151 verbose parsed url   hostname: null,
+151 verbose parsed url   hash: null,
+151 verbose parsed url   search: null,
+151 verbose parsed url   query: null,
+151 verbose parsed url   pathname: '^1.6.0',
+151 verbose parsed url   path: '^1.6.0',
+151 verbose parsed url   href: '^1.6.0' }
+152 verbose addNamed [ 'typescript-eslint/eslint-plugin', '^1.6.0' ]
+153 verbose addNamed [ null, '>=1.6.0-0 <2.0.0-0' ]
+154 silly lockFile cb293cd9-cript-eslint-eslint-plugin-1-6-0 typescript-eslint/eslint-plugin@^1.6.0
+155 verbose lock typescript-eslint/eslint-plugin@^1.6.0 C:\Users\ACD\AppData\Roaming\npm-cache\cb293cd9-cript-eslint-eslint-plugin-1-6-0.lock
+156 verbose cache add [ '@typescript-eslint/parser@^1.6.0', null ]
+157 verbose cache add name=undefined spec="@typescript-eslint/parser@^1.6.0" args=["@typescript-eslint/parser@^1.6.0",null]
+158 verbose parsed url { protocol: null,
+158 verbose parsed url   slashes: null,
+158 verbose parsed url   auth: null,
+158 verbose parsed url   host: null,
+158 verbose parsed url   port: null,
+158 verbose parsed url   hostname: null,
+158 verbose parsed url   hash: null,
+158 verbose parsed url   search: null,
+158 verbose parsed url   query: null,
+158 verbose parsed url   pathname: '@typescript-eslint/parser@^1.6.0',
+158 verbose parsed url   path: '@typescript-eslint/parser@^1.6.0',
+158 verbose parsed url   href: '@typescript-eslint/parser@^1.6.0' }
+159 verbose cache add name="" spec="typescript-eslint/parser@^1.6.0" args=["","typescript-eslint/parser@^1.6.0"]
+160 verbose parsed url { protocol: null,
+160 verbose parsed url   slashes: null,
+160 verbose parsed url   auth: null,
+160 verbose parsed url   host: null,
+160 verbose parsed url   port: null,
+160 verbose parsed url   hostname: null,
+160 verbose parsed url   hash: null,
+160 verbose parsed url   search: null,
+160 verbose parsed url   query: null,
+160 verbose parsed url   pathname: 'typescript-eslint/parser@^1.6.0',
+160 verbose parsed url   path: 'typescript-eslint/parser@^1.6.0',
+160 verbose parsed url   href: 'typescript-eslint/parser@^1.6.0' }
+161 verbose cache add name="typescript-eslint/parser" spec="^1.6.0" args=["typescript-eslint/parser","^1.6.0"]
+162 verbose parsed url { protocol: null,
+162 verbose parsed url   slashes: null,
+162 verbose parsed url   auth: null,
+162 verbose parsed url   host: null,
+162 verbose parsed url   port: null,
+162 verbose parsed url   hostname: null,
+162 verbose parsed url   hash: null,
+162 verbose parsed url   search: null,
+162 verbose parsed url   query: null,
+162 verbose parsed url   pathname: '^1.6.0',
+162 verbose parsed url   path: '^1.6.0',
+162 verbose parsed url   href: '^1.6.0' }
+163 verbose addNamed [ 'typescript-eslint/parser', '^1.6.0' ]
+164 verbose addNamed [ null, '>=1.6.0-0 <2.0.0-0' ]
+165 silly lockFile 45d00bf6-typescript-eslint-parser-1-6-0 typescript-eslint/parser@^1.6.0
+166 verbose lock typescript-eslint/parser@^1.6.0 C:\Users\ACD\AppData\Roaming\npm-cache\45d00bf6-typescript-eslint-parser-1-6-0.lock
+167 verbose already installed skipping eslint@^5.16.0 C:\projects\LMS-AdminPanel\server
+168 verbose already installed skipping jest@^24.3.1 C:\projects\LMS-AdminPanel\server
+169 verbose already installed skipping nodemon@^1.18.9 C:\projects\LMS-AdminPanel\server
+170 verbose already installed skipping pm2@^3.5.0 C:\projects\LMS-AdminPanel\server
+171 verbose already installed skipping sequelize-auto@^0.4.29 C:\projects\LMS-AdminPanel\server
+172 verbose already installed skipping ts-node@^7.0.1 C:\projects\LMS-AdminPanel\server
+173 verbose already installed skipping typescript@^3.3.3333 C:\projects\LMS-AdminPanel\server
+174 silly addNameRange { name: 'types/node',
+174 silly addNameRange   range: '>=10.11.4-0 <11.0.0-0',
+174 silly addNameRange   hasData: false }
+175 silly addNameRange { name: 'types/sequelize',
+175 silly addNameRange   range: '>=4.27.28-0 <5.0.0-0',
+175 silly addNameRange   hasData: false }
+176 silly addNameRange { name: 'typescript-eslint/eslint-plugin',
+176 silly addNameRange   range: '>=1.6.0-0 <2.0.0-0',
+176 silly addNameRange   hasData: false }
+177 silly addNameRange { name: 'types/passport',
+177 silly addNameRange   range: '>=1.0.0-0 <2.0.0-0',
+177 silly addNameRange   hasData: false }
+178 silly addNameRange { name: 'typescript-eslint/parser',
+178 silly addNameRange   range: '>=1.6.0-0 <2.0.0-0',
+178 silly addNameRange   hasData: false }
+179 verbose url raw types/node
+180 verbose url resolving [ 'https://registry.npmjs.org/', './types/node' ]
+181 verbose url resolved https://registry.npmjs.org/types/node
+182 info trying registry request attempt 1 at 17:35:38
+183 http GET https://registry.npmjs.org/types/node
+184 verbose url raw types/sequelize
+185 verbose url resolving [ 'https://registry.npmjs.org/', './types/sequelize' ]
+186 verbose url resolved https://registry.npmjs.org/types/sequelize
+187 info trying registry request attempt 1 at 17:35:38
+188 http GET https://registry.npmjs.org/types/sequelize
+189 verbose url raw typescript-eslint/eslint-plugin
+190 verbose url resolving [ 'https://registry.npmjs.org/',
+190 verbose url resolving   './typescript-eslint/eslint-plugin' ]
+191 verbose url resolved https://registry.npmjs.org/typescript-eslint/eslint-plugin
+192 info trying registry request attempt 1 at 17:35:38
+193 http GET https://registry.npmjs.org/typescript-eslint/eslint-plugin
+194 verbose url raw types/passport
+195 verbose url resolving [ 'https://registry.npmjs.org/', './types/passport' ]
+196 verbose url resolved https://registry.npmjs.org/types/passport
+197 info trying registry request attempt 1 at 17:35:38
+198 http GET https://registry.npmjs.org/types/passport
+199 verbose url raw typescript-eslint/parser
+200 verbose url resolving [ 'https://registry.npmjs.org/', './typescript-eslint/parser' ]
+201 verbose url resolved https://registry.npmjs.org/typescript-eslint/parser
+202 info trying registry request attempt 1 at 17:35:38
+203 http GET https://registry.npmjs.org/typescript-eslint/parser
+204 verbose cache add [ '@sentry/node@^5.0.6', null ]
+205 verbose cache add name=undefined spec="@sentry/node@^5.0.6" args=["@sentry/node@^5.0.6",null]
+206 verbose parsed url { protocol: null,
+206 verbose parsed url   slashes: null,
+206 verbose parsed url   auth: null,
+206 verbose parsed url   host: null,
+206 verbose parsed url   port: null,
+206 verbose parsed url   hostname: null,
+206 verbose parsed url   hash: null,
+206 verbose parsed url   search: null,
+206 verbose parsed url   query: null,
+206 verbose parsed url   pathname: '@sentry/node@^5.0.6',
+206 verbose parsed url   path: '@sentry/node@^5.0.6',
+206 verbose parsed url   href: '@sentry/node@^5.0.6' }
+207 verbose cache add name="" spec="sentry/node@^5.0.6" args=["","sentry/node@^5.0.6"]
+208 verbose parsed url { protocol: null,
+208 verbose parsed url   slashes: null,
+208 verbose parsed url   auth: null,
+208 verbose parsed url   host: null,
+208 verbose parsed url   port: null,
+208 verbose parsed url   hostname: null,
+208 verbose parsed url   hash: null,
+208 verbose parsed url   search: null,
+208 verbose parsed url   query: null,
+208 verbose parsed url   pathname: 'sentry/node@^5.0.6',
+208 verbose parsed url   path: 'sentry/node@^5.0.6',
+208 verbose parsed url   href: 'sentry/node@^5.0.6' }
+209 verbose cache add name="sentry/node" spec="^5.0.6" args=["sentry/node","^5.0.6"]
+210 verbose parsed url { protocol: null,
+210 verbose parsed url   slashes: null,
+210 verbose parsed url   auth: null,
+210 verbose parsed url   host: null,
+210 verbose parsed url   port: null,
+210 verbose parsed url   hostname: null,
+210 verbose parsed url   hash: null,
+210 verbose parsed url   search: null,
+210 verbose parsed url   query: null,
+210 verbose parsed url   pathname: '^5.0.6',
+210 verbose parsed url   path: '^5.0.6',
+210 verbose parsed url   href: '^5.0.6' }
+211 verbose addNamed [ 'sentry/node', '^5.0.6' ]
+212 verbose addNamed [ null, '>=5.0.6-0 <6.0.0-0' ]
+213 silly lockFile 9379a8e0-sentry-node-5-0-6 sentry/node@^5.0.6
+214 verbose lock sentry/node@^5.0.6 C:\Users\ACD\AppData\Roaming\npm-cache\9379a8e0-sentry-node-5-0-6.lock
+215 verbose already installed skipping amqplib@^0.5.2 C:\projects\LMS-AdminPanel\server
+216 verbose already installed skipping axios@^0.18.0 C:\projects\LMS-AdminPanel\server
+217 verbose already installed skipping body-parser@^1.19.0 C:\projects\LMS-AdminPanel\server
+218 verbose already installed skipping compression@^1.7.3 C:\projects\LMS-AdminPanel\server
+219 verbose already installed skipping connect-redis@^3.4.0 C:\projects\LMS-AdminPanel\server
+220 verbose already installed skipping cookie-parser@^1.4.3 C:\projects\LMS-AdminPanel\server
+221 verbose already installed skipping cors@^2.8.5 C:\projects\LMS-AdminPanel\server
+222 verbose already installed skipping csvtojson@^2.0.10 C:\projects\LMS-AdminPanel\server
+223 verbose already installed skipping dayjs@^1.7.7 C:\projects\LMS-AdminPanel\server
+224 silly addNameRange { name: 'sentry/node',
+224 silly addNameRange   range: '>=5.0.6-0 <6.0.0-0',
+224 silly addNameRange   hasData: false }
+225 verbose url raw sentry/node
+226 verbose url resolving [ 'https://registry.npmjs.org/', './sentry/node' ]
+227 verbose url resolved https://registry.npmjs.org/sentry/node
+228 info trying registry request attempt 1 at 17:35:38
+229 http GET https://registry.npmjs.org/sentry/node
+230 verbose already installed skipping express-socket.io-session@^1.3.5 C:\projects\LMS-AdminPanel\server
+231 verbose already installed skipping deep-object-diff@^1.1.0 C:\projects\LMS-AdminPanel\server
+232 verbose already installed skipping helmet@^3.15.1 C:\projects\LMS-AdminPanel\server
+233 verbose already installed skipping express@^4.16.4 C:\projects\LMS-AdminPanel\server
+234 verbose already installed skipping ioredis@^4.9.0 C:\projects\LMS-AdminPanel\server
+235 verbose already installed skipping express-async-errors@^3.1.1 C:\projects\LMS-AdminPanel\server
+236 verbose already installed skipping lodash@^4.17.11 C:\projects\LMS-AdminPanel\server
+237 verbose already installed skipping express-fileupload@^1.1.6-alpha.6 C:\projects\LMS-AdminPanel\server
+238 verbose already installed skipping morgan@^1.9.1 C:\projects\LMS-AdminPanel\server
+239 verbose already installed skipping express-session@^1.16.1 C:\projects\LMS-AdminPanel\server
+240 verbose already installed skipping mysql@^2.16.0 C:\projects\LMS-AdminPanel\server
+241 verbose already installed skipping mysql2@^1.6.1 C:\projects\LMS-AdminPanel\server
+242 verbose already installed skipping nconf@^0.10.0 C:\projects\LMS-AdminPanel\server
+243 verbose already installed skipping nconf-yaml@^1.0.2 C:\projects\LMS-AdminPanel\server
+244 verbose already installed skipping openid-client@^2.4.5 C:\projects\LMS-AdminPanel\server
+245 verbose already installed skipping passport@^0.4.0 C:\projects\LMS-AdminPanel\server
+246 verbose already installed skipping passport-local@^1.0.0 C:\projects\LMS-AdminPanel\server
+247 verbose already installed skipping sequelize@^4.43.2 C:\projects\LMS-AdminPanel\server
+248 info retry will retry, error on last attempt: Error: CERT_UNTRUSTED
+249 info retry will retry, error on last attempt: Error: CERT_UNTRUSTED
+250 info retry will retry, error on last attempt: Error: CERT_UNTRUSTED
+251 info retry will retry, error on last attempt: Error: CERT_UNTRUSTED
+252 info retry will retry, error on last attempt: Error: CERT_UNTRUSTED
+253 info retry will retry, error on last attempt: Error: CERT_UNTRUSTED
+254 info retry will retry, error on last attempt: Error: CERT_UNTRUSTED
+255 info retry will retry, error on last attempt: Error: CERT_UNTRUSTED
+256 info retry will retry, error on last attempt: Error: CERT_UNTRUSTED
+257 info trying registry request attempt 2 at 17:35:48
+258 http GET https://registry.npmjs.org/types/sequelize
+259 info trying registry request attempt 2 at 17:35:48
+260 http GET https://registry.npmjs.org/types/ioredis
+261 info trying registry request attempt 2 at 17:35:48
+262 http GET https://registry.npmjs.org/types/express-session
+263 info retry will retry, error on last attempt: Error: CERT_UNTRUSTED
+264 info trying registry request attempt 2 at 17:35:48
+265 http GET https://registry.npmjs.org/types/express
+266 info trying registry request attempt 2 at 17:35:48
+267 http GET https://registry.npmjs.org/types/node
+268 info retry will retry, error on last attempt: Error: CERT_UNTRUSTED
+269 info retry will retry, error on last attempt: Error: CERT_UNTRUSTED
+270 info retry will retry, error on last attempt: Error: CERT_UNTRUSTED
+271 info retry will retry, error on last attempt: Error: CERT_UNTRUSTED
+272 info trying registry request attempt 2 at 17:35:49
+273 http GET https://registry.npmjs.org/typescript-eslint/eslint-plugin
+274 info retry will retry, error on last attempt: Error: CERT_UNTRUSTED
+275 info trying registry request attempt 2 at 17:35:50
+276 http GET https://registry.npmjs.org/typescript-eslint/parser
+277 info trying registry request attempt 2 at 17:35:50
+278 http GET https://registry.npmjs.org/sentry/node
+279 info trying registry request attempt 2 at 17:35:50
+280 http GET https://registry.npmjs.org/types/passport
+281 info retry will retry, error on last attempt: Error: CERT_UNTRUSTED
+282 info retry will retry, error on last attempt: Error: CERT_UNTRUSTED
+283 info retry will retry, error on last attempt: Error: CERT_UNTRUSTED
+284 info trying registry request attempt 3 at 17:36:48
+285 http GET https://registry.npmjs.org/types/sequelize
+286 info trying registry request attempt 3 at 17:36:48
+287 http GET https://registry.npmjs.org/types/express-session
+288 info trying registry request attempt 3 at 17:36:49
+289 http GET https://registry.npmjs.org/types/ioredis
+290 info trying registry request attempt 3 at 17:36:49
+291 http GET https://registry.npmjs.org/types/express
+292 silly lockFile 87f1b3e0-types-sequelize-4-27-28 types/sequelize@^4.27.28
+293 silly lockFile 87f1b3e0-types-sequelize-4-27-28 types/sequelize@^4.27.28
+294 error Error: CERT_UNTRUSTED
+294 error     at SecurePair.<anonymous> (tls.js:1356:32)
+294 error     at SecurePair.EventEmitter.emit (events.js:92:17)
+294 error     at SecurePair.maybeInitFinished (tls.js:968:10)
+294 error     at CleartextStream.read [as _read] (tls.js:462:15)
+294 error     at CleartextStream.Readable.read (_stream_readable.js:320:10)
+294 error     at EncryptedStream.write [as _write] (tls.js:366:25)
+294 error     at doWrite (_stream_writable.js:221:10)
+294 error     at writeOrBuffer (_stream_writable.js:211:5)
+294 error     at EncryptedStream.Writable.write (_stream_writable.js:180:11)
+294 error     at write (_stream_readable.js:583:24)
+294 error     at flow (_stream_readable.js:592:7)
+294 error     at Socket.pipeOnReadable (_stream_readable.js:624:5)
+295 error If you need help, you may report this log at:
+295 error     <http://github.com/isaacs/npm/issues>
+295 error or email it to:
+295 error     <npm-@googlegroups.com>
+296 error System Windows_NT 6.2.9200
+297 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "i"
+298 error cwd C:\projects\LMS-AdminPanel\server
+299 error node -v v0.10.20
+300 error npm -v 1.3.11
+301 verbose exit [ 1, true ]

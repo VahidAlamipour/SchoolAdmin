@@ -1,0 +1,123 @@
+<div mat-dialog-title class="modal_title">
+  Import {{ endMode ? isStopped ? 'has been stoped' : 'completed' : data.type + 's' }}
+  <ng-template [ngIf]="errors.length"> ({{errors.length}} errors) </ng-template>
+</div>
+
+<mat-dialog-content class="modal_form" [ngClass]="{'modal_form-errors': errors.length, 'modal_form-end-mode': endMode }">
+  <ng-template [ngIf]="!endMode">
+    <div [@fade] *ngIf="!uploading" class="modal_form_holder">
+      <p>
+        Please follow the structure in the file provided -
+        <a class="create_button" [href]="getTemplateLink()"
+          >List of {{ data.type }}s</a
+        >.
+      </p>
+      <p>
+        Choose file from your computer to upload users. File should be in CSV or
+        XLSX format (*.csv, *.xlsx)
+      </p>
+
+      <div class="file-holder">
+        <label *ngIf="!fileName" for="fileReader" class="file-holder-input">
+          Click and select .csv or .xlsx file
+        </label>
+        <input
+          #fileReader
+          id="fileReader"
+          name="fileUrl"
+          type="file"
+          accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          (change)="handleInputChange($event)"
+        />
+        <div [@fade] class="file-holder-selected" *ngIf="fileName">
+          <div class="file-holder-text">
+            Imported file:
+          </div>
+          <div class="file-holder-name">
+            {{ fileName }}
+            <i class="cancel-icon" (click)="clearFileReader()"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="attention">
+        <div class="attention-icon"></div>
+        <p>
+          If the file does not correspond to the provided structure or the
+          format, the information won’t be uploaded.
+        </p>
+      </div>
+    </div>
+
+    <div [@fade] *ngIf="uploading" class="modal_upload_holder">
+      <div class="modal_upload_holder_path">{{ getItemPath() }}</div>
+      <mat-progress-spinner [mode]="'indeterminate'"></mat-progress-spinner>
+    </div>
+  </ng-template>
+  <ng-template [ngIf]="endMode">
+    <div class="modal-import-result--path"> {{ path }}</div>
+    <div *ngIf="!errors.length && !isStopped">
+      <div class="modal-import-result--status green">
+        <i class="done-icon"></i>
+        <p>Users are successfully uploaded </p>
+      </div>
+    </div>
+    <div *ngIf="isStopped">
+      <div class="modal-import-result--status grey">
+        <i [class]="errors.length ? 'cancel-icon' : 'done-icon'"></i>
+        <p class="grey">
+          Import has been stopped <br/>
+          {{parsed}} lines are successfully uploaded.<br/>
+          <span class="red" *ngIf="errors.length"> {{ notParsed }} lines are not uploaded </span>
+        </p>
+      </div>
+    </div>
+    <div *ngIf="errors.length">
+      <div class="modal-import-result--status" *ngIf="!isStopped" >
+        <i class="cancel-icon red"></i>
+        <p>
+          {{parsed}} lines are successfully uploaded.<br/>
+          <span class="red"> {{ notParsed }} lines are not uploaded </span>
+        </p>
+      </div>
+      <div class="modal-import-result--errors-list">
+        <p *ngFor="let error of errors">
+          <span class="red">Line {{error.line}}: {{error.name}}</span> {{error.description}}
+        </p>
+      </div>
+      <p class="modal-import-result--footer" *ngIf="!isStopped">
+        You can upload a new file with the information that was not uploaded
+      </p>
+    </div>
+  </ng-template>
+</mat-dialog-content>
+
+<mat-dialog-actions [ngClass]="{ upload: uploading }">
+  <a
+    *ngIf="!endMode"
+    id="download_button"
+    mat-button
+    class="action_button delete"
+    [href]="getTemplateLink()"
+  >
+    Download example
+  </a>
+  <button
+    id="import_button"
+    mat-flat-button
+    class="action_button"
+    *ngIf="!endMode"
+    (click)="onImportClick()"
+    [disabled]="!fileName"
+  >
+    Import
+  </button>
+  <button
+    id="cancel_button"
+    mat-flat-button
+    class="action_button cancel"
+    (click)="onNoClick()"
+  >
+    Cancel
+  </button>
+</mat-dialog-actions>

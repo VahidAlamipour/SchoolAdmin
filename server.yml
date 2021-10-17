@@ -1,0 +1,19 @@
+---
+- name: Server
+  hosts: all
+  become: False
+  tasks:
+     - name: yarn
+       command: /usr/bin/yarn chdir={{ appdir }}
+       become: True
+       become_user: "{{ user }}"
+
+     - name: npm run lint
+       shell: npm run lint chdir={{ appdir }}
+       become: True
+       become_user: "{{ user }}"
+
+     - name: pm2 restart
+       shell: "{{ ENV }} pm2 restart processes.json chdir={{ appdir }}"
+       become: True
+       become_user: "{{ user }}"

@@ -1,0 +1,49 @@
+<div infiniteScroll class="selecting_table" [scrollCallback]="scrollCallback">
+  <div
+    *ngFor="let item of data; let i = index"
+    [ngClass]="{
+      selecting_row: true,
+      selected: isItemSelected(item)
+    }"
+    (click)="itemClick(item)"
+  >
+    <div>
+      <i
+        [ngClass]="{
+          'subjects-icon': name === 'courses',
+          'parents-icon': name === 'parents',
+          'child-icon': name === 'learners',
+          'user-icon': name === 'administrators',
+          'schools-icon': name === 'institutions'
+        }"
+      ></i>
+    </div>
+    <div>
+      <p class="m0">{{ item?.name }} {{ item?.lastName }}</p>
+      <p *ngIf="name === 'administrators'">
+        <span>{{ item?.email }}</span>
+      </p>
+      <p *ngIf="name !== 'administrators'">
+        <span *ngIf="item?.address">{{ item?.address || 'Loading...' }}. </span>
+        <span *ngIf="item?.educationalClass"
+          >Class {{ item?.educationalClass.name || 'Loading...' }}</span
+        >
+      </p>
+    </div>
+    <div><i class="check-icon"></i></div>
+  </div>
+  <div
+    *ngIf="(!data || data.length === 0) && !(service.loading$ | async)"
+    class="empty_message"
+    [@fade]
+  >
+    <span>There is no results for {{ name }}.</span>
+  </div>
+  <div
+    [@fade]
+    class="selecting_row selecting_table_loader"
+    *ngIf="(service.loading$ | async)"
+  >
+    <mat-spinner diameter="35" strokeWidth="3"></mat-spinner>
+  </div>
+</div>

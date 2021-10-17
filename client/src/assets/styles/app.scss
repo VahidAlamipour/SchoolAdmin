@@ -1,0 +1,20 @@
+// @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import './../fonts/icons/css/schoolos-icons.css';
+@import './theme';
+@import './reset';
+@import './variables';
+@import './typography';
+@import './layout';
+@import './components/components';
+
+@import './not_found';
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: #f6f6f6;
+  justify-content: center;
+}

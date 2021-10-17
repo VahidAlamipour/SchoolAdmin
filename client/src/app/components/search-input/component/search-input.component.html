@@ -1,0 +1,24 @@
+<div class="filter_input">
+  <i class="search-icon"></i>
+  <label *ngIf="searchString.length === 0">{{ placeholder }}</label>
+  <input
+    type="text"
+    [id]="id ? 'search_' + id + '_field' : ''"
+    [(ngModel)]="searchString"
+    (ngModelChange)="modelChange($event)"
+    (keydown.enter)="searchEvent.emit(searchString)"
+  />
+  <i
+    *ngIf="searchString.length !== 0"
+    class="cancel-icon"
+    (click)="clearInput()"
+  ></i>
+</div>
+<button
+  [id]="id ? 'search_' + id + '_button' : ''"
+  mat-flat-button
+  class="search_button"
+  (click)="searchEvent.emit(searchString)"
+>
+  Search
+</button>

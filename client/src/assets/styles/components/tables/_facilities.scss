@@ -1,0 +1,71 @@
+%facilities-table {
+  &.facilities {
+    margin-bottom: 20px;
+    mat-table {
+      mat-header-row {
+        mat-header-cell {
+          // name Column
+          &:nth-child(1) {
+            display: flex;
+            max-width: 250px;
+            justify-content: space-between;
+            padding-right: 24px;
+          }
+          // course Column
+          &:nth-child(2) {
+            flex: unset;
+            width: 220px;
+          }
+          // description Column
+          // refers to Column
+          // capacity Column
+          &:nth-child(5) {
+            flex: unset;
+            width: 80px;
+            justify-content: center;
+          }
+          // action Column
+          &:nth-child(6) {
+            flex: unset;
+            width: 40px;
+            padding-right: 4px;
+          }
+        }
+      }
+      mat-row {
+        mat-cell {
+          // name Column
+          &:nth-child(1) {
+            display: flex;
+            max-width: 250px;
+            justify-content: space-between;
+            padding-right: 24px;
+          }
+          // course Column
+          &:nth-child(2) {
+            flex: unset;
+            width: 220px;
+            @include verticalCol;
+          }
+          // description Column
+          // refers to Column
+          // capacity Column
+          &:nth-child(5) {
+            flex: unset;
+            width: 80px;
+            justify-content: center;
+          }
+          // action Column
+          &:nth-child(6) {
+            flex: unset;
+            padding-right: 4px;
+            i {
+              font-size: 16px;
+              color: #999;
+            }
+          }
+        }
+      }
+    }
+  }
+}

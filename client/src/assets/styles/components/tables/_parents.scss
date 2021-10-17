@@ -1,0 +1,51 @@
+%parents-table {
+  &.parents {
+    margin-bottom: 20px;
+    mat-table {
+      mat-header-row,
+      mat-row {
+        mat-header-cell,
+        mat-cell {
+          // fullName Column
+          &:nth-child(1) {
+            @include fullNameCol;
+          }
+          // phoneNumber Column
+          &:nth-child(2) {
+            @include phoneNumberCol;
+          }
+          // children Column
+          // class Column
+          &:nth-child(4) {
+            flex: unset;
+            justify-content: center;
+            width: 70px;
+          }
+          // status Column
+          &:nth-child(5) {
+            @include statusCol;
+          }
+          // action Column
+          &:nth-child(6) {
+            @include actionCol;
+          }
+        }
+      }
+      mat-row {
+        mat-cell {
+          // children Column
+          &:nth-child(3) {
+            @include verticalCol;
+          }
+          // class Column
+          &:nth-child(4) {
+            @include verticalCol(center);
+            flex: unset;
+            width: 70px;
+            align-items: center;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,88 @@
+%subclasses-table {
+  &.subclasses {
+    margin-bottom: 16px;
+    mat-table {
+      visibility: visible;
+      opacity: 1;
+      transition: all $cubic 0.2s;
+
+      &.hidden {
+        visibility: hidden;
+        opacity: 0;
+        max-height: 0;
+      }
+      mat-header-row {
+        mat-header-cell {
+          // course Column
+          &:nth-child(1) {
+            display: flex;
+            max-width: 250px;
+            justify-content: space-between;
+            padding-right: 24px;
+          }
+          // subclasses Column
+          // Unassigned learners Column
+          &:nth-child(3) {
+            @include phoneNumberCol;
+            width: 170px;
+          }
+          // action Column
+          &:nth-child(4) {
+            flex: unset;
+            width: 40px;
+            padding-right: 4px;
+          }
+        }
+      }
+      mat-row {
+        mat-cell {
+          // course Column
+          &:nth-child(1) {
+            display: flex;
+            max-width: 250px;
+            justify-content: space-between;
+            padding-right: 24px;
+          }
+          // groups Column
+          // Unassigned learners Column
+          &:nth-child(3) {
+            @include phoneNumberCol;
+            width: 170px;
+          }
+          // action Column
+          &:nth-child(4) {
+            flex: unset;
+            padding-right: 4px;
+            i {
+              font-size: 16px;
+              color: #999;
+            }
+          }
+        }
+      }
+    }
+    &-page {
+      margin-bottom: 16px;
+      .wrapper {
+        padding: 16px 40px;
+      }
+    }
+    .create_button {
+      min-width: unset;
+    }
+    .search_button {
+      &.hidden {
+        display: none;
+      }
+    }
+    .empty_message {
+      display: none;
+      padding: 5px;
+      justify-content: flex-start;
+      border-top: none;
+      &.shown {
+        display: flex;
+      }
+    }
+  }
+}

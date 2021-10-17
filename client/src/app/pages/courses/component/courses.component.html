@@ -1,0 +1,91 @@
+<h1>Courses</h1>
+<div class="table courses">
+  <div class="table_header">
+    <h2>All courses</h2>
+    <button
+      id="create_course"
+      class="create_button"
+      mat-button
+      (click)="openCourseModal()"
+    >
+      Create course
+    </button>
+  </div>
+
+  <div [ngClass]="{ table_search: true, hidden: !(hasData | async) }">
+    <search-input
+      [placeholder]="'Enter the name of course'"
+      (searchEvent)="applyFilter($event)"
+      [liveSearch]="true"
+    ></search-input>
+  </div>
+  <div class="message_box attention">
+    All institutions in the account have the common courses list. Every course
+    is available in any institution in the account.
+  </div>
+  <div [ngClass]="{ empty_message: true, hidden: hasData | async }">
+    <span> The list is empty, create a course. </span>
+  </div>
+
+  <div
+    [ngClass]="{
+      table_spinner: true,
+      hidden: !(hasData | async),
+      loading: dataSource.loading$ | async
+    }"
+  >
+    <mat-spinner diameter="50" strokeWidth="3"></mat-spinner>
+  </div>
+
+  <mat-table
+    [class.hidden]="!(hasData | async)"
+    [dataSource]="dataSource"
+    matSort
+    matSortDisableClear
+    matSortActive="name"
+    matSortDirection="asc"
+  >
+    <!-- name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+        Name
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span>{{ element.name }}</span>
+      </mat-cell>
+    </ng-container>
+
+    <!-- action Column -->
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+
+      <mat-cell *matCellDef="let element">
+
+          <button mat-icon-button color="primary" [matMenuTriggerFor]="menu">
+            <i class="more-icon"></i>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button
+              id="edit_course"
+              mat-menu-item
+              (click)="openCourseModal(element)"
+            >
+              <span>Edit</span>
+            </button>
+          </mat-menu>
+
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+
+  <mat-paginator
+    [class.hidden]="!(hasData | async)"
+    showFirstLastButtons
+    [length]="dataSource.coursesCount$ | async"
+    [pageSizeOptions]="[10, 20, 50, 100]"
+    itemsPerPageLabel="'Show'"
+  ></mat-paginator>
+</div>

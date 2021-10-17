@@ -1,0 +1,92 @@
+<h1>Dashboard</h1>
+
+<div class="table dashboard">
+  <mat-tab-group
+    class="tabs"
+    selectedIndex="0"
+    dynamicHeight
+    (selectedTabChange)="tabsEvent($event)"
+  >
+    <mat-tab label="ALL USERS"> </mat-tab>
+    <mat-tab label="LEARNERS"> </mat-tab>
+    <mat-tab label="PARENTS"> </mat-tab>
+    <mat-tab label="EDUCATORS"> </mat-tab>
+    <mat-tab *ngIf="authService.isAccountAdmin" label="STAFF">
+    </mat-tab>
+  </mat-tab-group>
+  <big-search [mode]="searchMode"> </big-search>
+</div>
+
+<div class="table dashboard">
+  <div class="table_header"><h2>Quick actions</h2></div>
+  <div class="table_content">
+    <div class="quick_button" (click)="quickAction('learner')">
+      <i class="child-icon"></i> <span>Add new learner</span>
+    </div>
+    <div class="quick_button" (click)="quickAction('parent')">
+      <i class="parents-icon"></i> <span>Add new parent</span>
+    </div>
+    <div class="quick_button" (click)="quickAction('educator')">
+      <i class="teacher-icon"></i> <span>Add new educator</span>
+    </div>
+  </div>
+</div>
+
+<div class="table dashboard" *ngIf="false">
+  <div class="table_header"><h2>Tickets</h2></div>
+  <div class="tickets_block">
+    <div class="ticket_item">
+      <i class="ticket-icon new"></i>
+      <div class="ticket_body">
+        <span>+1 207-556-4639</span>
+        <span
+          >Good afternoon. Could you please attach my son studying in grade 8,
+          institution #1, to me?
+        </span>
+      </div>
+      <div class="ticket_meta">
+        <span>July 24 2018</span> <span>09:31</span>
+      </div>
+    </div>
+    <div class="ticket_item">
+      <i class="ticket-icon"></i>
+      <div class="ticket_body">
+        <span>+1 207-556-4639</span>
+        <span
+          >Good afternoon. Could you please attach my son studying in grade 8,
+          institution #1, to me?
+        </span>
+      </div>
+      <div class="ticket_meta">
+        <span>July 24 2018</span> <span>09:31</span>
+      </div>
+    </div>
+    <div class="ticket_item old">
+      <i class="ticket-icon"></i>
+      <div class="ticket_body">
+        <span>+1 207-556-4639</span>
+        <span
+          >Good afternoon. Could you please attach my son studying in grade 8,
+          institution #1, to me?
+        </span>
+      </div>
+      <div class="ticket_meta">
+        <span>July 24 2018</span> <span>09:31</span>
+      </div>
+    </div>
+    <div class="ticket_item old">
+      <i class="ticket-icon"></i>
+      <div class="ticket_body">
+        <span>+1 207-556-4639</span>
+        <span
+          >Good afternoon. Could you please attach my son studying in grade 8,
+          institution #1, to me?
+        </span>
+      </div>
+      <div class="ticket_meta">
+        <span>July 24 2018</span> <span>09:31</span>
+      </div>
+    </div>
+    <button mat-button class="create_button">SEE ALL</button>
+  </div>
+</div>

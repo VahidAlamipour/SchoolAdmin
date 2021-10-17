@@ -1,0 +1,122 @@
+<div mat-dialog-title class="modal_title">
+  {{ data.title }}
+</div>
+<mat-dialog-content class="modal_form institution">
+  <form [formGroup]="detailsForm">
+    <div class="row-title"><span>Basic settings</span></div>
+    <select-input
+      [label]="'Country'"
+      [placeholder]="'Choose the country'"
+      [required]="true"
+      [parentForm]="detailsForm"
+      [formName]="'country'"
+      [dataItems]="service?.allCountries"
+    ></select-input>
+    <select-input
+      [label]="'City'"
+      [placeholder]="'Choose the city'"
+      [required]="true"
+      [disabled]="!countrySelected"
+      [parentForm]="detailsForm"
+      [formName]="'city'"
+      [dataItems]="service?.allCities"
+    ></select-input>
+    <label-input
+      [label]="'Full name of institution'"
+      [placeholder]="'Enter full name of institution'"
+      [required]="true"
+      [istextarea]="true"
+      [parentForm]="detailsForm"
+      [formName]="'institutionFullName'"
+    ></label-input>
+    <label-input
+      [label]="'Short name'"
+      [placeholder]="'Enter short name'"
+      [required]="true"
+      [parentForm]="detailsForm"
+      [formName]="'institutionShortName'"
+    ></label-input>
+    <chips-block
+      [label]="'Administrator'"
+      [buttonLabel]="'Add administrator'"
+      [parentForm]="detailsForm"
+      [formName]="'admin'"
+      [modalConfig]="adminsModalConfig"
+    ></chips-block>
+    <hr />
+    <div class="row-input image-holder">
+      <div class="label">School logo</div>
+      <div class="mat-form-field ">
+        <div class="image-holder-wrapper">
+          <label
+            mat-button
+            for="imageReader"
+            [ngClass]="{
+              create_button: true,
+              disabled: imageData.base64
+            }"
+          >
+            upload logo
+          </label>
+          <input
+            #imageReader
+            id="imageReader"
+            name="imageUrl"
+            type="file"
+            accept="image/jpeg, image/png"
+            (change)="handleInputChange($event)"
+          />
+          <div class="image-holder-text">
+            Upload a logo for Report Cards. Png, jpg or jpeg file, max size 2mb
+          </div>
+          <div [@fade] class="image-holder-name" *ngIf="imageData.base64">
+            {{ imageData.name }}
+            <i class="cancel-icon" (click)="clearImageReader()"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div class="row-title notonly">
+      <span>Schedule settings</span>
+      <div class="row-data">
+        <mat-slide-toggle
+          formControlName="scheduleSettings"
+          [color]="'primary'"
+          id="scheduleSettingsToggle"
+        >
+        </mat-slide-toggle>
+      </div>
+    </div>
+    <schedule-settings
+      *ngIf="hasScheduleSettings"
+      [parentForm]="scheduleSettingsForm"
+      [editMode]="true"
+    ></schedule-settings>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button
+    id="save_button"
+    class="action_button"
+    mat-flat-button
+    (click)="onSubmitClick()"
+    [disabled]="!formValid || (uploading$ | async)"
+  >
+    <span>{{ data.saveButtonText }}</span>
+    <mat-spinner
+      *ngIf="uploading$ | async"
+      diameter="15"
+      strokeWidth="1"
+    ></mat-spinner>
+  </button>
+  <button
+    id="cancel_button"
+    mat-flat-button
+    class="action_button cancel"
+    (click)="onNoClick()"
+  >
+    Cancel
+  </button>
+</mat-dialog-actions>

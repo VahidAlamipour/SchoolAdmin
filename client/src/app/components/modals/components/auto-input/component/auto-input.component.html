@@ -1,0 +1,85 @@
+<div class="auto-input">
+  <div *ngIf="showLabel" class="label">
+    {{ label }} {{ required ? '*' : '' }}
+  </div>
+  <mat-form-field [hideRequiredMarker]="true">
+    <div style="margin-bottom: 5px;" class="auto_wrap">
+      <input
+        #input
+        matInput
+        autocomplete="off"
+        [id]="formName"
+        [placeholder]="placeholder"
+        [required]="required"
+        [readonly]="readonly"
+        [(ngModel)]="inputValue"
+        (keyup)="keyHandler($event)"
+      />
+      <i
+        [ngStyle]="inputTypeHomeRoomClass === true && errorFlag === true && {'margin-bottom': '100px'}"
+        *ngIf="inputValue.length !== 0 && showRemoveIconInInput"
+        class="cancel-icon"
+        (click)="clearInput(true)"
+      ></i>
+      <div [@selectorDrop] class="auto_drop" *ngIf="dropVisibility">
+        <div
+          *ngFor="let item of filteredSuggestions"
+          [ngClass]="{
+            auto_line: true,
+            selected: parentForm.get(formName).value?.id === item?.id
+          }"
+          (click)="selectItem(item, inputTypeHomeRoomClass)"
+        >
+          <span *ngIf="inputTypeHomeRoomClass !== true"> {{ item?.level ? item.level.name : '' }}
+          </span>
+
+          <span
+          [ngStyle]="inputTypeHomeRoomClass && {'font-weight': 'bold'}">
+          {{ inputTypeHomeRoomClass === true ? 'Class ' + item.name : item.name }}
+          </span>
+
+          <span
+          [ngStyle]="inputTypeHomeRoomClass && {'font-size': '12px'}"
+          *ngIf="inputTypeHomeRoomClass === true">
+          &nbsp;{{item?.start ? item.start : ''}} - {{item?.end ? item.end : ''}}
+          </span>
+
+          <span
+          [ngStyle]="inputTypeHomeRoomClass && {'font-size': '12px'}"
+          *ngIf="inputTypeHomeRoomClass === true">
+            &nbsp; - &nbsp;{{ item?.segmentname ? item.segmentname : item.segment.name ? item.segment.name : '' }} 
+          </span>
+
+          <span
+          *ngIf="inputTypeHomeRoomClass === true"
+          [ngStyle]="inputTypeHomeRoomClass && {'font-size': '12px'}"
+          >
+          &nbsp; - &nbsp;{{ item?.level ? 'Level ' + item.level.name : '' }}
+          </span>
+
+          {{ item?.city ? ', City: ' + item.city.name : '' }}
+        
+        </div>
+        <div *ngIf="filteredSuggestions.length === 0" class="auto_line nodata">
+          There is no data.
+        </div>
+      </div>
+    </div>
+    <span>
+      <mat-error *ngIf="inputTypeHomeRoomClass === true && errorFlag === true">
+        User can only be homeroom educator for 1 class per academic year. Please select another year 
+      </mat-error>
+    </span>
+
+    <mat-error *ngFor="let validation of validation_messages[formName]">
+      <mat-error
+        class="error-message"
+        *ngIf="
+          parentForm.get(formName).hasError(validation.type) &&
+          (parentForm.get(formName).dirty || parentForm.get(formName).touched)
+        "
+        >{{ validation.message }}
+      </mat-error>
+    </mat-error>
+  </mat-form-field>
+</div>
